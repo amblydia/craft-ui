@@ -55,9 +55,15 @@ browser: a bot challenge on those paths would break installs.
 
 ## Deploy from GitHub Actions
 
-Every push to `main` runs `.github/workflows/deploy.yml`, which builds the image, pushes
-it to GHCR and asks Coolify to redeploy, using the shared workflow from
-`Amblydia/github-actions`. You can also run it by hand. It needs two repository secrets:
+Deployments are run by hand, and pushing to `main` doesn't deploy:
+
+```bash
+gh workflow run deploy.yml --repo amblydia/craft-ui
+```
+
+`.github/workflows/deploy.yml` builds the image, pushes it to GHCR and asks Coolify to
+redeploy, using the shared workflow from `Amblydia/github-actions`. It needs two
+repository secrets:
 
 - `COOLIFY_WEBHOOK`: the application's deploy webhook
 - `COOLIFY_TOKEN`: an API token with deploy permission

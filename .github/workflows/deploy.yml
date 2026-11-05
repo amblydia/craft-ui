@@ -2,11 +2,10 @@ name: Deploy
 
 # Builds and pushes the image to GHCR, then asks Coolify to redeploy
 # craftui.runqora.dev. Expects the COOLIFY_WEBHOOK and COOLIFY_TOKEN secrets.
+#
+# Run by hand only: Runqora projects don't deploy automatically.
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 permissions:
