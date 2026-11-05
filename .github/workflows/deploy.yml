@@ -2,11 +2,11 @@ name: Deploy
 
 # Builds and pushes the image to GHCR, then asks Coolify to redeploy
 # craftui.runqora.dev. Expects the COOLIFY_WEBHOOK and COOLIFY_TOKEN secrets.
-#
-# Run by hand for now. Once the Coolify application exists (see
-# docs/deployment.md), add a `push` trigger on main to deploy on every merge.
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:

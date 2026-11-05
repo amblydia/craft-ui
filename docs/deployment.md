@@ -39,8 +39,11 @@ to. See `.env.example`.
 
 ## Set up Coolify
 
-1. Create an application from `amblydia/craft-ui`, with the Dockerfile build pack.
-2. Set the Dockerfile location to `/docker/Dockerfile`, and the base directory to `/`.
+GitHub Actions builds the image, so Coolify only pulls and runs it, as it does for
+`runqora.dev`.
+
+1. Create an application in the Runqora project, with the Docker Image build pack.
+2. Set the image to `ghcr.io/amblydia/craft-ui`, with the tag `latest`.
 3. Set the port to `3000`, and the health check path to `/api/health`.
 4. Set the domain to `https://craftui.runqora.dev`.
 
@@ -52,15 +55,14 @@ browser: a bot challenge on those paths would break installs.
 
 ## Deploy from GitHub Actions
 
-`.github/workflows/deploy.yml` builds the image, pushes it to GHCR and asks Coolify to
-redeploy, using the shared workflow from `Amblydia/github-actions`. It's run by hand for
-now. It needs two repository secrets:
+Every push to `main` runs `.github/workflows/deploy.yml`, which builds the image, pushes
+it to GHCR and asks Coolify to redeploy, using the shared workflow from
+`Amblydia/github-actions`. You can also run it by hand. It needs two repository secrets:
 
 - `COOLIFY_WEBHOOK`: the application's deploy webhook
 - `COOLIFY_TOKEN`: an API token with deploy permission
 
-Once the first deployment is healthy, add a `push` trigger on `main` to deploy on every
-merge, as `runqora-ui` does.
+Without them, the image is still pushed, but the final Coolify step fails.
 
 ## After the first deployment
 
