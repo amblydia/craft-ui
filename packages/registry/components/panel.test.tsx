@@ -49,4 +49,11 @@ describe("Panel", () => {
   it("renders on the server without a client boundary", () => {
     expect(renderToString(example)).toContain("Profile");
   });
+
+  it("is flat by default and outlined when framed", () => {
+    const { rerender } = render(<Panel data-testid="row" />);
+    expect(screen.getByTestId("row").className).not.toContain("craft-bevel");
+    rerender(<Panel data-testid="row" framed />);
+    expect(screen.getByTestId("row").className).toContain("craft-bevel");
+  });
 });

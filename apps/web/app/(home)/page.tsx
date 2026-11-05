@@ -63,10 +63,10 @@ export default function HomePage() {
         <div className="absolute inset-0 -z-10 bg-black/45" />
         <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 py-14 md:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,28rem)] lg:py-20">
           <div className="flex flex-col items-start gap-6 text-white">
-            <p className="font-craft-display text-xl">
+            <p className="font-craft-display text-(length:--craft-label-size)">
               CraftUI <span className="opacity-90">by Runqora</span>
             </p>
-            <h1 className="font-craft-display max-w-xl text-5xl leading-none font-normal text-balance sm:text-7xl">
+            <h1 className="font-craft-display max-w-xl text-[2.75rem] leading-none font-normal text-balance sm:text-[4.125rem]">
               {tagline}
             </h1>
             <p className="max-w-xl text-lg">{description}</p>
@@ -95,7 +95,7 @@ export default function HomePage() {
 
       <section className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-4 px-4 py-12 sm:grid-cols-2 md:px-6 lg:grid-cols-4">
         {features.map((feature) => (
-          <Panel key={feature.title}>
+          <Panel framed key={feature.title}>
             <PanelHeader>
               <PanelTitle>{feature.title}</PanelTitle>
             </PanelHeader>
@@ -108,7 +108,7 @@ export default function HomePage() {
 
       <section className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 pb-16 md:px-6">
         <div className="flex flex-col gap-2">
-          <h2 className="font-craft-display text-4xl font-normal">
+          <h2 className="font-craft-display text-[2.0625rem] font-normal">
             The real components, right here
           </h2>
           <p className="text-craft-text-muted">
@@ -117,7 +117,11 @@ export default function HomePage() {
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {showcase.map(({ Demo, title, wide }) => (
-            <Panel className={wide ? "md:col-span-2" : undefined} key={title}>
+            <Panel
+              className={wide ? "md:col-span-2" : undefined}
+              framed
+              key={title}
+            >
               <PanelHeader>
                 <PanelTitle>{title}</PanelTitle>
               </PanelHeader>

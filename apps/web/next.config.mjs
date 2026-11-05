@@ -30,6 +30,17 @@ const config = {
         ],
         source: "/r/:path*",
       },
+      {
+        // Installed projects load the pixel font from here. It never changes.
+        headers: [
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+        source: "/fonts/:path*",
+      },
     ];
   },
   output: "standalone",

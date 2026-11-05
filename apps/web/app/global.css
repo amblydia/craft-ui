@@ -46,7 +46,7 @@
 @layer base {
   body {
     font-family: var(--craft-font-body);
-    /* Jersey 20 has one weight. A faked bold smears its pixels. */
+    /* Departure Mono has one weight. A faked bold smears its pixels. */
     font-synthesis: none;
   }
 
@@ -60,24 +60,31 @@
     font-weight: 400;
   }
 
+  /* Multiples of 11px keep Departure Mono on its pixel grid. */
   .prose h2 {
-    font-size: 2rem;
+    font-size: 2.0625rem;
   }
 
   .prose h3 {
-    font-size: 1.5rem;
+    font-size: 1.375rem;
   }
 
   #nd-sidebar a,
   #nd-sidebar button,
   #nd-nav a {
     font-family: var(--craft-font-display);
-    font-size: 1.25rem;
+    font-size: 1.375rem;
   }
 }
 
 /* Outside the layer, so it wins over the utility on Fumadocs' page title. */
 #nd-page h1 {
-  font-size: 3rem;
+  font-size: 2.0625rem;
   line-height: 1.1;
+}
+
+@media (min-width: 40rem) {
+  #nd-page h1 {
+    font-size: 2.75rem;
+  }
 }

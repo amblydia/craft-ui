@@ -98,6 +98,12 @@ never will be. CraftUI is funded only by
 [sponsorships](https://github.com/sponsors/jeantkg), which never affect who can
 use what.
 
+## Fonts
+
+Labels use [Departure Mono](https://departuremono.com/) by Helena Zhang, under the SIL
+Open Font License. The font file and its license are in
+[`apps/web/public/fonts`](apps/web/public/fonts).
+
 ## License
 
 [MIT](LICENSE), for the original code and assets in this repository. "Minecraft" and

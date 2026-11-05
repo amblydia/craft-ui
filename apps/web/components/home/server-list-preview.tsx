@@ -31,7 +31,7 @@ export function ServerListPreview() {
   );
 
   return (
-    <Panel className="w-full" variant="sunken">
+    <Panel className="w-full" framed variant="sunken">
       <div className="p-3">
         <Tabs defaultValue="servers">
           <TabsList>
@@ -51,7 +51,7 @@ export function ServerListPreview() {
                   <li key={server.name}>
                     <Panel className="flex-row items-center gap-3 p-2">
                       <div className="min-w-0 flex-1">
-                        <p className="font-craft-display truncate text-xl">
+                        <p className="font-craft-display truncate text-(length:--craft-label-size)">
                           {server.name}
                         </p>
                         <p className="text-craft-text-muted text-sm">

@@ -15,14 +15,15 @@
   --craft-radius: 0px;
   --craft-space: 1rem;
   --craft-control-sm: 2.25rem;
-  --craft-control-md: 2.75rem;
-  --craft-control-lg: 3.25rem;
+  --craft-control-md: 3rem;
+  --craft-control-lg: 3.5rem;
 
   /* Type. */
-  --craft-font-display:
-    var(--font-jersey-20, "Jersey 20"), ui-monospace, monospace;
+  --craft-font-display: "Departure Mono", ui-monospace, monospace;
   --craft-font-body:
     var(--font-noto-sans, "Noto Sans"), ui-sans-serif, system-ui, sans-serif;
+  /* Departure Mono is drawn on an 11px grid, so it's sharpest at multiples of 11. */
+  --craft-label-size: 1.375rem;
 
   /* Focus. */
   --craft-focus: #2e6be5;
@@ -42,6 +43,11 @@
   --craft-raised-hi: #ecedee;
   --craft-raised-lo: #e3e3e5;
   --craft-raised-edge: #b1b2b5;
+  --craft-raised-hover: #f4f6f9;
+  --craft-raised-hover-hi: #fbfbfd;
+  --craft-raised-hover-lo: #f8fafb;
+  --craft-selected-hi: #b1b2b5;
+  --craft-selected-lo: #d0d1d4;
   --craft-sunken: #e6e8eb;
   --craft-sunken-hi: #b1b2b5;
   --craft-sunken-lo: #f4f6f9;
@@ -63,6 +69,7 @@
   --craft-primary-active: #2a641c;
   --craft-primary-active-hi: #558349;
   --craft-primary-active-lo: #3f7332;
+  --craft-hero-shadow: #2a5d1b;
 
   /* Secondary action. */
   --craft-secondary: #d0d1d4;
@@ -93,6 +100,8 @@
 
   /* Disabled controls. */
   --craft-disabled: #d0d1d4;
+  --craft-disabled-hi: #d9dadd;
+  --craft-disabled-lo: #d5d6d8;
   --craft-disabled-edge: #b1b2b5;
   --craft-disabled-outline: #8c8d90;
   --craft-disabled-fg: #58585a;
@@ -101,6 +110,18 @@
   --craft-track: #8c8d90;
   --craft-track-hi: #a3a4a6;
   --craft-track-lo: #97989b;
+  --craft-track-hover: #b1b2b5;
+  --craft-track-hover-hi: #c1c1c4;
+  --craft-track-hover-lo: #b9babc;
+  --craft-track-active: #58585a;
+  --craft-track-active-hi: #79797b;
+  --craft-track-active-lo: #68686a;
+
+  /* The thumb of a scrollbar. */
+  --craft-scrollbar: #e6e8eb;
+  --craft-scrollbar-hi: #f5f6f7;
+  --craft-scrollbar-lo: #f0f1f3;
+  --craft-scrollbar-outline: #000000;
 
   /* Status colors, used by progress bars and tooltips. */
   --craft-info: #2e6be5;
@@ -132,6 +153,11 @@
   --craft-raised-hi: #6d6d6e;
   --craft-raised-lo: #5a5b5c;
   --craft-raised-edge: #313233;
+  --craft-raised-hover: #58585a;
+  --craft-raised-hover-hi: #79797b;
+  --craft-raised-hover-lo: #68686a;
+  --craft-selected-hi: #5a5b5c;
+  --craft-selected-lo: #454647;
   --craft-sunken: #313233;
   --craft-sunken-hi: #454647;
   --craft-sunken-lo: #222324;
@@ -196,6 +222,24 @@
     inset 0 var(--craft-unit) 0 var(--bevel-hi),
     inset var(--craft-unit) 0 0 var(--bevel-hi),
     inset calc(-1 * var(--craft-unit)) 0 0 var(--bevel-lo);
+}
+
+/* Cuts one unit from each corner, for the stepped outline of a tooltip. */
+@utility craft-notch {
+  clip-path: polygon(
+    var(--craft-unit) 0,
+    calc(100% - var(--craft-unit)) 0,
+    calc(100% - var(--craft-unit)) var(--craft-unit),
+    100% var(--craft-unit),
+    100% calc(100% - var(--craft-unit)),
+    calc(100% - var(--craft-unit)) calc(100% - var(--craft-unit)),
+    calc(100% - var(--craft-unit)) 100%,
+    var(--craft-unit) 100%,
+    var(--craft-unit) calc(100% - var(--craft-unit)),
+    0 calc(100% - var(--craft-unit)),
+    0 var(--craft-unit),
+    var(--craft-unit) var(--craft-unit)
+  );
 }
 
 /* A sunken field or track: a dark outline with a shadow along the top. */

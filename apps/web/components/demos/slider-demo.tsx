@@ -9,6 +9,7 @@ export function SliderDemo() {
         label="Render distance"
         max={32}
         min={4}
+        showSteps
         showValue
         step={2}
       />

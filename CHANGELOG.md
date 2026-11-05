@@ -8,6 +8,23 @@ Entries here say what's new in the registry. See
 
 The first set of components, not yet announced.
 
+### Changed
+
+- **Compared against every Ore UI reference:** Tabs, Checkbox, Switch, Slider, Input,
+  Panel, Dialog, Tooltip, Progress and Scroll Area now follow the measured states and
+  structure. See `docs/design-reference.md`.
+- **Font:** labels use Departure Mono, which the theme now loads by itself
+- **Panel:** flat by default. Add `framed` for the outlined look
+- **Progress:** thin by default. `size="md"` is the taller bar
+- **Scroll Area:** has no frame of its own
+- **Controls:** the medium height is now 48px, and the large height 56px
+
+### Added
+
+- **Button:** the `hero` variant
+- **Slider:** `showSteps`, which marks each step with a notch
+- **Dialog:** `DialogBack`
+
 ### Added
 
 - **Components:** Button, Input, Checkbox, Switch, Slider, Progress, Tabs, Panel,

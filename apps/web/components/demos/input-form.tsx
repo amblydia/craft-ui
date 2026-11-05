@@ -35,7 +35,10 @@ export function InputForm() {
       onSubmit={handleSubmit((values) => setSaved(values.name))}
     >
       <div className="flex flex-col gap-2">
-        <label className="font-craft-display text-xl" htmlFor={id}>
+        <label
+          className="font-craft-display text-(length:--craft-label-size)"
+          htmlFor={id}
+        >
           World name
         </label>
         <Input

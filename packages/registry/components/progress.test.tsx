@@ -35,4 +35,10 @@ describe("Progress", () => {
     expect(style).toContain("#ff00ff");
     expect(style).not.toContain("--craft-info)");
   });
+
+  it("uses the thin bar by default", () => {
+    const { container } = render(<Progress aria-label="Thin" value={10} />);
+    expect(container.innerHTML).toContain("h-[calc(var(--craft-unit)*2)]");
+    expect(container.innerHTML).not.toContain("border-craft-outline");
+  });
 });

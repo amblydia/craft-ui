@@ -40,10 +40,10 @@ async function runInteractions(tab: Page) {
   const fontLoaded = await tab.evaluate(async () => {
     await document.fonts.ready;
     return [...document.fonts].some(
-      (font) => /jersey/iu.test(font.family) && font.status === "loaded"
+      (font) => /departure/iu.test(font.family) && font.status === "loaded"
     );
   });
-  check(fontLoaded, "the documented font setup loads the pixel font");
+  check(fontLoaded, "the theme loads the pixel font");
 
   const darkMode = tab.getByRole("switch", { name: "Dark mode" });
   await darkMode.click();

@@ -11,7 +11,7 @@ import {
 
 export function PanelDemo() {
   return (
-    <Panel className="w-full max-w-md">
+    <Panel className="w-full max-w-md" framed>
       <PanelHeader>
         <PanelTitle>Harbor</PanelTitle>
         <PanelActions>

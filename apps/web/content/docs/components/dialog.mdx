@@ -81,6 +81,20 @@ This dialog is controlled, so it closes when the form submits.
   type="Pick<DialogContentProps, 'showCloseButton' | 'initialFocus' | 'finalFocus'>"
 />
 
+### DialogBack
+
+A back arrow for dialogs with several steps. It's a button, so give it an `onClick`
+and place it inside `DialogContent`. Its accessible name defaults to "Back".
+
+```tsx
+<DialogContent>
+  <DialogBack onClick={() => setStep(1)} />
+  <DialogHeader>
+    <DialogTitle>Choose a world</DialogTitle>
+  </DialogHeader>
+</DialogContent>
+```
+
 ## Accessibility
 
 - Always include a `DialogTitle`, which names the dialog for screen readers.

@@ -41,6 +41,8 @@ const textPairs: [foreground: string, background: string][] = [
   ["text", "background"],
   ["text", "surface"],
   ["text", "raised"],
+  ["text", "raised-hover"],
+  ["text-muted", "raised-hover"],
   ["text", "sunken"],
   ["text", "field"],
   ["text-muted", "background"],

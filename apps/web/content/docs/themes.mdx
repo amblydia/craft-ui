@@ -51,6 +51,7 @@ Try it here. These controls change the tokens on the preview only.
 |---|---|
 | **Geometry** | `--craft-unit` (borders and bevels), `--craft-edge` (the thick base), `--craft-radius` |
 | **Spacing** | `--craft-space`, `--craft-control-sm`, `--craft-control-md`, `--craft-control-lg` |
+| **Type** | `--craft-font-display`, `--craft-font-body`, `--craft-label-size` |
 | **Fonts** | `--craft-font-display` (labels and titles), `--craft-font-body` (long text) |
 | **Focus** | `--craft-focus`, `--craft-focus-width` |
 | **Text** | `--craft-text`, `--craft-text-muted`, `--craft-placeholder` |
@@ -65,53 +66,65 @@ The tokens also become Tailwind utilities, such as `bg-craft-surface`,
 
 ## Fonts
 
-The theme asks for [Jersey 20](https://fonts.google.com/specimen/Jersey+20)
-for labels and [Noto Sans](https://fonts.google.com/noto/specimen/Noto+Sans) for
-long text, and falls back to system fonts. Both are under the SIL Open Font
-License. The theme doesn't load them, so that your app doesn't pay for a font you
-may not want. To load them in Next.js:
+Labels use [Departure Mono](https://departuremono.com/) by Helena Zhang, under the
+SIL Open Font License. **The theme loads it for you**, from this site, so there's
+nothing to set up.
+
+It's drawn on an 11-pixel grid, so it's sharpest at multiples of 11px. Controls use
+`--craft-label-size`, which is 22px. Departure Mono has one weight, and browsers
+smear its pixels when they fake a bold, so set `font-synthesis: none` on any heading
+you bold, or on your `body`.
+
+To host the font yourself, for instance because a Content Security Policy blocks
+other origins, download
+[the font file](https://craftui.runqora.dev/fonts/DepartureMono-Regular.woff2) into
+`public/fonts`, remove the `departure-mono.css` import that was added to your CSS, and
+add this rule instead:
+
+```css
+@font-face {
+  font-family: "Departure Mono";
+  font-display: swap;
+  src: url("/fonts/DepartureMono-Regular.woff2") format("woff2");
+}
+```
+
+Long text uses [Noto Sans](https://fonts.google.com/noto/specimen/Noto+Sans), also
+under the SIL Open Font License, and falls back to your system's sans-serif font. The
+theme doesn't load this one, so your app doesn't pay for a font it may not want. To
+load it in Next.js:
 
 ```tsx title="app/layout.tsx"
-import { Jersey_20, Noto_Sans } from "next/font/google";
+import { Noto_Sans } from "next/font/google";
 
-const display = Jersey_20({
-  subsets: ["latin"],
-  variable: "--font-jersey-20",
-  weight: "400",
-});
 const body = Noto_Sans({ subsets: ["latin"], variable: "--font-noto-sans" });
 
 export default function RootLayout({ children }) {
   return (
-    <html className={`${display.variable} ${body.variable}`} lang="en">
+    <html className={body.variable} lang="en">
       <body>{children}</body>
     </html>
   );
 }
 ```
 
-In other React apps, install the fonts with Fontsource and import them.
+In other React apps, install it with Fontsource and import it.
 
 ```npm
-npm install @fontsource/jersey-20 @fontsource-variable/noto-sans
+npm install @fontsource-variable/noto-sans
 ```
 
 ```ts title="src/main.tsx"
-import "@fontsource/jersey-20";
 import "@fontsource-variable/noto-sans";
 ```
 
 ```css
 :root {
-  --font-jersey-20: "Jersey 20";
   --font-noto-sans: "Noto Sans Variable";
 }
 ```
 
-Jersey 20 has one weight, and browsers smear its pixels when they fake a bold, so
-set `font-synthesis: none` on any heading you bold, or on your `body`.
-
-To use a different font, set `--craft-font-display` and `--craft-font-body`.
+To use different fonts, set `--craft-font-display` and `--craft-font-body`.
 
 ## Contrast
 

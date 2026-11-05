@@ -120,4 +120,11 @@ describe("Button", () => {
     expect(link).toHaveAttribute("href", "/play");
     expect(link.className).toContain("--craft-secondary");
   });
+
+  it("has a hero variant in capitals", () => {
+    render(<Button variant="hero">Play</Button>);
+    expect(screen.getByRole("button", { name: "Play" }).className).toContain(
+      "uppercase"
+    );
+  });
 });

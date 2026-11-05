@@ -32,7 +32,7 @@ export interface TooltipContentProps
 }
 
 export function TooltipContent({
-  align = "center",
+  align = "end",
   children,
   className,
   side = "top",
@@ -49,7 +49,10 @@ export function TooltipContent({
       >
         <BaseTooltip.Popup
           className={cn(
-            "rounded-craft border-craft-outline bg-craft-tooltip font-craft-display text-craft-tooltip-fg relative max-w-xs border-(length:--craft-unit) px-2 py-1 text-lg",
+            // Two stepped layers, so that the outline follows the corners.
+            "font-craft-display text-craft-tooltip-fg relative isolate max-w-md px-3 py-1.5 leading-tight text-(length:--craft-label-size)",
+            "before:bg-craft-outline before:craft-notch before:absolute before:inset-0 before:-z-20",
+            "after:bg-craft-tooltip after:craft-notch after:absolute after:inset-(--craft-unit) after:-z-10",
             "data-ending-style:opacity-0 data-starting-style:opacity-0 motion-safe:transition-opacity motion-safe:duration-100",
             className
           )}
@@ -57,20 +60,23 @@ export function TooltipContent({
           {...props}
         >
           {children}
-          {/* The stepped speech-bubble pointer. */}
-          <BaseTooltip.Arrow className="flex data-[side=bottom]:-top-2 data-[side=bottom]:rotate-180 data-[side=left]:-right-3 data-[side=left]:-rotate-90 data-[side=right]:-left-3 data-[side=right]:rotate-90 data-[side=top]:-bottom-2">
+          {/* The stepped speech-bubble tail: straight on one side, as in the reference. */}
+          <BaseTooltip.Arrow className="flex data-[side=bottom]:-top-1.5 data-[side=bottom]:rotate-180 data-[side=left]:-right-[7px] data-[side=left]:-rotate-90 data-[side=right]:-left-[7px] data-[side=right]:rotate-90 data-[side=top]:-bottom-1.5">
             <svg
               aria-hidden="true"
               height="8"
               shapeRendering="crispEdges"
-              viewBox="0 0 12 8"
-              width="12"
+              viewBox="0 0 10 8"
+              width="10"
             >
               <path
                 className="fill-craft-outline"
-                d="M0 0h12v2h-2v2H8v2H4V4H2V2H0z"
+                d="M0 0h2v2H0zM2 2h2v2H2zM4 4h2v2H4zM6 6h2v2H6zM8 0h2v6H8z"
               />
-              <path className="fill-craft-tooltip" d="M2 0h8v2H8v2H4V2H2z" />
+              <path
+                className="fill-craft-tooltip"
+                d="M2 0h6v2H2zM4 2h4v2H4zM6 4h2v2H6z"
+              />
             </svg>
           </BaseTooltip.Arrow>
         </BaseTooltip.Popup>

@@ -54,7 +54,17 @@ export function prepareRegistry(registryUrl: string) {
     ...registry,
     items: registry.items.map((item) => ({
       ...item,
-      ...(item.name === "craft-theme" ? theme : {}),
+      ...(item.name === "craft-theme"
+        ? {
+            ...theme,
+            // The CLI can't write an @font-face rule into a project's CSS, but
+            // it can add an import of a stylesheet that holds one.
+            css: {
+              [`@import url("${registryUrl}/fonts/departure-mono.css")`]: {},
+              ...theme.css,
+            },
+          }
+        : {}),
       ...(item.registryDependencies
         ? {
             registryDependencies: item.registryDependencies.map((dependency) =>

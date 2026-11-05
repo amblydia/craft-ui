@@ -71,4 +71,23 @@ describe("Slider", () => {
     await user.keyboard("{ArrowRight}");
     expect(screen.getByRole("slider")).toHaveAttribute("aria-valuenow", "5");
   });
+
+  it("marks each step between the ends when asked", () => {
+    const { container, rerender } = render(
+      <Slider aria-label="Distance" max={10} min={2} showSteps step={2} />
+    );
+    const notches = () =>
+      container.querySelectorAll('[data-slot="slider-notch"]');
+    expect(notches()).toHaveLength(3);
+    expect((notches()[0] as HTMLElement).style.left).toBe("25%");
+    rerender(<Slider aria-label="Distance" max={10} min={2} step={2} />);
+    expect(notches()).toHaveLength(0);
+  });
+
+  it("doesn't draw notches when there would be too many to see", () => {
+    const { container } = render(
+      <Slider aria-label="Fine" max={1000} showSteps />
+    );
+    expect(container.querySelector('[data-slot="slider-notch"]')).toBeNull();
+  });
 });

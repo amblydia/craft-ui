@@ -68,6 +68,157 @@ test.describe("inside a panel", () => {
   }
 });
 
+// Values measured from the Ore UI references. See docs/design-reference.md.
+test.describe("against the Ore UI reference", () => {
+  test("the theme loads Departure Mono", async ({ page }) => {
+    await page.goto("/docs/components/button");
+    const loaded = await page.evaluate(async () => {
+      await document.fonts.ready;
+      return [...document.fonts].some(
+        (font) => font.family.includes("Departure") && font.status === "loaded"
+      );
+    });
+    expect(loaded).toBe(true);
+    for (const file of ["departure-mono.css", "DepartureMono-Regular.woff2"]) {
+      const response = await page.request.get(`/fonts/${file}`);
+      expect(response.ok()).toBe(true);
+      expect(response.headers()["access-control-allow-origin"]).toBe("*");
+    }
+  });
+
+  test("a selected tab sinks below its neighbours", async ({ page }) => {
+    await page.goto("/docs/components/tabs");
+    const selected = await page
+      .locator('[data-slot="tabs-trigger"][data-active]')
+      .first()
+      .boundingBox();
+    const other = await page
+      .locator('[data-slot="tabs-trigger"]:not([data-active])')
+      .first()
+      .boundingBox();
+    expect((selected?.y ?? 0) - (other?.y ?? 0)).toBe(4);
+    expect((selected?.y ?? 0) + (selected?.height ?? 0)).toBe(
+      (other?.y ?? 0) + (other?.height ?? 0)
+    );
+  });
+
+  test("a disabled tab keeps the colors of a normal tab", async ({ page }) => {
+    await page.goto("/docs/components/tabs");
+    const faces = await page
+      .locator('[data-slot="tabs-list"]')
+      .first()
+      .locator('[data-slot="tabs-trigger"]:not([data-active])')
+      .evaluateAll((tabs) =>
+        tabs.map((tab) => getComputedStyle(tab).backgroundColor)
+      );
+    expect(new Set(faces).size).toBe(1);
+  });
+
+  test("a disabled input is a light field", async ({ page }) => {
+    await page.goto("/docs/components/input");
+    const face = await page
+      .locator('[data-slot="input"]:has(:disabled)')
+      .first()
+      .evaluate((field) => getComputedStyle(field).backgroundColor);
+    expect(face).toBe("rgb(208, 209, 212)");
+  });
+
+  test("the switch's focus ring wraps only its thumb", async ({ page }) => {
+    await page.goto("/docs/components/switch");
+    const control = page.locator('[data-slot="switch"]').first();
+    await page.getByRole("switch").first().focus();
+    await page.keyboard.press("Shift+Tab");
+    await page.keyboard.press("Tab");
+    const thumb = control.locator('[data-slot="switch-thumb"]');
+    expect(
+      await thumb.evaluate((element) => getComputedStyle(element).outlineStyle)
+    ).toBe("solid");
+    expect(
+      await control.evaluate(
+        (element) => getComputedStyle(element).outlineStyle
+      )
+    ).toBe("none");
+  });
+
+  test("a slider can mark its steps", async ({ page }) => {
+    await page.goto("/docs/components/slider");
+    await expect(page.locator('[data-slot="slider-notch"]')).toHaveCount(13);
+  });
+
+  test("a progress bar is 2 units tall by default", async ({ page }) => {
+    await page.goto("/docs/components/progress");
+    const height = await page
+      .locator('[data-slot="progress-track"]')
+      .first()
+      .evaluate((element) => element.getBoundingClientRect().height);
+    expect(height).toBe(4);
+  });
+
+  test("a default panel is a row without an outline", async ({ page }) => {
+    await page.goto("/docs/components/panel");
+    const border = await page
+      .locator('[data-slot="panel"]', { hasText: "A panel with the surface" })
+      .first()
+      .evaluate((panel) => getComputedStyle(panel).borderTopWidth);
+    expect(border).toBe("0px");
+  });
+
+  test("a dialog's actions share the footer evenly", async ({ page }) => {
+    await page.setViewportSize({ height: 800, width: 1100 });
+    await page.goto("/docs/components/dialog");
+    await page.getByRole("button", { name: "Delete world" }).first().click();
+    const footer = page.locator('[data-slot="dialog-footer"]');
+    await expect(footer).toBeVisible();
+    expect(
+      await footer.evaluate(
+        (element) => getComputedStyle(element).borderTopWidth
+      )
+    ).toBe("0px");
+    const widths = await footer
+      .locator("button")
+      .evaluateAll((buttons) =>
+        buttons.map((button) => button.getBoundingClientRect().width)
+      );
+    expect(widths).toHaveLength(2);
+    expect(Math.abs((widths[0] ?? 0) - (widths[1] ?? 0))).toBeLessThanOrEqual(
+      1
+    );
+  });
+
+  test("a tooltip has stepped corners", async ({ page }) => {
+    await page.goto("/docs/components/tooltip", { waitUntil: "networkidle" });
+    await page.locator('[data-slot="tooltip-trigger"]').first().hover();
+    const clip = await page
+      .locator('[data-slot="tooltip-content"]')
+      .evaluate((tip) => getComputedStyle(tip, "::before").clipPath);
+    expect(clip).toContain("polygon");
+  });
+
+  test("a scrollbar doesn't cover the content", async ({ page }) => {
+    await page.goto("/docs/components/scroll-area", {
+      waitUntil: "networkidle",
+    });
+    const area = page.locator('[data-slot="scroll-area"]').first();
+    await expect(area.locator("[data-has-overflow-y]").first()).toHaveCSS(
+      "padding-inline-end",
+      "18px"
+    );
+    const bar = await area
+      .locator('[data-slot="scroll-area-scrollbar"]')
+      .boundingBox();
+    expect(bar?.width).toBe(18);
+  });
+
+  test("a scroll area has no frame", async ({ page }) => {
+    await page.goto("/docs/components/scroll-area");
+    const border = await page
+      .locator('[data-slot="scroll-area"]')
+      .first()
+      .evaluate((area) => getComputedStyle(area).borderTopWidth);
+    expect(border).toBe("0px");
+  });
+});
+
 test.describe("component pages", () => {
   for (const path of componentPages) {
     test(`${path} has every required section`, async ({ page }) => {

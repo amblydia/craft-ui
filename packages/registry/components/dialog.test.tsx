@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import {
   Dialog,
+  DialogBack,
   DialogBody,
   DialogClose,
   DialogContent,
@@ -94,5 +95,22 @@ describe("Dialog", () => {
     expect(
       screen.queryByRole("button", { name: "Close" })
     ).not.toBeInTheDocument();
+  });
+
+  it("offers a named back button", async () => {
+    const onBack = vi.fn();
+    const user = userEvent.setup();
+    render(
+      <Dialog defaultOpen>
+        <DialogContent>
+          <DialogBack onClick={onBack} />
+          <DialogHeader>
+            <DialogTitle>Step two</DialogTitle>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
+    );
+    await user.click(await screen.findByRole("button", { name: "Back" }));
+    expect(onBack).toHaveBeenCalledOnce();
   });
 });

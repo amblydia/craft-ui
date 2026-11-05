@@ -17,10 +17,10 @@ export const buttonVariants = cva(
     defaultVariants: { size: "md", variant: "primary" },
     variants: {
       size: {
-        icon: "size-(--craft-control-md) text-xl",
-        lg: "h-(--craft-control-lg) px-[calc(var(--craft-space)*1.5)] text-2xl",
-        md: "h-(--craft-control-md) px-(--craft-space) text-xl",
-        sm: "h-(--craft-control-sm) px-[calc(var(--craft-space)*0.75)] text-lg",
+        icon: "size-(--craft-control-md) text-(length:--craft-label-size)",
+        lg: "h-(--craft-control-lg) px-[calc(var(--craft-space)*1.5)] text-(length:--craft-label-size)",
+        md: "h-(--craft-control-md) px-(--craft-space) text-(length:--craft-label-size)",
+        sm: "h-(--craft-control-sm) px-[calc(var(--craft-space)*0.75)] text-(length:--craft-label-size)",
       },
       variant: {
         destructive: [
@@ -31,6 +31,13 @@ export const buttonVariants = cva(
         ghost: [
           "text-craft-text [--bevel-edge:transparent] [--bevel-face:transparent] [--bevel-hi:transparent] [--bevel-lo:transparent] [--bevel-outline:transparent]",
           "hover:[--bevel-face:var(--craft-hover)] active:[--bevel-face:var(--craft-active)]",
+        ],
+        /** The heavy call to action, such as PLAY. */
+        hero: [
+          "text-craft-primary-fg uppercase [--bevel-edge:var(--craft-primary-edge)] [--bevel-face:var(--craft-primary)] [--bevel-hi:var(--craft-primary-hi)] [--bevel-lo:var(--craft-primary-lo)] [text-shadow:var(--craft-unit)_var(--craft-unit)_0_var(--craft-hero-shadow)]",
+          "hover:text-craft-primary-hover-fg hover:[--bevel-face:var(--craft-primary-hover)] hover:[--bevel-hi:var(--craft-primary-hover-hi)] hover:[--bevel-lo:var(--craft-primary-hover-lo)] hover:[text-shadow:none]",
+          "active:text-craft-primary-fg active:[--bevel-face:var(--craft-primary-active)] active:[--bevel-hi:var(--craft-primary-active-hi)] active:[--bevel-lo:var(--craft-primary-active-lo)] active:[text-shadow:var(--craft-unit)_var(--craft-unit)_0_var(--craft-hero-shadow)]",
+          "data-disabled:[text-shadow:none]",
         ],
         outline: [
           "text-craft-text [--bevel-edge:transparent] [--bevel-face:transparent] [--bevel-hi:transparent] [--bevel-lo:transparent] [--bevel-outline:var(--craft-text)]",

@@ -12,7 +12,7 @@ export function baseOptions(): BaseLayoutProps {
     ],
     nav: {
       title: (
-        <span className="font-craft-display inline-flex items-center gap-2 text-2xl">
+        <span className="font-craft-display inline-flex items-center gap-2 text-(length:--craft-label-size)">
           <Logo className="size-6" />
           {appName}
         </span>

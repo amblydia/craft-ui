@@ -46,6 +46,9 @@ code, so it works in React Server Components with no boundary.
 
 ### Variants
 
+By default a panel is a flat row, with a light line along the top and a dark line
+along the bottom, as in Ore UI's settings screens. These stack into a list.
+
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
     <ComponentPreview><PanelVariants /></ComponentPreview>
@@ -55,11 +58,20 @@ code, so it works in React Server Components with no boundary.
   </Tab>
 </Tabs>
 
+### Framed
+
+`framed` adds the dark outline and full bevel of Ore UI's cards. The example at the
+top of this page uses it.
+
+```tsx
+<Panel framed>...</Panel>
+```
+
 ## Props
 
 <AutoTypeTable
   path="../../packages/registry/components/panel.tsx"
-  type="Pick<PanelProps, 'variant' | 'className'>"
+  type="Pick<PanelProps, 'variant' | 'framed' | 'className'>"
 />
 
 Each part also accepts every attribute of the element it renders: `<div>` for

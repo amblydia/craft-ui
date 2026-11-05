@@ -32,7 +32,12 @@ Listed from top to bottom, in units.
 | Switch | 30 × 16: a 16 × 16 thumb over a 14-unit-tall track, 2 units lower |
 | Checkbox | 12 × 12: outline 1, highlight 1, face 8, low highlight 1, outline 1 |
 | Input | outline 1, shade 2, face 20, outline 1 |
-| Progress, thin | 2 units tall, without an outline |
+| Progress, thin | 2 units tall, without an outline: half-unit highlight, 1 unit of face, half-unit shade |
+| Tab | 24 tall, as a button. Selected: loses the shade and sinks 2 units, with a 24-unit underline on its bottom edge |
+| Scrollbar | 9 wide: outline 1, gap 1, thumb 5 (outlined in black), gap 1, outline 1 |
+| Row (flat panel) | light line 1 at the top, dark line 1 at the bottom, no outline and no sides |
+| Dialog footer | a row, with no dark divider above it |
+| Tooltip | corners stepped by 1 unit, with a tail that's straight on one side |
 
 ## Colors
 
@@ -49,6 +54,11 @@ Listed from top to bottom, in units.
 | Destructive, pressed | `#C02D2D` | `#CD5757` | `#C64242` | none |
 | Disabled | `#D0D1D4` | none | none | `#B1B2B5`, outline `#8C8D90` |
 | Track | `#8C8D90` | `#A3A4A6` | `#97989B` | none |
+| Track, hover | `#B1B2B5` | `#C1C1C4` | `#B9BABC` | none |
+| Track, pressed | `#58585A` | `#79797B` | `#68686A` | none |
+| Tab, hover | `#58585A` | `#79797B` | `#68686A` | `#313233` |
+| Tab, selected | `#313233` | `#5A5B5C` | `#454647` | none |
+| Scrollbar thumb | `#E6E8EB` | `#F5F6F7` | `#F0F1F3` | none, outline `#000000` |
 | Raised (tabs, title bars) | `#48494A` | `#6D6D6E` | `#5A5B5C` | `#313233` |
 | Surface (menu rows) | `#48494A` | `#5A5B5C` | `#333334` | none |
 | Sunken (dialog bodies) | `#313233` | `#454647` | `#222324` | none |
@@ -70,8 +80,8 @@ background pair to WCAG AA in both modes.
   `#48494A`, so dark mode uses `#D0D1D4`.
 - **Focus in light mode.** A white ring disappears on a light page, so light mode uses
   blue (`#2E6BE5`).
-- **Touch targets and type.** Labels are slightly larger than the reference, because
-  web pages are read closer up than a game on a television, and without its UI scale.
+- **Indeterminate checkboxes and the taller progress bar.** These aren't in the
+  reference. They're additions for the web.
 
 ## Light mode
 
@@ -84,10 +94,19 @@ measurement.
 ## Type
 
 Ore UI uses Mojangles and Minecraft Ten, which aren't available to distribute. CraftUI
-uses **Jersey 20** (SIL Open Font License) for labels, chosen over Pixelify Sans, Tiny5
-and VT323 because its letters stayed clear at interface sizes. **Noto Sans** (also SIL
-OFL) is used for long text, as the references do. Jersey's x-height is small, so labels
-sit at 18 to 24 pixels.
+uses **Departure Mono** by Helena Zhang (SIL Open Font License) for labels. Like
+Mojangles, it's a thin, wide pixel face. At 22 pixels its capitals are 14 pixels tall,
+which is 7 units, matching the reference. It's drawn on an 11-pixel grid, so CraftUI
+only uses multiples of 11 pixels for it. **Noto Sans** (also SIL OFL) is used for long
+text, as the references do.
+
+The official font file and its license are in `apps/web/public/fonts`. There's no
+official package on npm, and it isn't on Google Fonts, so the theme imports
+`departure-mono.css` from the CraftUI site. The shadcn CLI can't write an `@font-face`
+rule into a project's CSS, which is why it's a hosted stylesheet.
+
+The reference's heavy Hero label has no free match, so the `hero` button uses Departure
+Mono in capitals with the measured drop shadow (`#2A5D1B`).
 
 ## Recording new measurements
 

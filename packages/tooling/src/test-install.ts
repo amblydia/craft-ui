@@ -96,6 +96,18 @@ const server = values.registry
   : Bun.serve({
       fetch(request) {
         const { pathname } = new URL(request.url);
+        if (pathname.startsWith("/fonts/")) {
+          const font = join(
+            repoRoot,
+            "apps",
+            "web",
+            "public",
+            pathname.slice(1)
+          );
+          return new Response(Bun.file(font), {
+            headers: { "Access-Control-Allow-Origin": "*" },
+          });
+        }
         // /r/{style}/{name}.json and /r/{name}.json both serve the one build: the
         // items depend on Base UI directly, so they are the same for every style.
         const name = pathname.split("/").at(-1) ?? "";
@@ -194,6 +206,10 @@ try {
     );
   }
   check(css.includes("--craft-primary: #3c8527"), "theme variables were added");
+  check(
+    css.includes("/fonts/departure-mono.css"),
+    "the pixel font is imported"
+  );
   check(css.includes("@utility craft-bevel"), "bevel utility was added");
   check(
     css.includes("@keyframes craft-progress-slide"),
@@ -227,38 +243,30 @@ try {
       join(sourceDir, "App.tsx"),
       'import { Playground } from "@/components/playground";\n\nexport default function App() {\n  return <Playground />;\n}\n'
     );
-    // The font setup from docs/themes, for projects without next/font.
-    await bun(
-      ["add", "@fontsource/jersey-20", "@fontsource-variable/noto-sans"],
-      projectDir
-    );
+    // The body font setup from docs/themes, for projects without next/font.
+    await bun(["add", "@fontsource-variable/noto-sans"], projectDir);
     const entry = join(sourceDir, "main.tsx");
     writeFileSync(
       entry,
-      `import "@fontsource/jersey-20";\nimport "@fontsource-variable/noto-sans";\n${readFileSync(entry, "utf8")}`
+      `import "@fontsource-variable/noto-sans";\n${readFileSync(entry, "utf8")}`
     );
     writeFileSync(
       cssFile,
       `${readFileSync(cssFile, "utf8")}\n:root {\n  --font-noto-sans: "Noto Sans Variable";\n}\n`
     );
   } else {
-    // The font setup from docs/themes, for Next.js.
+    // The body font setup from docs/themes, for Next.js.
     writeFileSync(
       join(sourceDir, "app", "layout.tsx"),
-      `import { Jersey_20, Noto_Sans } from "next/font/google";
+      `import { Noto_Sans } from "next/font/google";
 import type { ReactNode } from "react";
 import "./globals.css";
 
-const display = Jersey_20({
-  subsets: ["latin"],
-  variable: "--font-jersey-20",
-  weight: "400",
-});
 const body = Noto_Sans({ subsets: ["latin"], variable: "--font-noto-sans" });
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html className={\`\${display.variable} \${body.variable}\`} lang="en">
+    <html className={body.variable} lang="en">
       <body>{children}</body>
     </html>
   );

@@ -5,8 +5,8 @@ dark modes.
 
 | Example | Stack |
 |---|---|
-| [`nextjs`](nextjs) | Next.js App Router, with fonts from `next/font` |
-| [`vite`](vite) | Vite and React, with fonts from Fontsource |
+| [`nextjs`](nextjs) | Next.js App Router, with Noto Sans from `next/font` |
+| [`vite`](vite) | Vite and React, with Noto Sans from Fontsource |
 
 To run one:
 

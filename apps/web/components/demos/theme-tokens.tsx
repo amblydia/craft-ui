@@ -53,7 +53,7 @@ export function ThemeTokens() {
           showValue
           value={radius}
         />
-        <fieldset className="font-craft-display flex flex-wrap items-center gap-2 text-xl">
+        <fieldset className="font-craft-display flex flex-wrap items-center gap-2 text-(length:--craft-label-size)">
           <legend className="mb-2">--craft-primary</legend>
           {accents.map((option, index) => (
             <Button

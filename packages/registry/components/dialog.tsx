@@ -32,6 +32,42 @@ function CloseIcon() {
   );
 }
 
+function BackIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="size-6"
+      fill="currentColor"
+      shapeRendering="crispEdges"
+      viewBox="0 0 12 12"
+    >
+      <path d="M7 1h2v2H7zM5 3h2v2H5zM3 5h2v2H3zM5 7h2v2H5zM7 9h2v2H7z" />
+    </svg>
+  );
+}
+
+/** The arrow at the start of the title bar, for dialogs with several steps. */
+export function DialogBack({
+  "aria-label": ariaLabel = "Back",
+  className,
+  ...props
+}: ComponentProps<"button">) {
+  return (
+    <button
+      aria-label={ariaLabel}
+      className={cn(
+        "text-craft-text hover:bg-craft-hover focus-visible:craft-focus active:bg-craft-active absolute top-(--craft-unit) left-(--craft-unit) inline-flex size-[calc(var(--craft-control-md)-var(--craft-unit))] cursor-pointer items-center justify-center focus-visible:-outline-offset-2",
+        className
+      )}
+      data-slot="dialog-back"
+      type="button"
+      {...props}
+    >
+      <BackIcon />
+    </button>
+  );
+}
+
 export interface DialogContentProps
   extends ComponentProps<typeof BaseDialog.Popup> {
   /** Shows the X button in the header. Escape and the backdrop still close it. */
@@ -63,7 +99,7 @@ export function DialogContent({
         {showCloseButton ? (
           <BaseDialog.Close
             aria-label="Close"
-            className="text-craft-text hover:bg-craft-hover focus-visible:craft-focus active:bg-craft-active absolute top-(--craft-unit) right-(--craft-unit) inline-flex size-[calc(var(--craft-control-lg)-var(--craft-unit))] cursor-pointer items-center justify-center focus-visible:-outline-offset-2"
+            className="text-craft-text hover:bg-craft-hover focus-visible:craft-focus active:bg-craft-active absolute top-(--craft-unit) right-(--craft-unit) inline-flex size-[calc(var(--craft-control-md)-var(--craft-unit))] cursor-pointer items-center justify-center focus-visible:-outline-offset-2"
             data-slot="dialog-close-button"
           >
             <CloseIcon />
@@ -79,7 +115,7 @@ export function DialogHeader({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       className={cn(
-        "craft-bevel flex min-h-(--craft-control-lg) shrink-0 items-center justify-center border-0 px-[calc(var(--craft-control-lg)+var(--craft-unit))] py-2 text-center",
+        "craft-bevel flex min-h-(--craft-control-md) shrink-0 items-center justify-center border-0 px-[calc(var(--craft-control-md)+var(--craft-unit))] py-2 text-center",
         "[--bevel-depth:0px] [--bevel-edge:transparent] [--bevel-face:var(--craft-raised)] [--bevel-hi:var(--craft-raised-hi)] [--bevel-lo:var(--craft-raised-lo)]",
         className
       )}
@@ -95,7 +131,10 @@ export function DialogTitle({
 }: ComponentProps<typeof BaseDialog.Title>) {
   return (
     <BaseDialog.Title
-      className={cn("font-craft-display text-2xl", className)}
+      className={cn(
+        "font-craft-display text-(length:--craft-label-size)",
+        className
+      )}
       data-slot="dialog-title"
       {...props}
     />
@@ -129,12 +168,15 @@ export function DialogBody({ className, ...props }: ComponentProps<"div">) {
   );
 }
 
-/** The action row. Actions stack on narrow screens, as they do in the game. */
+/**
+ * The action row. Actions share its width evenly, and stack on narrow screens,
+ * as they do in the game.
+ */
 export function DialogFooter({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       className={cn(
-        "border-craft-outline bg-craft-raised flex shrink-0 flex-col-reverse gap-2 border-t-(length:--craft-unit) p-(--craft-space) sm:flex-row sm:justify-end",
+        "bg-craft-surface flex shrink-0 flex-col-reverse gap-2 p-(--craft-space) shadow-[inset_0_var(--craft-unit)_0_var(--craft-surface-hi),inset_0_calc(-1*var(--craft-unit))_0_var(--craft-surface-lo)] sm:flex-row sm:*:flex-1",
         className
       )}
       data-slot="dialog-footer"

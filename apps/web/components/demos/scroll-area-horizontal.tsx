@@ -9,7 +9,7 @@ export function ScrollAreaHorizontal() {
       label="Inventory slots"
       orientation="horizontal"
     >
-      <ul className="font-craft-display flex w-max gap-2 p-3 text-lg">
+      <ul className="font-craft-display flex w-max gap-2 p-3 text-(length:--craft-label-size)">
         {slots.map((slot) => (
           <li
             className="border-craft-outline flex size-20 items-center justify-center border-2"
