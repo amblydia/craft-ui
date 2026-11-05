@@ -86,6 +86,7 @@ export function SettingsPanel({ actions }: { actions?: ReactNode }) {
               showValue
               value={volume}
             />
+            <Switch defaultChecked label="Mute in the background" />
           </TabsContent>
         </Tabs>
 

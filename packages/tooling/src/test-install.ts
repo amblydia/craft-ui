@@ -2,18 +2,18 @@
 // proves it works there.
 //
 //   bun run test:install --template <next|vite> --style <base-nova|radix-nova>
-//     [--build] [--browser] [--keep]
+//     [--build] [--browser] [--keep] [--registry <url>]
 //
-// The registry is served from localhost in the same shape runqora.dev will
-// expose it: /r/{style}/{name}.json. The project talks to it only through the
-// @runqora namespace, so the commands under test are the documented ones.
+// The registry is served from localhost in the same shape runqora.dev exposes
+// it: /r/{style}/{name}.json. The project talks to it only through the @runqora
+// namespace, so the commands under test are the documented ones. To test what's
+// live instead of this checkout, pass --registry https://runqora.dev.
 
 import { spawn, spawnSync } from "node:child_process";
 import {
   cpSync,
   existsSync,
   mkdtempSync,
-  readdirSync,
   readFileSync,
   rmSync,
   writeFileSync,
@@ -30,6 +30,7 @@ const { values } = parseArgs({
     build: { default: false, type: "boolean" },
     export: { type: "string" },
     keep: { default: false, type: "boolean" },
+    registry: { type: "string" },
     style: { default: "base-nova", type: "string" },
     template: { default: "next", type: "string" },
   },
@@ -90,27 +91,29 @@ function findCssFile() {
 }
 
 // ---- Serve the registry -----------------------------------------------------
-const server = Bun.serve({
-  fetch(request) {
-    const { pathname } = new URL(request.url);
-    // /r/{style}/{name}.json and /r/{name}.json both serve the one build: the
-    // items depend on Base UI directly, so they are the same for every style.
-    const name = pathname.split("/").at(-1) ?? "";
-    const file = join(registryDir, name);
-    return existsSync(file) && name.endsWith(".json")
-      ? new Response(Bun.file(file))
-      : new Response("Not found", { status: 404 });
-  },
-  port: 0,
-});
-const registryUrl = `http://localhost:${server.port}`;
-const registryDir = buildRegistry({
-  outDir: join(workDir, "registry"),
-  registryUrl,
-});
-const itemNames = readdirSync(registryDir)
-  .filter((file) => file !== "registry.json")
-  .map((file) => file.replace(".json", ""));
+const server = values.registry
+  ? undefined
+  : Bun.serve({
+      fetch(request) {
+        const { pathname } = new URL(request.url);
+        // /r/{style}/{name}.json and /r/{name}.json both serve the one build: the
+        // items depend on Base UI directly, so they are the same for every style.
+        const name = pathname.split("/").at(-1) ?? "";
+        const file = join(registryDir, name);
+        return existsSync(file) && name.endsWith(".json")
+          ? new Response(Bun.file(file))
+          : new Response("Not found", { status: 404 });
+      },
+      port: 0,
+    });
+const registryUrl = values.registry ?? `http://localhost:${server?.port}`;
+const registryDir = server
+  ? buildRegistry({ outDir: join(workDir, "registry"), registryUrl })
+  : "";
+const { items } = JSON.parse(
+  readFileSync(join(repoRoot, "packages", "registry", "registry.json"), "utf8")
+) as { items: { name: string }[] };
+const itemNames = items.map((item) => item.name);
 
 let appProcess: ReturnType<typeof spawn> | undefined;
 
@@ -358,7 +361,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   }
 } finally {
   stopApp();
-  server.stop(true);
+  server?.stop(true);
   if (values.keep) {
     console.log(`\nKept the project at ${projectDir}`);
   } else {

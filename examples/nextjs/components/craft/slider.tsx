@@ -54,11 +54,12 @@ export function Slider({
             aria-label={ariaLabel}
             className={cn(
               "craft-bevel size-[calc(var(--craft-unit)*16)] cursor-grab outline-none data-dragging:cursor-grabbing",
-              "[--bevel-edge:var(--craft-secondary-edge)] [--bevel-face:var(--craft-secondary)] [--bevel-hi:var(--craft-secondary-hi)] [--bevel-lo:var(--craft-secondary-lo)]",
+              "[--bevel-depth:var(--craft-edge)] [--bevel-edge:var(--craft-secondary-edge)] [--bevel-face:var(--craft-secondary)] [--bevel-hi:var(--craft-secondary-hi)] [--bevel-lo:var(--craft-secondary-lo)]",
               "hover:[--bevel-face:var(--craft-secondary-hover)] hover:[--bevel-hi:var(--craft-secondary-hover-hi)] hover:[--bevel-lo:var(--craft-secondary-hover-lo)]",
               "has-focus-visible:craft-focus",
               "data-disabled:cursor-not-allowed data-disabled:[--bevel-edge:var(--craft-disabled-edge)] data-disabled:[--bevel-face:var(--craft-disabled)] data-disabled:[--bevel-hi:var(--craft-disabled)] data-disabled:[--bevel-lo:var(--craft-disabled)] data-disabled:[--bevel-outline:var(--craft-disabled-outline)]"
             )}
+            data-slot="slider-thumb"
           />
         </BaseSlider.Track>
       </BaseSlider.Control>

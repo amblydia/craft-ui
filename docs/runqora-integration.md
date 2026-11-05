@@ -1,8 +1,8 @@
 # Integrating with Runqora's registry
 
-The goal is for `shadcn add @runqora/craft-button` to work, while CraftUI stays its own
-project with its own site and releases. **This hasn't been applied yet.** It's a change
-to `amblydia/runqora-ui`, to be reviewed and made there.
+`shadcn add @runqora/craft-button` works through a proxy rewrite in
+`amblydia/runqora-ui`, while CraftUI stays its own project with its own site and
+releases.
 
 ## How Runqora's registry works
 
@@ -35,7 +35,7 @@ https://craftui.runqora.dev/r/{style}/craft-button.json   (the same file, for an
 
 ## The integration: a proxy rewrite
 
-Add two rules at the **top** of the `beforeFiles` list in Runqora's `next.config.mjs`,
+Two rules sit at the **top** of the `beforeFiles` list in Runqora's `next.config.mjs`,
 ahead of its existing rules:
 
 ```js
@@ -85,24 +85,26 @@ The rewrite makes `add` work, but `shadcn search @runqora` reads Runqora's own
 index at build time, falling back to Runqora's items alone if the fetch fails. It's not
 needed for installs, so it can wait.
 
-## Roll-out order
+## Checking it
 
-1. Deploy CraftUI to `craftui.runqora.dev` (see [deployment.md](deployment.md)).
-2. Check that `https://craftui.runqora.dev/r/base-nova/craft-button.json` returns JSON.
-3. Add the rewrite to `runqora-ui` and deploy it.
-4. In a clean project, confirm it end to end:
+In a clean project:
 
-   ```bash
-   bunx shadcn@latest registry add @runqora=https://runqora.dev/r/{style}/{name}.json
-   bunx shadcn@latest add @runqora/craft-button
-   ```
+```bash
+bunx shadcn@latest registry add @runqora=https://runqora.dev/r/{style}/{name}.json
+bunx shadcn@latest add @runqora/craft-button
+```
 
 ## What's been tested
 
 `bun run test:install` runs the real shadcn CLI against a local server with the same URL
-shape as the proxy (`/r/{style}/{name}.json`), through the `@runqora` namespace. It
-doesn't exercise Runqora's actual `next.config.mjs` or production hosts, so run step 4
-above after deploying.
+shape as the proxy (`/r/{style}/{name}.json`), through the `@runqora` namespace. It runs
+in CI, but doesn't exercise Runqora's `next.config.mjs` or production hosts.
+
+To test production instead, after a release of either project:
+
+```bash
+bun run test:install --template next --browser --registry https://runqora.dev
+```
 
 ## The public index
 

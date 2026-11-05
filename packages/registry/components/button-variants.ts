@@ -8,7 +8,7 @@ export const buttonVariants = cva(
     // press can sink the block without moving the layout or shrinking the
     // click target.
     "font-craft-display relative isolate inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 pb-(--craft-edge) whitespace-nowrap select-none",
-    "before:craft-bevel before:absolute before:inset-0 before:-z-10 motion-safe:before:transition-[top] motion-safe:before:duration-75",
+    "before:craft-bevel [--bevel-depth:var(--craft-edge)] before:absolute before:inset-0 before:-z-10 motion-safe:before:transition-[top] motion-safe:before:duration-75",
     "active:pb-0 active:[--bevel-depth:0px] active:before:top-(--craft-edge)",
     "focus-visible:craft-focus [&_svg]:size-4 [&_svg]:shrink-0",
     "data-disabled:pointer-events-none",

@@ -47,11 +47,12 @@ export function Switch({ className, disabled, label, ...props }: SwitchProps) {
       <BaseSwitch.Thumb
         className={cn(
           "craft-bevel absolute top-0 left-0 block size-[calc(var(--craft-unit)*16)] motion-safe:transition-transform motion-safe:duration-100",
-          "[--bevel-edge:var(--craft-secondary-edge)] [--bevel-face:var(--craft-secondary)] [--bevel-hi:var(--craft-secondary-hi)] [--bevel-lo:var(--craft-secondary-lo)]",
+          "[--bevel-depth:var(--craft-edge)] [--bevel-edge:var(--craft-secondary-edge)] [--bevel-face:var(--craft-secondary)] [--bevel-hi:var(--craft-secondary-hi)] [--bevel-lo:var(--craft-secondary-lo)]",
           "group-hover/switch:[--bevel-face:var(--craft-secondary-hover)] group-hover/switch:[--bevel-hi:var(--craft-secondary-hover-hi)] group-hover/switch:[--bevel-lo:var(--craft-secondary-hover-lo)]",
           "data-checked:translate-x-[calc(var(--craft-unit)*14)]",
           "data-disabled:[--bevel-edge:var(--craft-disabled-edge)] data-disabled:[--bevel-face:var(--craft-disabled)] data-disabled:[--bevel-hi:var(--craft-disabled)] data-disabled:[--bevel-lo:var(--craft-disabled)] data-disabled:[--bevel-outline:var(--craft-disabled-outline)]"
         )}
+        data-slot="switch-thumb"
       />
     </BaseSwitch.Root>
   );

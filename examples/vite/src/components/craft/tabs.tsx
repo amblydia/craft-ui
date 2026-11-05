@@ -53,7 +53,7 @@ export function TabsTrigger({
         // Neighbouring tabs share one outline, and the focused tab sits on top
         // so its ring is not covered by the next tab.
         "craft-bevel font-craft-display text-craft-text focus-visible:craft-focus relative -ml-(--craft-unit) h-(--craft-control-lg) min-w-max flex-1 cursor-pointer px-(--craft-space) pb-(--craft-edge) text-xl first:ml-0 focus-visible:z-10 focus-visible:-outline-offset-2",
-        "[--bevel-edge:var(--craft-raised-edge)] [--bevel-face:var(--craft-raised)] [--bevel-hi:var(--craft-raised-hi)] [--bevel-lo:var(--craft-raised-lo)]",
+        "[--bevel-depth:var(--craft-edge)] [--bevel-edge:var(--craft-raised-edge)] [--bevel-face:var(--craft-raised)] [--bevel-hi:var(--craft-raised-hi)] [--bevel-lo:var(--craft-raised-lo)]",
         "hover:[--bevel-face:var(--craft-raised-lo)]",
         // The selected tab sinks, loses its base and gains an underline.
         "data-active:pb-0 data-active:[--bevel-depth:0px] data-active:[--bevel-face:var(--craft-sunken)] data-active:[--bevel-hi:var(--craft-sunken-hi)] data-active:[--bevel-lo:var(--craft-sunken-hi)]",

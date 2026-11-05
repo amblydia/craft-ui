@@ -32,6 +32,42 @@ test.describe("every page", () => {
   }
 });
 
+// A panel is flat, and custom properties inherit, so a control inside one must
+// set its own depth or it loses its thick base.
+test.describe("inside a panel", () => {
+  const raised = {
+    button: { pseudo: "::before", selector: '[data-slot="button"]' },
+    "slider thumb": {
+      pseudo: undefined,
+      selector: '[data-slot="slider-thumb"]',
+    },
+    "switch thumb": {
+      pseudo: undefined,
+      selector: '[data-slot="switch-thumb"]',
+    },
+    tab: {
+      pseudo: undefined,
+      selector: '[data-slot="tabs-trigger"]:not([data-active])',
+    },
+  };
+
+  for (const [name, { pseudo, selector }] of Object.entries(raised)) {
+    test(`a ${name} keeps its thick base`, async ({ page }) => {
+      await page.goto("/docs/playground");
+      // The slider and the switch are on this tab.
+      await page.getByRole("tab", { name: "Audio" }).click();
+      const shadow = await page
+        .locator(`[data-slot="panel"] ${selector}`)
+        .first()
+        .evaluate(
+          (element, before) => getComputedStyle(element, before).boxShadow,
+          pseudo
+        );
+      expect(shadow).toContain("0px -4px 0px 0px inset");
+    });
+  }
+});
+
 test.describe("component pages", () => {
   for (const path of componentPages) {
     test(`${path} has every required section`, async ({ page }) => {
@@ -114,10 +150,11 @@ test("the dialog traps focus and closes with Escape", async ({ page }) => {
 
   for (let press = 0; press < 5; press += 1) {
     await page.keyboard.press("Tab");
-    const inside = await dialog.evaluate((element) =>
-      element.contains(document.activeElement)
-    );
-    expect(inside).toBe(true);
+    await expect
+      .poll(() =>
+        dialog.evaluate((element) => element.contains(document.activeElement))
+      )
+      .toBe(true);
   }
 
   await page.keyboard.press("Escape");

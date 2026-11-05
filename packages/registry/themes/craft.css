@@ -180,7 +180,9 @@
 /*
  * The block look: a solid face, a light top and left, a darker bottom and
  * right, and a thick base. A component sets the four --bevel-* colors and this
- * paints them. Pressed controls set --bevel-depth to 0px to lose the base.
+ * paints them. Flat surfaces and pressed controls set --bevel-depth to 0px to
+ * lose the base. It inherits, so a raised control must set its own depth, or it
+ * goes flat inside a panel.
  */
 @utility craft-bevel {
   background-color: var(--bevel-face);

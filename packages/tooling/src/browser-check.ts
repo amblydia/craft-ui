@@ -29,6 +29,14 @@ async function runInteractions(tab: Page) {
     `theme and Tailwind utilities apply (button face is ${face})`
   );
 
+  const shadow = await save.evaluate(
+    (element) => getComputedStyle(element, "::before").boxShadow
+  );
+  check(
+    shadow.includes("0px -4px 0px 0px inset"),
+    "a button inside a panel keeps its thick base"
+  );
+
   const fontLoaded = await tab.evaluate(async () => {
     await document.fonts.ready;
     return [...document.fonts].some(
