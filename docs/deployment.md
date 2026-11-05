@@ -53,22 +53,19 @@ In Cloudflare, add an `A` record for `craftui` on the `runqora.dev` zone, pointi
 VPS. Allow `/r/*` to be fetched by command-line clients, because the shadcn CLI isn't a
 browser: a bot challenge on those paths would break installs.
 
-## Deploy from GitHub Actions
+## Release a new version
 
-Deployments are run by hand, and pushing to `main` doesn't deploy:
+Pushing to `main` doesn't publish or deploy anything. Both steps are done by hand:
 
-```bash
-gh workflow run deploy.yml --repo amblydia/craft-ui
-```
+1. Publish the image to GHCR, using the shared workflow from `Amblydia/github-actions`:
 
-`.github/workflows/deploy.yml` builds the image, pushes it to GHCR and asks Coolify to
-redeploy, using the shared workflow from `Amblydia/github-actions`. It needs two
-repository secrets:
+   ```bash
+   gh workflow run publish.yml --repo amblydia/craft-ui
+   ```
 
-- `COOLIFY_WEBHOOK`: the application's deploy webhook
-- `COOLIFY_TOKEN`: an API token with deploy permission
+2. Once that finishes, redeploy the application in Coolify, which pulls the new `latest`.
 
-Without them, the image is still pushed, but the final Coolify step fails.
+The image is public, so anyone can pull it without logging in.
 
 ## After the first deployment
 

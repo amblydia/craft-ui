@@ -1,0 +1,19 @@
+name: Publish image
+
+# Builds the image and pushes it to GHCR. Run by hand. This doesn't deploy:
+# Runqora projects don't deploy automatically, so start deployments in Coolify.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  web:
+    uses: Amblydia/github-actions/.github/workflows/docker-build.yml@main
+    with:
+      dockerfile: ./docker/Dockerfile
+      push: true
+      test-target: checks
