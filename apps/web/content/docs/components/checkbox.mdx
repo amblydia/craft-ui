@@ -1,0 +1,85 @@
+---
+title: Checkbox
+description: A green block checkbox with checked, unchecked, indeterminate and disabled states.
+---
+
+import { CheckboxDemo } from "@/components/demos/checkbox-demo";
+import { CheckboxIndeterminate } from "@/components/demos/checkbox-indeterminate";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><CheckboxDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/checkbox-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-checkbox
+```
+
+## Usage
+
+```tsx
+import { Checkbox } from "@/components/craft/checkbox";
+
+<Checkbox defaultChecked label="Show coordinates" />;
+```
+
+## Examples
+
+### Indeterminate
+
+Use `indeterminate` for a checkbox that stands for a group when only part of the
+group is on.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><CheckboxIndeterminate /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/checkbox-indeterminate.tsx</include>
+  </Tab>
+</Tabs>
+
+## Props
+
+<AutoTypeTable
+  path="../../packages/registry/components/checkbox.tsx"
+  type="Pick<CheckboxProps, 'label' | 'checked' | 'defaultChecked' | 'onCheckedChange' | 'indeterminate' | 'disabled' | 'name' | 'value'>"
+/>
+
+## Accessibility
+
+- Space toggles the focused checkbox.
+- `label` is joined to the box, so clicking the text works too. Without a label,
+  pass `aria-label`.
+- Indeterminate is announced as "mixed", and the state is also shown by the
+  check or dash, so it never relies on color alone.
+
+## Customization
+
+The box takes its checked color from the primary tokens.
+
+```tsx
+<Checkbox
+  className="[--craft-primary-hi:#5889ea] [--craft-primary-lo:#4a7fe8] [--craft-primary:#2e6be5]"
+  label="Blue when checked"
+/>
+```
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/checkbox)
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/checkbox.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/checkbox.tsx</include>
+  </Accordion>
+</Accordions>

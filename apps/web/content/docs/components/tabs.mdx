@@ -1,0 +1,111 @@
+---
+title: Tabs
+description: Horizontal tabs as a dark tab bar or a segmented row of choices.
+---
+
+import { TabsDemo } from "@/components/demos/tabs-demo";
+import { TabsSegmented } from "@/components/demos/tabs-segmented";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><TabsDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/tabs-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-tabs
+```
+
+## Usage
+
+```tsx
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/craft/tabs";
+
+<Tabs defaultValue="worlds">
+  <TabsList>
+    <TabsTrigger value="worlds">Worlds</TabsTrigger>
+    <TabsTrigger value="realms">Realms</TabsTrigger>
+  </TabsList>
+  <TabsContent value="worlds">Your worlds</TabsContent>
+  <TabsContent value="realms">Your realms</TabsContent>
+</Tabs>;
+```
+
+## Examples
+
+### Segmented
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><TabsSegmented /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/tabs-segmented.tsx</include>
+  </Tab>
+</Tabs>
+
+## Props
+
+### TabsList
+
+<AutoTypeTable
+  path="../../packages/registry/components/tabs.tsx"
+  type="Pick<TabsListProps, 'variant' | 'activateOnFocus' | 'loopFocus'>"
+/>
+
+### TabsTrigger
+
+<AutoTypeTable
+  path="../../packages/registry/components/tabs.tsx"
+  type="Pick<ComponentProps<typeof TabsTrigger>, 'value' | 'disabled'>"
+/>
+
+### Tabs
+
+<AutoTypeTable
+  path="../../packages/registry/components/tabs.tsx"
+  type="Pick<ComponentProps<typeof Tabs>, 'value' | 'defaultValue' | 'onValueChange'>"
+/>
+
+## Accessibility
+
+- Left and Right move between tabs, Home and End jump to the ends, and Enter or
+  Space selects. Set `activateOnFocus` on `TabsList` to select as focus moves.
+- Tab moves from the list into the open panel.
+- A disabled tab can take focus, so screen reader users can find it, but it
+  can't be selected.
+- The selected tab has an underline and a sunken shape as well as its color.
+
+## Customization
+
+`TabsList` scrolls sideways when the tabs don't fit. For fixed-width tabs,
+override the width on each trigger.
+
+```tsx
+<TabsTrigger className="flex-none basis-40" value="worlds">
+  Worlds
+</TabsTrigger>
+```
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/tabs)
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/tabs.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/tabs.tsx</include>
+  </Accordion>
+</Accordions>

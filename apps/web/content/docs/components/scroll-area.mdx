@@ -1,0 +1,84 @@
+---
+title: Scroll Area
+description: A scrollable region with block scrollbars, reachable by keyboard.
+---
+
+import { ScrollAreaDemo } from "@/components/demos/scroll-area-demo";
+import { ScrollAreaHorizontal } from "@/components/demos/scroll-area-horizontal";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><ScrollAreaDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/scroll-area-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-scroll-area
+```
+
+## Usage
+
+```tsx
+import { ScrollArea } from "@/components/craft/scroll-area";
+
+<ScrollArea className="h-64" label="Saved worlds">
+  ...
+</ScrollArea>;
+```
+
+The area needs a size to scroll within, so set a height for vertical scrolling or
+a width for horizontal scrolling.
+
+## Examples
+
+### Horizontal
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><ScrollAreaHorizontal /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/scroll-area-horizontal.tsx</include>
+  </Tab>
+</Tabs>
+
+## Props
+
+<AutoTypeTable
+  path="../../packages/registry/components/scroll-area.tsx"
+  type="Pick<ScrollAreaProps, 'label' | 'orientation' | 'className'>"
+/>
+
+## Accessibility
+
+- The scrolling region can be reached with Tab and scrolled with the arrow keys.
+- Give it a `label` that says what it holds, since a screen reader user lands on
+  it directly.
+- The custom scrollbars work with a pointer. The keyboard and touch use the
+  browser's native scrolling.
+
+## Customization
+
+The scrollbar is as wide as five units, and the thumb uses the secondary tokens.
+
+```tsx
+<ScrollArea className="[--craft-secondary:#8c8d90]">...</ScrollArea>
+```
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/scroll-area)
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/scroll-area.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/scroll-area.tsx</include>
+  </Accordion>
+</Accordions>

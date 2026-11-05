@@ -1,0 +1,68 @@
+---
+title: Separator
+description: A theme-aware groove between sections, horizontal or vertical.
+---
+
+import { SeparatorDemo } from "@/components/demos/separator-demo";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><SeparatorDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/separator-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-separator
+```
+
+## Usage
+
+```tsx
+import { Separator } from "@/components/craft/separator";
+
+<Separator />;
+<Separator orientation="vertical" />;
+```
+
+A vertical separator takes the height of its container, so give the container
+a height.
+
+## Props
+
+<AutoTypeTable
+  path="../../packages/registry/components/separator.tsx"
+  type="Pick<ComponentProps<typeof Separator>, 'orientation' | 'className'>"
+/>
+
+## Accessibility
+
+- Has the `separator` role and its orientation for screen readers.
+- If it's only decoration, render a plain element instead, so that it isn't
+  announced.
+
+## Customization
+
+The groove is two lines drawn from the surface tokens, and `--craft-unit` sets
+how thick they are.
+
+```tsx
+<Separator className="[--craft-unit:1px]" />
+```
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/separator)
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/separator.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/separator.tsx</include>
+  </Accordion>
+</Accordions>

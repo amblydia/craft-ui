@@ -1,0 +1,27 @@
+name: Bug report
+description: A component or the docs site doesn't work as it should.
+labels: [ bug ]
+body:
+  - type: input
+    id: component
+    attributes:
+      label: Component
+      description: Which component, or which page of the docs?
+      placeholder: craft-button
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What you did, what you expected and what happened instead. A link to a small reproduction helps most.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Framework, shadcn style and browser.
+      placeholder: Next.js 16, base-nova, Chrome 150
+    validations:
+      required: true

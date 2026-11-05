@@ -1,0 +1,79 @@
+---
+title: Switch
+description: The Ore UI toggle, a sliding block over a track marked I when on and O when off.
+---
+
+import { SwitchDemo } from "@/components/demos/switch-demo";
+import { SwitchControlled } from "@/components/demos/switch-controlled";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><SwitchDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/switch-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-switch
+```
+
+## Usage
+
+```tsx
+import { Switch } from "@/components/craft/switch";
+
+<Switch label="Show coordinates" />;
+```
+
+## Examples
+
+### Controlled
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><SwitchControlled /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/switch-controlled.tsx</include>
+  </Tab>
+</Tabs>
+
+## Props
+
+<AutoTypeTable
+  path="../../packages/registry/components/switch.tsx"
+  type="Pick<SwitchProps, 'label' | 'checked' | 'defaultChecked' | 'onCheckedChange' | 'disabled' | 'name'>"
+/>
+
+## Accessibility
+
+- Has the `switch` role, and Space toggles it.
+- `label` is joined to the switch, so clicking the text works too. Without a
+  label, pass `aria-label`.
+- The I and O marks show the state as well as the color.
+
+## Customization
+
+The size of the switch follows `--craft-unit`, so a larger unit makes a larger
+switch with the same proportions.
+
+```tsx
+<Switch className="[--craft-unit:3px]" label="Big switch" />
+```
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/switch)
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/switch.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/switch.tsx</include>
+  </Accordion>
+</Accordions>

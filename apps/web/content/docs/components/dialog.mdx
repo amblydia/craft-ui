@@ -1,0 +1,113 @@
+---
+title: Dialog
+description: A modal with a title bar, a close button and proper focus handling.
+---
+
+import { DialogDemo } from "@/components/demos/dialog-demo";
+import { DialogForm } from "@/components/demos/dialog-form";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><DialogDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/dialog-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-dialog
+```
+
+## Usage
+
+```tsx
+import {
+  Dialog,
+  DialogBody,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/craft/dialog";
+
+<Dialog>
+  <DialogTrigger>Open</DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>World details</DialogTitle>
+    </DialogHeader>
+    <DialogBody>
+      <DialogDescription>Created on May 15.</DialogDescription>
+    </DialogBody>
+  </DialogContent>
+</Dialog>;
+```
+
+To use a CraftUI button as the trigger or a close action, pass it through
+`render`: `<DialogTrigger render={<Button />}>Open</DialogTrigger>`.
+
+## Examples
+
+### With a form
+
+This dialog is controlled, so it closes when the form submits.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><DialogForm /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/dialog-form.tsx</include>
+  </Tab>
+</Tabs>
+
+## Props
+
+### Dialog
+
+<AutoTypeTable
+  path="../../packages/registry/components/dialog.tsx"
+  type="Pick<ComponentProps<typeof Dialog>, 'open' | 'defaultOpen' | 'onOpenChange' | 'disablePointerDismissal'>"
+/>
+
+### DialogContent
+
+<AutoTypeTable
+  path="../../packages/registry/components/dialog.tsx"
+  type="Pick<DialogContentProps, 'showCloseButton' | 'initialFocus' | 'finalFocus'>"
+/>
+
+## Accessibility
+
+- Always include a `DialogTitle`, which names the dialog for screen readers.
+  `DialogDescription` is announced as its description.
+- Focus moves into the dialog when it opens and stays there, and it returns to
+  the trigger when the dialog closes.
+- Escape closes the dialog, and so does clicking the backdrop.
+- For a destructive choice, consider `initialFocus` to start on the safer action.
+
+## Customization
+
+Set the width on `DialogContent`. The dialog always fits a narrow screen, and
+`DialogBody` scrolls when the content is tall.
+
+```tsx
+<DialogContent className="max-w-2xl">...</DialogContent>
+```
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/dialog)
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/dialog.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/dialog.tsx</include>
+  </Accordion>
+</Accordions>

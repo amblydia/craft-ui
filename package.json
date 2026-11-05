@@ -1,0 +1,30 @@
+{
+  "name": "craft-ui",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "check": "ultracite check && turbo run typecheck",
+    "dev": "turbo run dev --filter=web",
+    "examples:sync": "bun packages/tooling/src/sync-examples.ts",
+    "fix": "ultracite fix",
+    "registry:build": "turbo run registry:build",
+    "registry:validate": "bun packages/tooling/src/validate-registry.ts",
+    "test": "turbo run test",
+    "test:e2e": "bun run --cwd apps/web test:e2e",
+    "test:install": "bun packages/tooling/src/test-install.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.6.5",
+    "turbo": "2.11.10",
+    "typescript": "7.0.2",
+    "ultracite": "8.1.1"
+  },
+  "packageManager": "bun@1.3.6",
+  "engines": {
+    "bun": ">=1.3.0"
+  }
+}

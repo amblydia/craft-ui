@@ -1,0 +1,22 @@
+{
+  "name": "@craft-ui/tooling",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Builds, validates and install-tests the CraftUI registry.",
+  "type": "module",
+  "scripts": {
+    "test": "bun test",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "postcss": "8.5.32",
+    "shadcn": "4.23.0"
+  },
+  "devDependencies": {
+    "@craft-ui/config": "workspace:*",
+    "@playwright/test": "1.64.1",
+    "@types/bun": "1.4.4",
+    "@types/node": "26.6.6",
+    "typescript": "7.0.2"
+  }
+}

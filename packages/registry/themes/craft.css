@@ -1,0 +1,220 @@
+/*
+ * The CraftUI theme. This file is the single source of truth: the docs site
+ * imports it directly, and the registry build turns it into the `craft-theme`
+ * item, so `shadcn add` writes these same values into a developer's CSS.
+ *
+ * Every name starts with `craft`, so it never touches shadcn/ui's --primary,
+ * --background and so on. Colors were measured from published Ore UI design
+ * system references; see docs/design-reference.md.
+ */
+
+:root {
+  /* Geometry. One unit is one "pixel" of the interface. */
+  --craft-unit: 2px;
+  --craft-edge: 4px;
+  --craft-radius: 0px;
+  --craft-space: 1rem;
+  --craft-control-sm: 2.25rem;
+  --craft-control-md: 2.75rem;
+  --craft-control-lg: 3.25rem;
+
+  /* Type. */
+  --craft-font-display:
+    var(--font-jersey-20, "Jersey 20"), ui-monospace, monospace;
+  --craft-font-body:
+    var(--font-noto-sans, "Noto Sans"), ui-sans-serif, system-ui, sans-serif;
+
+  /* Focus. */
+  --craft-focus: #2e6be5;
+  --craft-focus-width: 2px;
+
+  /* Surfaces and text. These change between light and dark. */
+  --craft-background: #e6e8eb;
+  --craft-text: #1e1e1f;
+  --craft-text-muted: #48494a;
+  --craft-placeholder: #58585a;
+  --craft-outline: #1e1e1f;
+  --craft-surface: #f4f6f9;
+  --craft-surface-hi: #ffffff;
+  --craft-surface-lo: #d0d1d4;
+  --craft-surface-edge: #b1b2b5;
+  --craft-raised: #d0d1d4;
+  --craft-raised-hi: #ecedee;
+  --craft-raised-lo: #e3e3e5;
+  --craft-raised-edge: #b1b2b5;
+  --craft-sunken: #e6e8eb;
+  --craft-sunken-hi: #b1b2b5;
+  --craft-sunken-lo: #f4f6f9;
+  --craft-field: #f4f6f9;
+  --craft-field-shade: #d0d1d4;
+  --craft-hover: rgb(30 30 31 / 0.1);
+  --craft-active: rgb(30 30 31 / 0.18);
+
+  /* Primary action. The same in both modes, as in the reference. */
+  --craft-primary: #3c8527;
+  --craft-primary-hi: #639d52;
+  --craft-primary-lo: #4f913c;
+  --craft-primary-edge: #1d4d13;
+  --craft-primary-fg: #ffffff;
+  --craft-primary-hover: #52a535;
+  --craft-primary-hover-hi: #75b75d;
+  --craft-primary-hover-lo: #63ae49;
+  --craft-primary-hover-fg: #1e1e1f;
+  --craft-primary-active: #2a641c;
+  --craft-primary-active-hi: #558349;
+  --craft-primary-active-lo: #3f7332;
+
+  /* Secondary action. */
+  --craft-secondary: #d0d1d4;
+  --craft-secondary-hi: #ecedee;
+  --craft-secondary-lo: #e3e3e5;
+  --craft-secondary-edge: #58585a;
+  --craft-secondary-fg: #1e1e1f;
+  --craft-secondary-hover: #f4f6f9;
+  --craft-secondary-hover-hi: #fbfbfd;
+  --craft-secondary-hover-lo: #f8fafb;
+  --craft-secondary-active: #b1b2b5;
+  --craft-secondary-active-hi: #e0e0e1;
+  --craft-secondary-active-lo: #d0d1d3;
+
+  /* Destructive action. */
+  --craft-destructive: #ca3636;
+  --craft-destructive-hi: #d55e5e;
+  --craft-destructive-lo: #cf4a4a;
+  --craft-destructive-edge: #ad1d1d;
+  --craft-destructive-fg: #ffffff;
+  --craft-destructive-hover: #ff8080;
+  --craft-destructive-hover-hi: #ff9999;
+  --craft-destructive-hover-lo: #ff8c8c;
+  --craft-destructive-hover-fg: #1e1e1f;
+  --craft-destructive-active: #c02d2d;
+  --craft-destructive-active-hi: #cd5757;
+  --craft-destructive-active-lo: #c64242;
+
+  /* Disabled controls. */
+  --craft-disabled: #d0d1d4;
+  --craft-disabled-edge: #b1b2b5;
+  --craft-disabled-outline: #8c8d90;
+  --craft-disabled-fg: #58585a;
+
+  /* Tracks: the unfilled part of sliders and switches. */
+  --craft-track: #8c8d90;
+  --craft-track-hi: #a3a4a6;
+  --craft-track-lo: #97989b;
+
+  /* Status colors, used by progress bars and tooltips. */
+  --craft-info: #2e6be5;
+  --craft-info-hi: #5889ea;
+  --craft-info-lo: #204ba1;
+  --craft-info-fg: #ffffff;
+  --craft-warning: #ffe866;
+  --craft-warning-hi: #fff2a8;
+  --craft-warning-lo: #d9bf2e;
+  --craft-warning-fg: #1e1e1f;
+
+  /* Tooltips and overlays. */
+  --craft-tooltip: #2e6be5;
+  --craft-tooltip-fg: #ffffff;
+  --craft-overlay: rgb(0 0 0 / 0.6);
+}
+
+.dark {
+  --craft-focus: #ffffff;
+  --craft-background: #313233;
+  --craft-text: #ffffff;
+  --craft-text-muted: #d0d1d4;
+  --craft-placeholder: #b1b2b5;
+  --craft-surface: #48494a;
+  --craft-surface-hi: #5a5b5c;
+  --craft-surface-lo: #333334;
+  --craft-surface-edge: #313233;
+  --craft-raised: #48494a;
+  --craft-raised-hi: #6d6d6e;
+  --craft-raised-lo: #5a5b5c;
+  --craft-raised-edge: #313233;
+  --craft-sunken: #313233;
+  --craft-sunken-hi: #454647;
+  --craft-sunken-lo: #222324;
+  --craft-field: #313233;
+  --craft-field-shade: #242425;
+  --craft-hover: rgb(255 255 255 / 0.1);
+  --craft-active: rgb(255 255 255 / 0.18);
+}
+
+@theme inline {
+  --color-craft-background: var(--craft-background);
+  --color-craft-text: var(--craft-text);
+  --color-craft-text-muted: var(--craft-text-muted);
+  --color-craft-placeholder: var(--craft-placeholder);
+  --color-craft-outline: var(--craft-outline);
+  --color-craft-surface: var(--craft-surface);
+  --color-craft-raised: var(--craft-raised);
+  --color-craft-sunken: var(--craft-sunken);
+  --color-craft-field: var(--craft-field);
+  --color-craft-hover: var(--craft-hover);
+  --color-craft-active: var(--craft-active);
+  --color-craft-primary: var(--craft-primary);
+  --color-craft-primary-fg: var(--craft-primary-fg);
+  --color-craft-primary-hover-fg: var(--craft-primary-hover-fg);
+  --color-craft-secondary: var(--craft-secondary);
+  --color-craft-secondary-fg: var(--craft-secondary-fg);
+  --color-craft-destructive: var(--craft-destructive);
+  --color-craft-destructive-fg: var(--craft-destructive-fg);
+  --color-craft-destructive-hover-fg: var(--craft-destructive-hover-fg);
+  --color-craft-disabled: var(--craft-disabled);
+  --color-craft-disabled-outline: var(--craft-disabled-outline);
+  --color-craft-disabled-fg: var(--craft-disabled-fg);
+  --color-craft-track: var(--craft-track);
+  --color-craft-info: var(--craft-info);
+  --color-craft-info-fg: var(--craft-info-fg);
+  --color-craft-warning: var(--craft-warning);
+  --color-craft-warning-fg: var(--craft-warning-fg);
+  --color-craft-tooltip: var(--craft-tooltip);
+  --color-craft-tooltip-fg: var(--craft-tooltip-fg);
+  --color-craft-overlay: var(--craft-overlay);
+  --font-craft-display: var(--craft-font-display);
+  --font-craft-body: var(--craft-font-body);
+  --radius-craft: var(--craft-radius);
+}
+
+/*
+ * The block look: a solid face, a light top and left, a darker bottom and
+ * right, and a thick base. A component sets the four --bevel-* colors and this
+ * paints them. Pressed controls set --bevel-depth to 0px to lose the base.
+ */
+@utility craft-bevel {
+  background-color: var(--bevel-face);
+  border: var(--craft-unit) solid var(--bevel-outline, var(--craft-outline));
+  border-radius: var(--craft-radius);
+  box-shadow:
+    inset 0 calc(-1 * var(--bevel-depth, var(--craft-edge))) 0 var(--bevel-edge),
+    inset 0
+    calc(-1 * (var(--bevel-depth, var(--craft-edge)) + var(--craft-unit))) 0
+    var(--bevel-lo),
+    inset 0 var(--craft-unit) 0 var(--bevel-hi),
+    inset var(--craft-unit) 0 0 var(--bevel-hi),
+    inset calc(-1 * var(--craft-unit)) 0 0 var(--bevel-lo);
+}
+
+/* A sunken field or track: a dark outline with a shadow along the top. */
+@utility craft-inset {
+  background-color: var(--craft-field);
+  border: var(--craft-unit) solid var(--craft-outline);
+  border-radius: var(--craft-radius);
+  box-shadow: inset 0 calc(2 * var(--craft-unit)) 0 var(--craft-field-shade);
+}
+
+/* The Ore UI focus ring: a solid line hugging the control's outline. */
+@utility craft-focus {
+  outline: var(--craft-focus-width) solid var(--craft-focus);
+  outline-offset: 0;
+}
+
+@keyframes craft-progress-slide {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(400%);
+  }
+}

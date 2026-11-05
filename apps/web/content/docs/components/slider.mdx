@@ -1,0 +1,82 @@
+---
+title: Slider
+description: A slider with a green fill and a square block thumb.
+---
+
+import { SliderDemo } from "@/components/demos/slider-demo";
+import { SliderControlled } from "@/components/demos/slider-controlled";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><SliderDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/slider-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-slider
+```
+
+## Usage
+
+```tsx
+import { Slider } from "@/components/craft/slider";
+
+<Slider defaultValue={70} label="Music" showValue />;
+```
+
+## Examples
+
+### Controlled
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><SliderControlled /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/slider-controlled.tsx</include>
+  </Tab>
+</Tabs>
+
+## Props
+
+<AutoTypeTable
+  path="../../packages/registry/components/slider.tsx"
+  type="Pick<SliderProps, 'label' | 'showValue' | 'aria-label' | 'value' | 'defaultValue' | 'onValueChange' | 'onValueCommitted' | 'min' | 'max' | 'step' | 'largeStep' | 'disabled' | 'format' | 'name'>"
+/>
+
+## Accessibility
+
+- The arrow keys move by `step`, Page Up and Page Down by `largeStep`, and Home
+  and End jump to the ends.
+- `label` names the slider. Without one, pass `aria-label`.
+- Use `format` so that screen readers and `showValue` read the value properly,
+  such as a percentage.
+
+## Customization
+
+The fill uses the primary tokens, and the thumb uses the secondary tokens.
+
+```tsx
+<Slider
+  className="[--craft-primary-hi:#ff9999] [--craft-primary-lo:#cf4a4a] [--craft-primary:#ca3636]"
+  label="Danger level"
+/>
+```
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/slider)
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/slider.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/slider.tsx</include>
+  </Accordion>
+</Accordions>

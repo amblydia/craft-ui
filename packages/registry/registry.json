@@ -1,0 +1,214 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "craft-ui",
+  "homepage": "https://craftui.runqora.dev",
+  "items": [
+    {
+      "name": "craft-theme",
+      "type": "registry:theme",
+      "title": "CraftUI theme",
+      "description": "The design tokens and block-style utilities used by every CraftUI component. Built from themes/craft.css. Sets only craft-prefixed names, so it leaves shadcn/ui's theme alone.",
+      "categories": ["theme"]
+    },
+    {
+      "name": "craft-button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "An Ore UI-inspired block button with primary, secondary, destructive, outline and ghost variants, a press animation, a loading state and optional icons.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/button.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/button.tsx"
+        },
+        {
+          "path": "components/button-variants.ts",
+          "target": "@components/craft/button-variants.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": ["core"]
+    },
+    {
+      "name": "craft-input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "A sunken text field for text, password and number values, with an error state and optional icons.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/input.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/input.tsx"
+        }
+      ],
+      "categories": ["core"]
+    },
+    {
+      "name": "craft-checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "A green block checkbox with checked, unchecked, indeterminate and disabled states.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/checkbox.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/checkbox.tsx"
+        }
+      ],
+      "categories": ["core"]
+    },
+    {
+      "name": "craft-switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "The Ore UI toggle: a sliding block over a track marked I when on and O when off.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/switch.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/switch.tsx"
+        }
+      ],
+      "categories": ["core"]
+    },
+    {
+      "name": "craft-slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "A slider with a green fill and a square block thumb, with an optional label and value.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/slider.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/slider.tsx"
+        }
+      ],
+      "categories": ["core"]
+    },
+    {
+      "name": "craft-progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "A progress bar with determinate and indeterminate modes, status tones, custom colors and an optional label.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/progress.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/progress.tsx"
+        }
+      ],
+      "categories": ["core"]
+    },
+    {
+      "name": "craft-tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Horizontal tabs in the dark Ore UI tab bar style or as a segmented row, with full keyboard navigation.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/tabs.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/tabs.tsx"
+        }
+      ],
+      "categories": ["core"]
+    },
+    {
+      "name": "craft-panel",
+      "type": "registry:ui",
+      "title": "Panel",
+      "description": "A layered surface with a header, title, description, actions, content and footer. Works in React Server Components.",
+      "dependencies": ["class-variance-authority@^0.7.1"],
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/panel.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/panel.tsx"
+        }
+      ],
+      "categories": ["core"]
+    },
+    {
+      "name": "craft-dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "A modal with an Ore UI title bar, a close button, focus management and Escape support.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/dialog.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/dialog.tsx"
+        }
+      ],
+      "categories": ["core"]
+    },
+    {
+      "name": "craft-tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "A blue speech-bubble tooltip with a stepped pointer, configurable placement and delay, for pointer and keyboard users.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/tooltip.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/tooltip.tsx"
+        }
+      ],
+      "categories": ["core"]
+    },
+    {
+      "name": "craft-separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "A theme-aware horizontal or vertical groove between sections.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/separator.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/separator.tsx"
+        }
+      ],
+      "categories": ["core"]
+    },
+    {
+      "name": "craft-scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area",
+      "description": "A scrollable region with block scrollbars, for vertical and horizontal content, reachable by keyboard.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/scroll-area.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/scroll-area.tsx"
+        }
+      ],
+      "categories": ["core"]
+    }
+  ]
+}

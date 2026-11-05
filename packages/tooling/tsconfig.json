@@ -1,0 +1,7 @@
+{
+  "extends": "@craft-ui/config/tsconfig/base.json",
+  "compilerOptions": {
+    "types": ["bun", "node"]
+  },
+  "include": ["src"]
+}

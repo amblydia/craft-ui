@@ -1,0 +1,61 @@
+---
+title: Contributing
+description: How to run CraftUI locally and add to it.
+---
+
+CraftUI welcomes bug reports, fixes and new components.
+
+## Run it locally
+
+You'll need [Bun](https://bun.sh).
+
+```bash
+git clone https://github.com/amblydia/craft-ui.git
+cd craft-ui
+bun install
+bun run dev
+```
+
+The site runs at `http://localhost:3000`.
+
+## Where things live
+
+| Path | What's there |
+|---|---|
+| `packages/registry/components` | Component source and tests |
+| `packages/registry/themes/craft.css` | The theme, the only place tokens are defined |
+| `packages/registry/registry.json` | What each registry item contains |
+| `packages/tooling` | Builds, validates and install-tests the registry |
+| `apps/web/content/docs` | These docs |
+| `apps/web/components/demos` | The live examples in the docs |
+| `examples` | Small apps with components installed by the CLI |
+
+## Add a component
+
+1. Write `packages/registry/components/<name>.tsx`, with tests beside it.
+2. Add `craft-<name>` to `registry.json`.
+3. Add demos and `apps/web/content/docs/components/<name>.mdx`.
+4. Run the checks below.
+
+Build it on Base UI where a primitive exists, take every color from a token, and
+keep it free of Next.js and of application logic.
+
+## Checks
+
+```bash
+bun run check              # lint, format and types
+bun run test               # unit tests
+bun run registry:build     # build and validate the registry
+bun run test:e2e           # the docs site in a real browser
+bun run test:install --template next --browser
+bun run test:install --template vite --browser
+```
+
+The last two create a brand new project, install every component with the real
+shadcn CLI, and try them out in a browser.
+
+## Assets
+
+Only contribute what you have the right to distribute under MIT. Don't add
+Minecraft textures, fonts, icons, sounds or code, even as placeholders, and don't
+use art taken from the game in screenshots or examples.

@@ -1,0 +1,35 @@
+# Dependencies
+node_modules
+
+# Build output
+.next
+.source
+.turbo
+dist
+out
+*.tsbuildinfo
+next-env.d.ts
+
+# Generated registry artifacts (built by `bun run registry:build`)
+apps/web/public/r
+
+# Test output
+coverage
+test-results
+playwright-report
+.install-test
+
+# Browser tooling scratch space. Never commit: it can hold reference screenshots.
+.playwright-mcp
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Logs, editors and OS files
+*.log
+.vscode
+.idea
+.DS_Store
+Thumbs.db

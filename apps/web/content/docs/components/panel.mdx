@@ -1,0 +1,94 @@
+---
+title: Panel
+description: A layered surface with a header, title, actions, content and footer.
+---
+
+import { PanelDemo } from "@/components/demos/panel-demo";
+import { PanelVariants } from "@/components/demos/panel-variants";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><PanelDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/panel-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-panel
+```
+
+## Usage
+
+```tsx
+import {
+  Panel,
+  PanelContent,
+  PanelHeader,
+  PanelTitle,
+} from "@/components/craft/panel";
+
+<Panel>
+  <PanelHeader>
+    <PanelTitle>Harbor</PanelTitle>
+  </PanelHeader>
+  <PanelContent>A survival world.</PanelContent>
+</Panel>;
+```
+
+Every part is optional, so a panel can be only `PanelContent`. It has no client
+code, so it works in React Server Components with no boundary.
+
+## Examples
+
+### Variants
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><PanelVariants /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/panel-variants.tsx</include>
+  </Tab>
+</Tabs>
+
+## Props
+
+<AutoTypeTable
+  path="../../packages/registry/components/panel.tsx"
+  type="Pick<PanelProps, 'variant' | 'className'>"
+/>
+
+Each part also accepts every attribute of the element it renders: `<div>` for
+most parts, `<h3>` for `PanelTitle` and `<p>` for `PanelDescription`.
+
+## Accessibility
+
+- `PanelTitle` renders an `<h3>`. If that doesn't fit your page's heading order,
+  render your own heading inside `PanelHeader`.
+- A panel has no role of its own. When it's a landmark on your page, add `role`
+  and a label, or wrap it in a `<section>`.
+
+## Customization
+
+Panels read their padding from `--craft-space`, on any level you set it.
+
+```tsx
+<Panel className="[--craft-space:2rem]">...</Panel>
+```
+
+## Dependencies
+
+- `class-variance-authority`
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/panel.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/panel.tsx</include>
+  </Accordion>
+</Accordions>

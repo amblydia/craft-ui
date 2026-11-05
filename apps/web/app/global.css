@@ -1,0 +1,83 @@
+@import "tailwindcss";
+@import "fumadocs-ui/css/neutral.css";
+@import "fumadocs-ui/css/preset.css";
+@import "@craft-ui/registry/themes/craft.css";
+
+/* Component source sits outside this app, so Tailwind needs telling. */
+@source "../../../packages/registry/components";
+@source "../../../examples/shared";
+@source "../node_modules/fumadocs-ui/dist/**/*.js";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Square corners everywhere, Fumadocs' own parts included. */
+@theme {
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+}
+
+/* Fumadocs' parts take their colors from the CraftUI theme. */
+:root,
+.dark {
+  --color-fd-background: var(--craft-background);
+  --color-fd-foreground: var(--craft-text);
+  --color-fd-muted: var(--craft-sunken);
+  --color-fd-muted-foreground: var(--craft-text-muted);
+  --color-fd-popover: var(--craft-surface);
+  --color-fd-popover-foreground: var(--craft-text);
+  --color-fd-card: var(--craft-field);
+  --color-fd-card-foreground: var(--craft-text);
+  --color-fd-border: var(--craft-outline);
+  /* The active item in menus and tabs: plain text color reads best here. */
+  --color-fd-primary: var(--craft-text);
+  --color-fd-primary-foreground: var(--craft-background);
+  /* Code sits on this, and needs a darker surface for its colors to pass AA. */
+  --color-fd-secondary: var(--craft-field);
+  --color-fd-secondary-foreground: var(--craft-text);
+  --color-fd-accent: var(--craft-raised);
+  --color-fd-accent-foreground: var(--craft-text);
+  --color-fd-ring: var(--craft-focus);
+  --fd-layout-width: 1400px;
+}
+
+@layer base {
+  body {
+    font-family: var(--craft-font-body);
+    /* Jersey 20 has one weight. A faked bold smears its pixels. */
+    font-synthesis: none;
+  }
+
+  /* Pixel type for headings, as Ore UI uses for its labels and titles. */
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  #nd-page h1 {
+    font-family: var(--craft-font-display);
+    font-weight: 400;
+  }
+
+  .prose h2 {
+    font-size: 2rem;
+  }
+
+  .prose h3 {
+    font-size: 1.5rem;
+  }
+
+  #nd-sidebar a,
+  #nd-sidebar button,
+  #nd-nav a {
+    font-family: var(--craft-font-display);
+    font-size: 1.25rem;
+  }
+}
+
+/* Outside the layer, so it wins over the utility on Fumadocs' page title. */
+#nd-page h1 {
+  font-size: 3rem;
+  line-height: 1.1;
+}

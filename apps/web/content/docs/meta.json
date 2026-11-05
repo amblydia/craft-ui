@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "index",
+    "installation",
+    "themes",
+    "playground",
+    "---Components---",
+    "...components",
+    "---Project---",
+    "changelog",
+    "contributing",
+    "sponsors"
+  ]
+}

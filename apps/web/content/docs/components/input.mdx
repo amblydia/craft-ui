@@ -1,0 +1,111 @@
+---
+title: Input
+description: A sunken text field for text, passwords and numbers.
+---
+
+import { InputDemo } from "@/components/demos/input-demo";
+import { InputStates } from "@/components/demos/input-states";
+import { InputIcons } from "@/components/demos/input-icons";
+import { InputForm } from "@/components/demos/input-form";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><InputDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/input-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-input
+```
+
+## Usage
+
+```tsx
+import { Input } from "@/components/craft/input";
+
+<label htmlFor="name">World name</label>
+<Input id="name" placeholder="World name" />;
+```
+
+## Examples
+
+### States and sizes
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><InputStates /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/input-states.tsx</include>
+  </Tab>
+</Tabs>
+
+### Icons
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><InputIcons /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/input-icons.tsx</include>
+  </Tab>
+</Tabs>
+
+### With React Hook Form and Zod
+
+`Input` forwards its ref to the real input, so `register` works directly. Submit
+this form empty to see its error.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><InputForm /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/input-form.tsx</include>
+  </Tab>
+</Tabs>
+
+## Props
+
+<AutoTypeTable
+  path="../../packages/registry/components/input.tsx"
+  type="Pick<InputProps, 'error' | 'size' | 'leadingIcon' | 'trailingIcon' | 'type' | 'disabled'>"
+/>
+
+`Input` also accepts every attribute of an `<input>`. They go to the input
+element, while `className` goes to the field around it.
+
+## Accessibility
+
+- Give every input a visible `<label>`, or an `aria-label` when the context
+  already makes its purpose clear.
+- `error` sets `aria-invalid`. Link your message to the input with
+  `aria-describedby`, as the form example does.
+- A red outline isn't the only sign of an error: always show a message too.
+- Icons are decorative. A button placed inside the field needs its own label.
+
+## Customization
+
+Change the color of one field's outline by overriding its token.
+
+```tsx
+<Input className="[--craft-outline:#2e6be5]" />
+```
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/input)
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/input.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/input.tsx</include>
+  </Accordion>
+</Accordions>

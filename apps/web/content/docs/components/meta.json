@@ -1,0 +1,17 @@
+{
+  "title": "Components",
+  "pages": [
+    "button",
+    "input",
+    "checkbox",
+    "switch",
+    "slider",
+    "progress",
+    "tabs",
+    "panel",
+    "dialog",
+    "tooltip",
+    "separator",
+    "scroll-area"
+  ]
+}

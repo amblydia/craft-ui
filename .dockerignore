@@ -1,0 +1,35 @@
+# Dependencies and build output
+**/node_modules
+**/.next
+**/.source
+**/.turbo
+**/dist
+**/*.tsbuildinfo
+apps/web/public/r
+
+# Test output and tool scratch space
+**/test-results
+**/playwright-report
+.install-test
+.playwright-mcp
+
+# Version control and CI. `.gitignore` stays: the linter reads it to know what
+# to skip.
+.git
+.github
+
+# Local environment files (never bake secrets into an image)
+**/.env
+**/.env.*
+!**/.env.example
+
+# Logs, editors and OS files
+**/*.log
+.vscode
+.idea
+**/.DS_Store
+**/Thumbs.db
+
+# Docker files themselves
+docker
+.dockerignore

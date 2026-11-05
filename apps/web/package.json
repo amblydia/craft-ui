@@ -1,0 +1,46 @@
+{
+  "name": "web",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "bun run registry:build && next build",
+    "dev": "bun run registry:build && next dev",
+    "registry:build": "bun ../../packages/tooling/src/build-registry.ts",
+    "start": "next start",
+    "test:e2e": "playwright test",
+    "typecheck": "next typegen && tsc --noEmit"
+  },
+  "dependencies": {
+    "@base-ui/react": "1.9.0",
+    "@hookform/resolvers": "7.0.2",
+    "@hugeicons/core-free-icons": "4.4.0",
+    "@hugeicons/react": "1.1.10",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "fumadocs-core": "16.17.10",
+    "fumadocs-mdx": "15.4.10",
+    "fumadocs-typescript": "5.6.0",
+    "fumadocs-ui": "npm:@fumadocs/base-ui@16.17.10",
+    "next": "16.4.5",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-hook-form": "7.91.0",
+    "tailwind-merge": "3.7.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@craft-ui/config": "workspace:*",
+    "@craft-ui/registry": "workspace:*",
+    "@craft-ui/tooling": "workspace:*",
+    "@playwright/test": "1.64.1",
+    "@tailwindcss/postcss": "4.3.4",
+    "@types/mdx": "2.0.14",
+    "@types/node": "26.6.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "postcss": "8.5.32",
+    "tailwindcss": "4.3.4",
+    "typescript": "7.0.2"
+  }
+}

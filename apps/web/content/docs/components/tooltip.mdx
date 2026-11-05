@@ -1,0 +1,108 @@
+---
+title: Tooltip
+description: A blue speech bubble with a stepped pointer, for pointer and keyboard users.
+---
+
+import { TooltipDemo } from "@/components/demos/tooltip-demo";
+import { TooltipSides } from "@/components/demos/tooltip-sides";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><TooltipDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/tooltip-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-tooltip
+```
+
+## Usage
+
+```tsx
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/craft/tooltip";
+
+<Tooltip>
+  <TooltipTrigger>Help</TooltipTrigger>
+  <TooltipContent>Opens the manual</TooltipContent>
+</Tooltip>;
+```
+
+## Examples
+
+### Placement and delay
+
+Set where it opens with `side` and `align`. It flips by itself when there's no
+room. `delay` goes on `TooltipTrigger` or, to share it across a group, on
+`TooltipProvider`.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><TooltipSides /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/tooltip-sides.tsx</include>
+  </Tab>
+</Tabs>
+
+## Props
+
+### TooltipContent
+
+<AutoTypeTable
+  path="../../packages/registry/components/tooltip.tsx"
+  type="Pick<TooltipContentProps, 'side' | 'align' | 'sideOffset'>"
+/>
+
+### TooltipTrigger
+
+<AutoTypeTable
+  path="../../packages/registry/components/tooltip.tsx"
+  type="Pick<ComponentProps<typeof TooltipTrigger>, 'delay' | 'closeDelay' | 'closeOnClick' | 'render'>"
+/>
+
+### TooltipProvider
+
+<AutoTypeTable
+  path="../../packages/registry/components/tooltip.tsx"
+  type="Pick<ComponentProps<typeof TooltipProvider>, 'delay' | 'closeDelay' | 'timeout'>"
+/>
+
+## Accessibility
+
+- Opens on keyboard focus as well as on hover, and Escape closes it.
+- Tooltips can't be reached on touch screens, so don't put anything essential in
+  one, and never interactive content. Use a dialog for that.
+- An icon-only trigger still needs its own `aria-label`. The tooltip doesn't name
+  the button for you.
+
+## Customization
+
+Recolor it by overriding its two tokens. The pointer follows.
+
+```tsx
+<TooltipContent className="[--craft-tooltip-fg:#1e1e1f] [--craft-tooltip:#ffe866]">
+  Important
+</TooltipContent>
+```
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/tooltip)
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/tooltip.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/tooltip.tsx</include>
+  </Accordion>
+</Accordions>

@@ -1,0 +1,73 @@
+---
+title: Installation
+description: Add CraftUI to a React project that uses Tailwind CSS.
+---
+
+## Requirements
+
+- React 19, or any version Base UI supports
+- [Tailwind CSS v4](https://tailwindcss.com)
+- shadcn set up in your project, with a `components.json`. If you don't have one,
+  run `npx shadcn@latest init`.
+
+Any shadcn style works, Radix or Base UI, since CraftUI components bring their own
+copy of Base UI. Next.js isn't required: Vite, React Router, TanStack Start and
+other React setups all work.
+
+## Add the registry
+
+Run this once in your project. It adds the `@runqora` namespace to
+`components.json`.
+
+```npm
+npx shadcn@latest registry add @runqora=https://runqora.dev/r/{style}/{name}.json
+```
+
+If you already use Runqora UI, you've done this step.
+
+## Add components
+
+```npm
+npx shadcn@latest add @runqora/craft-button
+```
+
+The first component you add also adds the theme to your CSS and `lib/utils.ts` if
+it's missing. Then import it:
+
+```tsx
+import { Button } from "@/components/craft/button";
+
+export function Play() {
+  return <Button>Play</Button>;
+}
+```
+
+## Fonts
+
+Components look right with system fonts, but they look the part with the pixel
+typeface. See [Fonts](/docs/themes#fonts) to load it.
+
+## Without the namespace
+
+Every item is also available at its own URL, with no configuration.
+
+```npm
+npx shadcn@latest add https://craftui.runqora.dev/r/craft-button.json
+```
+
+## What gets written
+
+| File | Change |
+|---|---|
+| `components/craft/*.tsx` | The components you added |
+| `lib/utils.ts` | The `cn` helper, if you don't have it |
+| Your CSS file | Variables starting with `--craft-`, plus the `craft-bevel`, `craft-inset` and `craft-focus` utilities |
+| `package.json` | `@base-ui/react` and, for some components, `class-variance-authority` |
+
+Your own components and theme aren't changed. `components/ui/button.tsx` and
+`components/craft/button.tsx` can live side by side.
+
+```tsx
+import { Button } from "@/components/ui/button";
+import { Button as CraftButton } from "@/components/craft/button";
+```

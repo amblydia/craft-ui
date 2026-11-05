@@ -1,0 +1,120 @@
+---
+title: Themes
+description: Change colors, fonts, borders, spacing and focus rings with CSS variables.
+---
+
+import { ThemeTokens } from "@/components/demos/theme-tokens";
+
+Installing any component adds the CraftUI theme to your CSS. It's made of CSS
+variables that all start with `--craft-`, so it sits beside your existing theme,
+including shadcn/ui's, and changes nothing in it.
+
+## Light and dark
+
+Light values go on `:root`, and dark values go on `.dark`, the same convention
+shadcn/ui uses. So if your app already toggles a `dark` class, CraftUI follows.
+
+Only surfaces, text and focus change between the two. Action colors stay the same
+in both, because that's how Ore UI treats them: a green button is the same green
+on a dark menu or a light one. Use the theme toggle in the sidebar to compare.
+
+## Change a token
+
+Edit the values in your CSS file, which is the one that `shadcn add` wrote to.
+
+```css
+:root {
+  --craft-primary: #2e6be5;
+  --craft-primary-hi: #5889ea;
+  --craft-primary-lo: #4a7fe8;
+  --craft-primary-edge: #16356f;
+}
+```
+
+Tokens also work on any element, for that element and everything inside it.
+
+```tsx
+<div className="[--craft-unit:3px] [--craft-radius:4px]">
+  <Button>Bigger bevels, rounded corners</Button>
+</div>
+```
+
+Try it here. These controls change the tokens on the preview only.
+
+<ComponentPreview className="block">
+  <ThemeTokens />
+</ComponentPreview>
+
+## All the tokens
+
+| What | Tokens |
+|---|---|
+| **Geometry** | `--craft-unit` (borders and bevels), `--craft-edge` (the thick base), `--craft-radius` |
+| **Spacing** | `--craft-space`, `--craft-control-sm`, `--craft-control-md`, `--craft-control-lg` |
+| **Fonts** | `--craft-font-display` (labels and titles), `--craft-font-body` (long text) |
+| **Focus** | `--craft-focus`, `--craft-focus-width` |
+| **Text** | `--craft-text`, `--craft-text-muted`, `--craft-placeholder` |
+| **Surfaces** | `--craft-background`, `--craft-surface`, `--craft-raised`, `--craft-sunken`, `--craft-field`, `--craft-outline`, each with `-hi`, `-lo` or `-edge` shades where they apply |
+| **Actions** | `--craft-primary`, `--craft-secondary`, `--craft-destructive`, each with `-hi`, `-lo`, `-edge` and `-fg`, plus `-hover` and `-active` sets |
+| **Disabled** | `--craft-disabled`, `--craft-disabled-edge`, `--craft-disabled-outline`, `--craft-disabled-fg` |
+| **Tracks and status** | `--craft-track`, `--craft-info`, `--craft-warning`, each with `-hi` and `-lo` |
+| **Overlays** | `--craft-tooltip`, `--craft-tooltip-fg`, `--craft-overlay` |
+
+The tokens also become Tailwind utilities, such as `bg-craft-surface`,
+`text-craft-text-muted` and `font-craft-display`, for your own layouts.
+
+## Fonts
+
+The theme asks for [Jersey 20](https://fonts.google.com/specimen/Jersey+20)
+for labels and [Noto Sans](https://fonts.google.com/noto/specimen/Noto+Sans) for
+long text, and falls back to system fonts. Both are under the SIL Open Font
+License. The theme doesn't load them, so that your app doesn't pay for a font you
+may not want. To load them in Next.js:
+
+```tsx title="app/layout.tsx"
+import { Jersey_20, Noto_Sans } from "next/font/google";
+
+const display = Jersey_20({
+  subsets: ["latin"],
+  variable: "--font-jersey-20",
+  weight: "400",
+});
+const body = Noto_Sans({ subsets: ["latin"], variable: "--font-noto-sans" });
+
+export default function RootLayout({ children }) {
+  return (
+    <html className={`${display.variable} ${body.variable}`} lang="en">
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+In other React apps, install the fonts with Fontsource and import them.
+
+```npm
+npm install @fontsource/jersey-20 @fontsource-variable/noto-sans
+```
+
+```ts title="src/main.tsx"
+import "@fontsource/jersey-20";
+import "@fontsource-variable/noto-sans";
+```
+
+```css
+:root {
+  --font-jersey-20: "Jersey 20";
+  --font-noto-sans: "Noto Sans Variable";
+}
+```
+
+Jersey 20 has one weight, and browsers smear its pixels when they fake a bold, so
+set `font-synthesis: none` on any heading you bold, or on your `body`.
+
+To use a different font, set `--craft-font-display` and `--craft-font-body`.
+
+## Contrast
+
+The default tokens meet WCAG AA in both modes: 4.5:1 for text and 3:1 for the
+focus ring. Keep that in mind when you choose your own colors. If you change a
+fill, change its `-fg` token to match.

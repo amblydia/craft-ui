@@ -1,0 +1,347 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-heading: var(--font-sans);
+    --font-sans: var(--font-sans);
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+    --color-craft-background: var(--craft-background);
+    --color-craft-text: var(--craft-text);
+    --color-craft-text-muted: var(--craft-text-muted);
+    --color-craft-placeholder: var(--craft-placeholder);
+    --color-craft-outline: var(--craft-outline);
+    --color-craft-surface: var(--craft-surface);
+    --color-craft-raised: var(--craft-raised);
+    --color-craft-sunken: var(--craft-sunken);
+    --color-craft-field: var(--craft-field);
+    --color-craft-hover: var(--craft-hover);
+    --color-craft-active: var(--craft-active);
+    --color-craft-primary: var(--craft-primary);
+    --color-craft-primary-fg: var(--craft-primary-fg);
+    --color-craft-primary-hover-fg: var(--craft-primary-hover-fg);
+    --color-craft-secondary: var(--craft-secondary);
+    --color-craft-secondary-fg: var(--craft-secondary-fg);
+    --color-craft-destructive: var(--craft-destructive);
+    --color-craft-destructive-fg: var(--craft-destructive-fg);
+    --color-craft-destructive-hover-fg: var(--craft-destructive-hover-fg);
+    --color-craft-disabled: var(--craft-disabled);
+    --color-craft-disabled-outline: var(--craft-disabled-outline);
+    --color-craft-disabled-fg: var(--craft-disabled-fg);
+    --color-craft-track: var(--craft-track);
+    --color-craft-info: var(--craft-info);
+    --color-craft-info-fg: var(--craft-info-fg);
+    --color-craft-warning: var(--craft-warning);
+    --color-craft-warning-fg: var(--craft-warning-fg);
+    --color-craft-tooltip: var(--craft-tooltip);
+    --color-craft-tooltip-fg: var(--craft-tooltip-fg);
+    --color-craft-overlay: var(--craft-overlay);
+    --font-craft-display: var(--craft-font-display);
+    --font-craft-body: var(--craft-font-body);
+    --radius-craft: var(--craft-radius);
+    --color-craft-warning-lo: var(--craft-warning-lo);
+    --color-craft-warning-hi: var(--craft-warning-hi);
+    --color-craft-info-lo: var(--craft-info-lo);
+    --color-craft-info-hi: var(--craft-info-hi);
+    --color-craft-track-lo: var(--craft-track-lo);
+    --color-craft-track-hi: var(--craft-track-hi);
+    --color-craft-disabled-edge: var(--craft-disabled-edge);
+    --color-craft-destructive-active-lo: var(--craft-destructive-active-lo);
+    --color-craft-destructive-active-hi: var(--craft-destructive-active-hi);
+    --color-craft-destructive-active: var(--craft-destructive-active);
+    --color-craft-destructive-hover-lo: var(--craft-destructive-hover-lo);
+    --color-craft-destructive-hover-hi: var(--craft-destructive-hover-hi);
+    --color-craft-destructive-hover: var(--craft-destructive-hover);
+    --color-craft-destructive-edge: var(--craft-destructive-edge);
+    --color-craft-destructive-lo: var(--craft-destructive-lo);
+    --color-craft-destructive-hi: var(--craft-destructive-hi);
+    --color-craft-secondary-active-lo: var(--craft-secondary-active-lo);
+    --color-craft-secondary-active-hi: var(--craft-secondary-active-hi);
+    --color-craft-secondary-active: var(--craft-secondary-active);
+    --color-craft-secondary-hover-lo: var(--craft-secondary-hover-lo);
+    --color-craft-secondary-hover-hi: var(--craft-secondary-hover-hi);
+    --color-craft-secondary-hover: var(--craft-secondary-hover);
+    --color-craft-secondary-edge: var(--craft-secondary-edge);
+    --color-craft-secondary-lo: var(--craft-secondary-lo);
+    --color-craft-secondary-hi: var(--craft-secondary-hi);
+    --color-craft-primary-active-lo: var(--craft-primary-active-lo);
+    --color-craft-primary-active-hi: var(--craft-primary-active-hi);
+    --color-craft-primary-active: var(--craft-primary-active);
+    --color-craft-primary-hover-lo: var(--craft-primary-hover-lo);
+    --color-craft-primary-hover-hi: var(--craft-primary-hover-hi);
+    --color-craft-primary-hover: var(--craft-primary-hover);
+    --color-craft-primary-edge: var(--craft-primary-edge);
+    --color-craft-primary-lo: var(--craft-primary-lo);
+    --color-craft-primary-hi: var(--craft-primary-hi);
+    --color-craft-field-shade: var(--craft-field-shade);
+    --color-craft-sunken-lo: var(--craft-sunken-lo);
+    --color-craft-sunken-hi: var(--craft-sunken-hi);
+    --color-craft-raised-edge: var(--craft-raised-edge);
+    --color-craft-raised-lo: var(--craft-raised-lo);
+    --color-craft-raised-hi: var(--craft-raised-hi);
+    --color-craft-surface-edge: var(--craft-surface-edge);
+    --color-craft-surface-lo: var(--craft-surface-lo);
+    --color-craft-surface-hi: var(--craft-surface-hi);
+    --craft-focus-width: var(--craft-focus-width);
+    --color-craft-focus: var(--craft-focus);
+    --craft-font-body: var(--craft-font-body);
+    --craft-font-display: var(--craft-font-display);
+    --craft-control-lg: var(--craft-control-lg);
+    --craft-control-md: var(--craft-control-md);
+    --craft-control-sm: var(--craft-control-sm);
+    --craft-space: var(--craft-space);
+    --craft-radius: var(--craft-radius);
+    --craft-edge: var(--craft-edge);
+    --craft-unit: var(--craft-unit);
+  @keyframes craft-progress-slide {
+  from {
+    transform: translateX(-100%);
+        }
+  to {
+    transform: translateX(400%);
+        }
+    }
+}
+
+:root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --radius: 0.625rem;
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+    --craft-unit: 2px;
+    --craft-edge: 4px;
+    --craft-radius: 0px;
+    --craft-space: 1rem;
+    --craft-control-sm: 2.25rem;
+    --craft-control-md: 2.75rem;
+    --craft-control-lg: 3.25rem;
+    --craft-font-display: var(--font-jersey-20, "Jersey 20"), ui-monospace, monospace;
+    --craft-font-body: var(--font-noto-sans, "Noto Sans"), ui-sans-serif, system-ui, sans-serif;
+    --craft-focus: #2e6be5;
+    --craft-focus-width: 2px;
+    --craft-background: #e6e8eb;
+    --craft-text: #1e1e1f;
+    --craft-text-muted: #48494a;
+    --craft-placeholder: #58585a;
+    --craft-outline: #1e1e1f;
+    --craft-surface: #f4f6f9;
+    --craft-surface-hi: #ffffff;
+    --craft-surface-lo: #d0d1d4;
+    --craft-surface-edge: #b1b2b5;
+    --craft-raised: #d0d1d4;
+    --craft-raised-hi: #ecedee;
+    --craft-raised-lo: #e3e3e5;
+    --craft-raised-edge: #b1b2b5;
+    --craft-sunken: #e6e8eb;
+    --craft-sunken-hi: #b1b2b5;
+    --craft-sunken-lo: #f4f6f9;
+    --craft-field: #f4f6f9;
+    --craft-field-shade: #d0d1d4;
+    --craft-hover: rgb(30 30 31 / 0.1);
+    --craft-active: rgb(30 30 31 / 0.18);
+    --craft-primary: #3c8527;
+    --craft-primary-hi: #639d52;
+    --craft-primary-lo: #4f913c;
+    --craft-primary-edge: #1d4d13;
+    --craft-primary-fg: #ffffff;
+    --craft-primary-hover: #52a535;
+    --craft-primary-hover-hi: #75b75d;
+    --craft-primary-hover-lo: #63ae49;
+    --craft-primary-hover-fg: #1e1e1f;
+    --craft-primary-active: #2a641c;
+    --craft-primary-active-hi: #558349;
+    --craft-primary-active-lo: #3f7332;
+    --craft-secondary: #d0d1d4;
+    --craft-secondary-hi: #ecedee;
+    --craft-secondary-lo: #e3e3e5;
+    --craft-secondary-edge: #58585a;
+    --craft-secondary-fg: #1e1e1f;
+    --craft-secondary-hover: #f4f6f9;
+    --craft-secondary-hover-hi: #fbfbfd;
+    --craft-secondary-hover-lo: #f8fafb;
+    --craft-secondary-active: #b1b2b5;
+    --craft-secondary-active-hi: #e0e0e1;
+    --craft-secondary-active-lo: #d0d1d3;
+    --craft-destructive: #ca3636;
+    --craft-destructive-hi: #d55e5e;
+    --craft-destructive-lo: #cf4a4a;
+    --craft-destructive-edge: #ad1d1d;
+    --craft-destructive-fg: #ffffff;
+    --craft-destructive-hover: #ff8080;
+    --craft-destructive-hover-hi: #ff9999;
+    --craft-destructive-hover-lo: #ff8c8c;
+    --craft-destructive-hover-fg: #1e1e1f;
+    --craft-destructive-active: #c02d2d;
+    --craft-destructive-active-hi: #cd5757;
+    --craft-destructive-active-lo: #c64242;
+    --craft-disabled: #d0d1d4;
+    --craft-disabled-edge: #b1b2b5;
+    --craft-disabled-outline: #8c8d90;
+    --craft-disabled-fg: #58585a;
+    --craft-track: #8c8d90;
+    --craft-track-hi: #a3a4a6;
+    --craft-track-lo: #97989b;
+    --craft-info: #2e6be5;
+    --craft-info-hi: #5889ea;
+    --craft-info-lo: #204ba1;
+    --craft-info-fg: #ffffff;
+    --craft-warning: #ffe866;
+    --craft-warning-hi: #fff2a8;
+    --craft-warning-lo: #d9bf2e;
+    --craft-warning-fg: #1e1e1f;
+    --craft-tooltip: #2e6be5;
+    --craft-tooltip-fg: #ffffff;
+    --craft-overlay: rgb(0 0 0 / 0.6);
+}
+
+.dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.922 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.556 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
+    --craft-focus: #ffffff;
+    --craft-background: #313233;
+    --craft-text: #ffffff;
+    --craft-text-muted: #d0d1d4;
+    --craft-placeholder: #b1b2b5;
+    --craft-surface: #48494a;
+    --craft-surface-hi: #5a5b5c;
+    --craft-surface-lo: #333334;
+    --craft-surface-edge: #313233;
+    --craft-raised: #48494a;
+    --craft-raised-hi: #6d6d6e;
+    --craft-raised-lo: #5a5b5c;
+    --craft-raised-edge: #313233;
+    --craft-sunken: #313233;
+    --craft-sunken-hi: #454647;
+    --craft-sunken-lo: #222324;
+    --craft-field: #313233;
+    --craft-field-shade: #242425;
+    --craft-hover: rgb(255 255 255 / 0.1);
+    --craft-active: rgb(255 255 255 / 0.18);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    }
+  body {
+    @apply bg-background text-foreground;
+    }
+  html {
+    @apply font-sans;
+    }
+}
+
+@utility craft-bevel {
+    background-color: var(--bevel-face);
+    border: var(--craft-unit) solid var(--bevel-outline, var(--craft-outline));
+    border-radius: var(--craft-radius);
+    box-shadow: inset 0 calc(-1 * var(--bevel-depth, var(--craft-edge))) 0 var(--bevel-edge), inset 0 calc(-1 * (var(--bevel-depth, var(--craft-edge)) + var(--craft-unit))) 0 var(--bevel-lo), inset 0 var(--craft-unit) 0 var(--bevel-hi), inset var(--craft-unit) 0 0 var(--bevel-hi), inset calc(-1 * var(--craft-unit)) 0 0 var(--bevel-lo);
+}
+
+@utility craft-inset {
+    background-color: var(--craft-field);
+    border: var(--craft-unit) solid var(--craft-outline);
+    border-radius: var(--craft-radius);
+    box-shadow: inset 0 calc(2 * var(--craft-unit)) 0 var(--craft-field-shade);
+}
+
+@utility craft-focus {
+    outline: var(--craft-focus-width) solid var(--craft-focus);
+    outline-offset: 0;
+}

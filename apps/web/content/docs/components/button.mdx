@@ -1,0 +1,162 @@
+---
+title: Button
+description: A block button with a press animation, in five variants and three sizes.
+---
+
+import { ButtonVariants } from "@/components/demos/button-variants";
+import { ButtonSizes } from "@/components/demos/button-sizes";
+import { ButtonStates } from "@/components/demos/button-states";
+import { ButtonIcons } from "@/components/demos/button-icons";
+import { ButtonFullWidth } from "@/components/demos/button-full-width";
+import { ButtonLink } from "@/components/demos/button-link";
+import { ButtonCustom } from "@/components/demos/button-custom";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><ButtonVariants /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/button-variants.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-button
+```
+
+This writes `components/craft/button.tsx` and `button-variants.ts`, and adds the
+[CraftUI theme](/docs/themes) to your CSS. See [Installation](/docs/installation)
+if you haven't added the registry yet.
+
+## Usage
+
+```tsx
+import { Button } from "@/components/craft/button";
+
+<Button>Play</Button>;
+```
+
+## Examples
+
+### Sizes
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><ButtonSizes /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/button-sizes.tsx</include>
+  </Tab>
+</Tabs>
+
+### Disabled and loading
+
+A disabled button turns gray and can't be focused. A loading button keeps its
+color and its keyboard focus, shows a spinner, and ignores clicks until it's
+done, so someone using a keyboard doesn't lose their place.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><ButtonStates /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/button-states.tsx</include>
+  </Tab>
+</Tabs>
+
+### Icons
+
+Pass any icon as `leadingIcon` or `trailingIcon`. For a button with only an
+icon, use `size="icon"` and give it an `aria-label`.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><ButtonIcons /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/button-icons.tsx</include>
+  </Tab>
+</Tabs>
+
+### Full width
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><ButtonFullWidth /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/button-full-width.tsx</include>
+  </Tab>
+</Tabs>
+
+### Links
+
+Something that goes to another page should stay a real link. Apply
+`buttonVariants` to an `<a>`, or to your router's link component, so that
+assistive technology announces it as a link. It lives in its own file, so you can
+call it from a Server Component.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><ButtonLink /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/button-link.tsx</include>
+  </Tab>
+</Tabs>
+
+## Props
+
+<AutoTypeTable
+  path="../../packages/registry/components/button.tsx"
+  type="Pick<ButtonProps, 'variant' | 'size' | 'loading' | 'fullWidth' | 'leadingIcon' | 'trailingIcon' | 'disabled' | 'render'>"
+/>
+
+`Button` also accepts every attribute of a `<button>`.
+
+## Accessibility
+
+- Renders a native `<button>` with `type="button"`, so it won't submit a form
+  unless you ask it to with `type="submit"`.
+- Works with Enter and Space, and shows a solid focus ring for keyboard users.
+- `loading` sets `aria-busy` and keeps the button focusable.
+- The hover color is brighter than in the game, so hovered primary and
+  destructive buttons use a dark label to keep a contrast of at least 4.5:1.
+
+## Customization
+
+Every color comes from a token, so you can change one button without touching
+the component.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><ButtonCustom /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/button-custom.tsx</include>
+  </Tab>
+</Tabs>
+
+To match the white hover label in the game, set
+`--craft-primary-hover-fg: #ffffff`. It falls below AA contrast, so it's not the
+default. For a change everywhere, edit the tokens in your CSS. See
+[Themes](/docs/themes).
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/button)
+- `class-variance-authority`
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/button.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/button.tsx</include>
+  </Accordion>
+  <Accordion title="components/craft/button-variants.ts">
+    <include lang="ts">../../../../../packages/registry/components/button-variants.ts</include>
+  </Accordion>
+</Accordions>

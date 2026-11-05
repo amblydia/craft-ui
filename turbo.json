@@ -1,0 +1,26 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "stream",
+  "globalEnv": ["REGISTRY_URL", "NEXT_PUBLIC_SITE_URL"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", "../../packages/**"],
+      "outputs": [".next/**", "!.next/cache/**", "public/r/**", ".source/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "registry:build": {
+      "inputs": ["../../packages/**"],
+      "outputs": ["public/r/**"]
+    },
+    "test": {
+      "outputs": ["coverage/**"]
+    },
+    "typecheck": {
+      "outputs": []
+    }
+  }
+}

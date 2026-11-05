@@ -1,0 +1,26 @@
+{
+  "extends": "@craft-ui/config/tsconfig/base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "paths": {
+      // Demos import components the way a developer's project does after
+      // `shadcn add`, so the code shown on a docs page works when copied.
+      "@/components/craft/*": [
+        "../../packages/registry/components/*.tsx",
+        "../../packages/registry/components/*.ts"
+      ],
+      "@/lib/utils": ["../../packages/registry/lib/utils.ts"],
+      "@examples/*": ["../../examples/shared/*"],
+      "@/*": ["./*"]
+    },
+    "plugins": [{ "name": "next" }]
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": ["node_modules"]
+}

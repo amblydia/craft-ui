@@ -1,0 +1,105 @@
+---
+title: Progress
+description: A progress bar for known and unknown amounts of work, with status tones.
+---
+
+import { ProgressDemo } from "@/components/demos/progress-demo";
+import { ProgressTones } from "@/components/demos/progress-tones";
+import { ProgressIndeterminate } from "@/components/demos/progress-indeterminate";
+import { ProgressCustom } from "@/components/demos/progress-custom";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><ProgressDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/progress-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-progress
+```
+
+## Usage
+
+```tsx
+import { Progress } from "@/components/craft/progress";
+
+<Progress label="Downloading pack" showValue value={40} />;
+```
+
+## Examples
+
+### Tones
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><ProgressTones /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/progress-tones.tsx</include>
+  </Tab>
+</Tabs>
+
+### Indeterminate
+
+Pass `null` when you can't tell how much work is left. With reduced motion
+turned on, the bar shows a steady half-strength fill instead of moving.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><ProgressIndeterminate /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/progress-indeterminate.tsx</include>
+  </Tab>
+</Tabs>
+
+### Custom color and thin bar
+
+`size="sm"` is the thin loading bar from the Ore UI reference.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><ProgressCustom /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/progress-custom.tsx</include>
+  </Tab>
+</Tabs>
+
+## Props
+
+<AutoTypeTable
+  path="../../packages/registry/components/progress.tsx"
+  type="Pick<ProgressProps, 'value' | 'label' | 'showValue' | 'size' | 'tone' | 'color' | 'min' | 'max' | 'format' | 'getAriaValueText'>"
+/>
+
+## Accessibility
+
+- Has the `progressbar` role, with its current value for screen readers.
+- `label` names the bar. Without one, pass `aria-label`.
+- Pair a tone with a label or message, since color alone doesn't say what
+  happened.
+
+## Customization
+
+`color` takes any CSS color, and a custom color replaces the highlights too. To
+restyle a tone everywhere, edit its tokens, such as `--craft-info` and
+`--craft-info-hi`.
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/progress)
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/progress.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/progress.tsx</include>
+  </Accordion>
+</Accordions>

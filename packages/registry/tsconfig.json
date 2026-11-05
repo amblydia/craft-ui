@@ -1,0 +1,12 @@
+{
+  "extends": "@craft-ui/config/tsconfig/base.json",
+  "compilerOptions": {
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
+    "paths": {
+      // The imports a developer's project has after installing a component.
+      "@/lib/utils": ["./lib/utils.ts"],
+      "@/components/craft/*": ["./components/*.tsx", "./components/*.ts"]
+    }
+  },
+  "include": ["components", "lib", "themes", "test", "vitest.config.ts"]
+}

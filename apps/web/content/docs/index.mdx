@@ -1,0 +1,78 @@
+---
+title: Introduction
+description: Minecraft-inspired components for React.
+---
+
+CraftUI is a free, open-source set of React components inspired by the look of
+Minecraft Bedrock's modern Ore UI: rectangular block buttons with a thick base,
+sunken fields, sliding `I`/`O` toggles and a pixel typeface.
+
+The components are for ordinary websites and web apps. CraftUI is **not** a
+Bedrock JSON UI library, a game mod, a resource pack or a change to the Minecraft
+client.
+
+## How it works
+
+CraftUI follows the [shadcn](https://ui.shadcn.com) approach. There's no package
+to import from. The CLI copies a component's source into your project, and from
+then on the code is yours to read and change.
+
+```npm
+npx shadcn@latest add @runqora/craft-button
+```
+
+```tsx
+import { Button } from "@/components/craft/button";
+
+export function Play() {
+  return <Button>Play</Button>;
+}
+```
+
+## What makes it different
+
+- **Measured, not guessed.** The colors and proportions were measured from
+  published Ore UI design system references. All the art is original: CraftUI
+  ships no Minecraft textures, fonts, icons or sounds.
+- **Accessible first.** Components are built on
+  [Base UI](https://base-ui.com) for keyboard and screen reader support. Where
+  the game's colors fall below WCAG AA, CraftUI keeps the color and changes the
+  label, and a test holds every token pair to that standard.
+- **Coexists with shadcn/ui.** Components install to `components/craft`, and every
+  token starts with `craft`, so nothing touches your existing `Button` or
+  `--primary`. You can use CraftUI on one page of a normal app.
+- **No lock-in.** No hosted service, account, database or runtime package. Next.js
+  is optional: the components work in any React app with Tailwind CSS v4.
+
+## What's available
+
+The [core components](/docs/components/button) are ready: Button, Input,
+Checkbox, Switch, Slider, Progress, Tabs, Panel, Dialog, Tooltip, Separator and
+Scroll Area.
+
+Still to come:
+
+- **Advanced components:** Select, Dropdown Menu, Context Menu, Radio Group,
+  Accordion, Toast, Popover, Navigation Menu, Pagination, Table and Badge.
+- **Game components:** Inventory Grid, Item Slot, Hotbar, Server List, World List,
+  Profile Panel and Settings Menu.
+- **Blocks:** whole screens such as a main menu, a server browser and a game
+  dashboard.
+
+## Part of Runqora
+
+CraftUI is a standalone project in the [Runqora](https://runqora.dev) family, with
+its own repository, releases and issues. It shares Runqora's `@runqora` registry
+namespace, so you only have one registry to add.
+
+## Free, for good
+
+Everything here is MIT licensed, with no paid components, accounts or paywalls.
+The project is supported only by [sponsorships](/docs/sponsors), which never
+affect who can use what.
+
+<Callout title="Unofficial project">
+  CraftUI is an independent, unofficial project. It is not affiliated with,
+  endorsed by or sponsored by Mojang Studios or Microsoft. Minecraft is a
+  trademark of Mojang Synergies AB.
+</Callout>
