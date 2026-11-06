@@ -18,16 +18,18 @@ export function DialogClose(props: ComponentProps<typeof BaseDialog.Close>) {
   return <BaseDialog.Close data-slot="dialog-close" {...props} />;
 }
 
+// Both drawn with one-unit strokes, as in the reference: the cross is 8
+// units square, and the arrow 4 by 8.
 function CloseIcon() {
   return (
     <svg
       aria-hidden="true"
-      className="size-6"
+      className="size-[calc(var(--craft-unit)*8)]"
       fill="currentColor"
       shapeRendering="crispEdges"
-      viewBox="0 0 12 12"
+      viewBox="0 0 8 8"
     >
-      <path d="M1 1h2v2H1zM3 3h2v2H3zM5 5h2v2H5zM7 7h2v2H7zM9 9h2v2H9zM9 1h2v2H9zM7 3h2v2H7zM3 7h2v2H3zM1 9h2v2H1z" />
+      <path d="M0 0h1v1h-1zM7 0h1v1h-1zM1 1h1v1h-1zM6 1h1v1h-1zM2 2h1v1h-1zM5 2h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM4 4h1v1h-1zM3 4h1v1h-1zM5 5h1v1h-1zM2 5h1v1h-1zM6 6h1v1h-1zM1 6h1v1h-1zM7 7h1v1h-1zM0 7h1v1h-1z" />
     </svg>
   );
 }
@@ -36,12 +38,12 @@ function BackIcon() {
   return (
     <svg
       aria-hidden="true"
-      className="size-6"
+      className="h-[calc(var(--craft-unit)*8)] w-[calc(var(--craft-unit)*4)]"
       fill="currentColor"
       shapeRendering="crispEdges"
-      viewBox="0 0 12 12"
+      viewBox="0 0 4 8"
     >
-      <path d="M7 1h2v2H7zM5 3h2v2H5zM3 5h2v2H3zM5 7h2v2H5zM7 9h2v2H7z" />
+      <path d="M3 0h1v1h-1zM2 1h1v1h-1zM1 2h1v1h-1zM0 3h1v1h-1zM0 4h1v1h-1zM1 5h1v1h-1zM2 6h1v1h-1zM3 7h1v1h-1z" />
     </svg>
   );
 }

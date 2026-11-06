@@ -83,13 +83,15 @@ import {
   Space selects. Set `activateOnFocus` on `TabsList` to select as focus moves.
 - Tab moves from the list into the open panel.
 - A disabled tab can take focus, so screen reader users can find it, but it
-  can't be selected.
+  can't be selected. As in Ore UI, it looks the same as the other tabs, and the
+  pointer shows it can't be pressed. In the segmented look it's grayed out.
 - The selected tab has an underline and a sunken shape as well as its color.
 
 ## Customization
 
 `TabsList` scrolls sideways when the tabs don't fit. For fixed-width tabs,
-override the width on each trigger.
+override the width on each trigger. In the segmented look, the choices share
+the width instead, and long labels wrap onto a second line.
 
 ```tsx
 <TabsTrigger className="flex-none basis-40" value="worlds">

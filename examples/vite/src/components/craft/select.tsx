@@ -52,7 +52,7 @@ export function SelectLabel({
   return (
     <BaseSelect.Label
       className={cn(
-        "font-craft-display text-craft-text text-(length:--craft-label-size)",
+        "font-craft-display text-craft-text data-disabled:text-craft-text-muted text-(length:--craft-label-size)",
         className
       )}
       data-slot="select-label"
@@ -79,7 +79,7 @@ export function SelectTrigger({
   return (
     <BaseSelect.Trigger
       className={cn(
-        "craft-bevel font-craft-display focus-visible:craft-focus flex h-(--craft-control-md) w-full min-w-40 cursor-pointer items-center justify-between gap-3 pr-2 pl-(--craft-space) text-left text-(length:--craft-label-size) select-none",
+        "group/select-trigger craft-bevel font-craft-display focus-visible:craft-focus flex h-(--craft-control-md) w-full min-w-40 cursor-pointer items-center justify-between gap-3 pr-2 pl-(--craft-space) text-left text-(length:--craft-label-size) select-none",
         // Unlike a button, the light dropdown keeps its base when pressed.
         "data-[variant=default]:text-craft-secondary-fg data-[variant=default]:[&_[data-placeholder]]:text-craft-disabled-fg data-[variant=default]:pb-(--craft-edge) data-[variant=default]:[--bevel-depth:var(--craft-edge)] data-[variant=default]:[--bevel-edge:var(--craft-secondary-edge)] data-[variant=default]:[--bevel-face:var(--craft-secondary)] data-[variant=default]:[--bevel-hi:var(--craft-secondary-hi)] data-[variant=default]:[--bevel-lo:var(--craft-secondary-lo)]",
         "data-[variant=default]:hover:[--bevel-face:var(--craft-secondary-hover)] data-[variant=default]:hover:[--bevel-hi:var(--craft-secondary-hover-hi)] data-[variant=default]:hover:[--bevel-lo:var(--craft-secondary-hover-lo)]",
@@ -94,7 +94,8 @@ export function SelectTrigger({
       {...props}
     >
       {children}
-      <BaseSelect.Icon className="flex">
+      {/* On the light dropdown, the chevron stays dark, even when disabled. */}
+      <BaseSelect.Icon className="group-data-[variant=default]/select-trigger:text-craft-secondary-fg flex">
         <ChevronIcon />
       </BaseSelect.Icon>
     </BaseSelect.Trigger>

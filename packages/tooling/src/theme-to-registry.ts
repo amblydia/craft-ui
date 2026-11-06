@@ -10,7 +10,6 @@ export interface CssTree {
 export interface RegistryTheme {
   css: CssTree;
   cssVars: {
-    dark: Record<string, string>;
     light: Record<string, string>;
     theme: Record<string, string>;
   };
@@ -45,14 +44,12 @@ function readBlock(nodes: ChildNode[]) {
 export function themeToRegistry(source: string): RegistryTheme {
   const theme: RegistryTheme = {
     css: {},
-    cssVars: { dark: {}, light: {}, theme: {} },
+    cssVars: { light: {}, theme: {} },
   };
 
   for (const node of postcss.parse(source).nodes) {
     if (node.type === "rule" && node.selector === ":root") {
       theme.cssVars.light = readVariables(node);
-    } else if (node.type === "rule" && node.selector === ".dark") {
-      theme.cssVars.dark = readVariables(node);
     } else if (node.type === "atrule" && node.name === "theme") {
       theme.cssVars.theme = readVariables(node);
     } else if (node.type === "atrule") {

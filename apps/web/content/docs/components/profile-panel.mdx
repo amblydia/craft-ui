@@ -1,0 +1,106 @@
+---
+title: Profile Panel
+description: "A player's profile, with a preview space, avatar, name and status, actions, statistics and other details."
+---
+
+import { ProfilePanelDemo } from "@/components/demos/profile-panel-demo";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><ProfilePanelDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/profile-panel-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-profile-panel
+```
+
+## Usage
+
+```tsx
+import {
+  ProfileActions,
+  ProfileAvatar,
+  ProfileHeader,
+  ProfileIdentity,
+  ProfileName,
+  ProfilePanel,
+  ProfilePreview,
+  ProfileStat,
+  ProfileStats,
+  ProfileStatus,
+} from "@/components/craft/profile-panel";
+
+<ProfilePanel>
+  <ProfilePreview>
+    <img alt="" src="/character.png" />
+  </ProfilePreview>
+  <ProfileHeader>
+    <ProfileAvatar fallback="SK" src="/avatar.png" />
+    <ProfileIdentity>
+      <ProfileName>Skylark</ProfileName>
+      <ProfileStatus status="online" />
+    </ProfileIdentity>
+  </ProfileHeader>
+  <ProfileActions>
+    <Button variant="secondary">Dressing room</Button>
+  </ProfileActions>
+  <ProfileStats>
+    <ProfileStat label="Friends" value="3" />
+  </ProfileStats>
+</ProfilePanel>;
+```
+
+## Props
+
+### ProfileStat
+
+<AutoTypeTable
+  path="../../packages/registry/components/profile-panel.tsx"
+  type="Pick<ProfileStatProps, 'label' | 'value' | 'icon' | 'detail' | 'wide'>"
+/>
+
+### ProfileStatus
+
+<AutoTypeTable
+  path="../../packages/registry/components/profile-panel.tsx"
+  type="Pick<ProfileStatusProps, 'status' | 'children'>"
+/>
+
+### ProfileAvatar
+
+<AutoTypeTable
+  path="../../packages/registry/components/profile-panel.tsx"
+  type="Pick<ProfileAvatarProps, 'src' | 'alt' | 'fallback'>"
+/>
+
+## Accessibility
+
+- The name is a heading, so a profile can be found by its headings.
+- The status is a colored square and words, such as "Online", so it doesn't rely on color.
+- Each statistic and detail is a term and its value, read together.
+- The avatar's image has an empty `alt` by default, because the name is beside it.
+
+## Customization
+
+`ProfilePreview` is an empty space for a picture of the player or their character: an `<img>`, a video, or a renderer of your own. CraftUI doesn't draw characters.
+
+The parts can go in one panel or be split across several, as in the example. `ProfileStatus` takes `online`, `away`, `busy` or `offline`, and its words can be replaced, such as "In a game".
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/avatar)
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/profile-panel.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/profile-panel.tsx</include>
+  </Accordion>
+</Accordions>

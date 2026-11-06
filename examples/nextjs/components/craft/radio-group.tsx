@@ -47,7 +47,7 @@ export function Radio({ className, disabled, label, ...props }: RadioProps) {
   const radio = (
     <BaseRadio.Root
       className={cn(
-        "group/radio relative inline-flex size-[calc(var(--craft-unit)*12)] shrink-0 cursor-pointer items-center justify-center outline-none data-disabled:cursor-not-allowed",
+        "group/radio relative inline-flex size-[calc(var(--craft-unit)*14)] shrink-0 cursor-pointer items-center justify-center outline-none data-disabled:cursor-not-allowed",
         !label && className
       )}
       data-slot="radio"
@@ -57,7 +57,7 @@ export function Radio({ className, disabled, label, ...props }: RadioProps) {
       <span
         aria-hidden="true"
         className={cn(
-          "craft-bevel absolute size-[calc(var(--craft-unit)*8.5)] rotate-45",
+          "craft-bevel absolute size-[calc(var(--craft-unit)*10)] rotate-45",
           "[--bevel-depth:0px] [--bevel-edge:transparent] [--bevel-face:var(--craft-track)] [--bevel-hi:var(--craft-track-hi)] [--bevel-lo:var(--craft-track-lo)]",
           "group-hover/radio:[--bevel-face:var(--craft-track-hover)] group-hover/radio:[--bevel-hi:var(--craft-track-hover-hi)] group-hover/radio:[--bevel-lo:var(--craft-track-hover-lo)]",
           "group-active/radio:[--bevel-face:var(--craft-track-active)] group-active/radio:[--bevel-hi:var(--craft-track-active-hi)] group-active/radio:[--bevel-lo:var(--craft-track-active-lo)]",
@@ -71,7 +71,7 @@ export function Radio({ className, disabled, label, ...props }: RadioProps) {
       />
       {/* The gem: lit from the top, darkest at the bottom. */}
       <BaseRadio.Indicator
-        className="absolute size-[calc(var(--craft-unit)*3.5)] rotate-45 bg-[conic-gradient(var(--craft-gem)_0_90deg,var(--craft-gem-lo)_0_180deg,var(--craft-gem)_0_270deg,var(--craft-gem-hi)_0)]"
+        className="absolute size-[calc(var(--craft-unit)*4)] rotate-45 bg-[conic-gradient(var(--craft-gem)_0_90deg,var(--craft-gem-lo)_0_180deg,var(--craft-gem)_0_270deg,var(--craft-gem-hi)_0)]"
         data-slot="radio-indicator"
       />
     </BaseRadio.Root>

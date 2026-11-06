@@ -364,17 +364,18 @@ test("the indeterminate progress bar respects reduced motion", async ({
   expect(animation).toBe("none");
 });
 
-test("the theme toggle changes the tokens", async ({ page }) => {
+test("the theme is one design, with no theme switch", async ({ page }) => {
+  await page.emulateMedia({ colorScheme: "light" });
   await page.goto("/docs/components/button");
-  const background = () =>
-    page.evaluate(() =>
-      getComputedStyle(document.documentElement).getPropertyValue(
-        "--craft-background"
-      )
-    );
-  expect((await background()).trim()).toBe("#313233");
-  await page.getByRole("button", { name: "Toggle Theme" }).first().click();
-  await expect.poll(background).toBe("#e6e8eb");
+  const background = await page.evaluate(() =>
+    getComputedStyle(document.documentElement).getPropertyValue(
+      "--craft-background"
+    )
+  );
+  expect(background.trim()).toBe("#313233");
+  await expect(page.getByRole("button", { name: "Toggle Theme" })).toHaveCount(
+    0
+  );
 });
 
 test.describe("registry", () => {

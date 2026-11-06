@@ -45,19 +45,24 @@ async function runInteractions(tab: Page) {
   });
   check(fontLoaded, "the theme loads the pixel font");
 
-  const darkMode = tab.getByRole("switch", { name: "Dark mode" });
-  await darkMode.click();
+  const autoSave = tab.getByRole("switch", { name: "Auto save" });
+  await autoSave.click();
   check(
-    (await darkMode.getAttribute("aria-checked")) === "false",
+    (await autoSave.getAttribute("aria-checked")) === "false",
     "switch toggles by pointer"
   );
+  await autoSave.click();
+
+  // Ore UI is one design: a light color scheme changes nothing.
+  await tab.emulateMedia({ colorScheme: "light" });
   check(
-    !(await tab.evaluate(() =>
-      document.documentElement.classList.contains("dark")
-    )),
-    "the light theme can be selected"
+    (await tab.evaluate(() =>
+      getComputedStyle(document.documentElement)
+        .getPropertyValue("--craft-background")
+        .trim()
+    )) === "#313233",
+    "the theme is one design, whatever the color scheme"
   );
-  await darkMode.click();
 
   const coordinates = tab.getByRole("checkbox", { name: "Show coordinates" });
   await coordinates.click();
@@ -104,12 +109,14 @@ async function runInteractions(tab: Page) {
   check(await tooltip.isVisible(), "tooltip opens on keyboard focus");
 
   const difficulty = tab.getByRole("combobox", { name: "Difficulty" });
+  // The select's own list: the hotbar is a listbox too.
+  const choices = tab.locator('[data-slot="select-content"]');
   await difficulty.focus();
   await tab.keyboard.press("ArrowDown");
-  await tab.getByRole("listbox").waitFor({ state: "visible" });
+  await choices.waitFor({ state: "visible" });
   await tab.keyboard.press("ArrowDown");
   await tab.keyboard.press("Enter");
-  await tab.getByRole("listbox").waitFor({ state: "hidden" });
+  await choices.waitFor({ state: "hidden" });
   check(
     (await difficulty.textContent())?.includes("Hard"),
     "select chooses by keyboard"
@@ -131,6 +138,31 @@ async function runInteractions(tab: Page) {
   const saved = tab.getByText("World saved");
   await saved.waitFor({ state: "visible" });
   check(await saved.isVisible(), "toast appears");
+
+  const backpack = tab.getByRole("grid", { name: "Backpack" });
+  await backpack.getByRole("gridcell", { name: "Planks, 16" }).click();
+  await tab.keyboard.press("Alt+ArrowRight");
+  const moved = backpack.getByRole("gridcell").nth(1);
+  await tab.waitForFunction(
+    () =>
+      document
+        .querySelectorAll('[role="grid"] [role="gridcell"]')[1]
+        ?.textContent?.includes("Planks") ?? false
+  );
+  check(
+    (await moved.textContent())?.includes("Planks, 16"),
+    "inventory moves an item by keyboard"
+  );
+
+  const hotbar = tab.getByRole("listbox", { name: "Hotbar" });
+  await hotbar.getByRole("option").first().focus();
+  await tab.keyboard.press("3");
+  check(
+    (await hotbar
+      .getByRole("option", { name: "Gems, 3" })
+      .getAttribute("aria-selected")) === "true",
+    "hotbar picks a slot by number key"
+  );
 }
 
 const browser = await chromium.launch();

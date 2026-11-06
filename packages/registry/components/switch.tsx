@@ -37,11 +37,11 @@ export function Switch({ className, disabled, label, ...props }: SwitchProps) {
         {/* "I" when on, "O" when off, so the state never relies on color. */}
         <span
           aria-hidden="true"
-          className="bg-craft-primary-fg group-data-disabled/switch:bg-craft-disabled-fg absolute top-1/2 left-[calc(var(--craft-unit)*6)] hidden h-[calc(var(--craft-unit)*6)] w-(--craft-unit) -translate-y-1/2 group-data-checked/switch:block"
+          className="bg-craft-primary-fg group-data-disabled/switch:bg-craft-disabled-mark absolute top-1/2 left-[calc(var(--craft-unit)*6)] hidden h-[calc(var(--craft-unit)*6)] w-(--craft-unit) -translate-y-1/2 group-data-checked/switch:block"
         />
         <svg
           aria-hidden="true"
-          className="text-craft-outline group-data-disabled/switch:text-craft-disabled-fg absolute top-1/2 right-[calc(var(--craft-unit)*4)] block size-[calc(var(--craft-unit)*6)] -translate-y-1/2 group-data-checked/switch:hidden"
+          className="text-craft-switch-mark group-data-disabled/switch:text-craft-disabled-mark absolute top-1/2 right-[calc(var(--craft-unit)*4)] block size-[calc(var(--craft-unit)*6)] -translate-y-1/2 group-data-checked/switch:hidden"
           fill="currentColor"
           shapeRendering="crispEdges"
           viewBox="0 0 6 6"

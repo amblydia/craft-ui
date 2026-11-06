@@ -1,0 +1,98 @@
+---
+title: Settings Menu
+description: "Ore UI's settings screen, with categories in a sidebar, sections, and rows that label and describe their controls."
+---
+
+import { SettingsMenuDemo } from "@/components/demos/settings-menu-demo";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><SettingsMenuDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/settings-menu-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-settings-menu
+```
+
+## Usage
+
+```tsx
+import {
+  SettingsMenu,
+  SettingsNav,
+  SettingsNavItem,
+  SettingsPanel,
+  SettingsRow,
+  SettingsSection,
+} from "@/components/craft/settings-menu";
+
+<SettingsMenu defaultValue="audio">
+  <SettingsNav aria-label="Settings">
+    <SettingsNavItem value="audio">Audio</SettingsNavItem>
+    <SettingsNavItem value="video">Video</SettingsNavItem>
+  </SettingsNav>
+  <SettingsPanel value="audio">
+    <SettingsSection title="Volume">
+      <SettingsRow description="Plays music in menus" label="Menu music">
+        <Switch />
+      </SettingsRow>
+    </SettingsSection>
+  </SettingsPanel>
+  <SettingsPanel value="video">…</SettingsPanel>
+</SettingsMenu>;
+```
+
+## Props
+
+### SettingsRow
+
+<AutoTypeTable
+  path="../../packages/registry/components/settings-menu.tsx"
+  type="Pick<SettingsRowProps, 'label' | 'description' | 'layout' | 'disabled'>"
+/>
+
+### SettingsSection
+
+<AutoTypeTable
+  path="../../packages/registry/components/settings-menu.tsx"
+  type="Pick<SettingsSectionProps, 'title' | 'description' | 'action'>"
+/>
+
+### SettingsNavItem
+
+<AutoTypeTable
+  path="../../packages/registry/components/settings-menu.tsx"
+  type="Pick<SettingsNavItemProps, 'value' | 'icon' | 'disabled'>"
+/>
+
+## Accessibility
+
+- The categories are vertical tabs: Tab reaches the current one, and the up and down arrow keys move between them and show each one.
+- Each row's label names its control and its description describes it, through Base UI's Field. This works with CraftUI's Switch, Select, Slider and other Base UI controls.
+- Each section is a region named by its title.
+- Group labels in the sidebar, such as "Controls", are for sighted players. A tab list may only hold tabs, so screen readers skip them.
+
+## Customization
+
+Use `layout="stacked"` for a slider or a row of choices, which take the row's full width. Put a reset button in a section's `action`, and reset that section's values in your state.
+
+On narrow screens, the sidebar sits above the settings.
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/tabs) and its Field
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/settings-menu.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/settings-menu.tsx</include>
+  </Accordion>
+</Accordions>

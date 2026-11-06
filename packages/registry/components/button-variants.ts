@@ -39,8 +39,8 @@ export const buttonVariants = cva(
         /** The heavy call to action, such as PLAY. */
         hero: [
           "text-craft-primary-fg uppercase [--bevel-edge:var(--craft-primary-edge)] [--bevel-face:var(--craft-primary)] [--bevel-hi:var(--craft-primary-hi)] [--bevel-lo:var(--craft-primary-lo)] [text-shadow:var(--craft-unit)_var(--craft-unit)_0_var(--craft-hero-shadow)]",
-          "hover:text-craft-primary-hover-fg hover:[--bevel-face:var(--craft-primary-hover)] hover:[--bevel-hi:var(--craft-primary-hover-hi)] hover:[--bevel-lo:var(--craft-primary-hover-lo)] hover:[text-shadow:none]",
-          "active:text-craft-primary-fg active:[--bevel-face:var(--craft-primary-active)] active:[--bevel-hi:var(--craft-primary-active-hi)] active:[--bevel-lo:var(--craft-primary-active-lo)] active:[text-shadow:var(--craft-unit)_var(--craft-unit)_0_var(--craft-hero-shadow)]",
+          "hover:text-craft-primary-hover-fg hover:[--bevel-face:var(--craft-primary-hover)] hover:[--bevel-hi:var(--craft-primary-hover-hi)] hover:[--bevel-lo:var(--craft-primary-hover-lo)] hover:[text-shadow:var(--craft-unit)_var(--craft-unit)_0_var(--craft-hero-shadow-hover)]",
+          "active:text-craft-primary-fg active:[--bevel-face:var(--craft-primary-active)] active:[--bevel-hi:var(--craft-primary-active-hi)] active:[--bevel-lo:var(--craft-primary-active-lo)] active:[text-shadow:var(--craft-unit)_var(--craft-unit)_0_var(--craft-hero-shadow-active)]",
           "data-disabled:[text-shadow:none]",
         ],
         outline: [

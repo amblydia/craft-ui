@@ -1,8 +1,8 @@
 import { expect, type Page, test } from "@playwright/test";
 
 // The advanced components, in a real browser: what jsdom can't check, such as
-// positioning, inert content and the measured Ore UI look. The docs open in dark
-// mode, so colors are the dark theme's. See docs/design-reference.md.
+// positioning, inert content and the measured Ore UI look. See
+// docs/design-reference.md.
 
 const MENU_LINE = "rgb(140, 141, 144)";
 const MENU_ROW = "rgb(88, 88, 90)";

@@ -1,0 +1,93 @@
+---
+title: Hotbar
+description: "A row of item slots with one always selected, chosen with the arrow keys, the number keys or a click."
+---
+
+import { HotbarDemo } from "@/components/demos/hotbar-demo";
+import { HotbarHotkeys } from "@/components/demos/hotbar-hotkeys";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><HotbarDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/hotbar-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-hotbar
+```
+
+## Usage
+
+```tsx
+import { Hotbar } from "@/components/craft/hotbar";
+
+const [slot, setSlot] = useState(0);
+
+<Hotbar aria-label="Hotbar" items={items} onValueChange={setSlot} value={slot} />;
+```
+
+## Examples
+
+### Number keys anywhere
+
+With `hotkeys`, the number keys pick a slot from anywhere on the page, except while typing in a field. Without it, they work while the hotbar has focus.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><HotbarHotkeys /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/hotbar-hotkeys.tsx</include>
+  </Tab>
+</Tabs>
+
+## Props
+
+### Hotbar
+
+<AutoTypeTable
+  path="../../packages/registry/components/hotbar.tsx"
+  type="Pick<HotbarProps, 'items' | 'slots' | 'value' | 'defaultValue' | 'onValueChange' | 'hotkeys' | 'showName' | 'size' | 'getItemLabel' | 'emptyLabel'>"
+/>
+
+## Accessibility
+
+- It's a listbox: Tab reaches the selected slot, and the selection follows the arrow keys, wrapping at the ends. Home and End go to the first and last slot.
+- The number keys pick a slot: 1 to 9, then 0 for the tenth.
+- Page-wide `hotkeys` take the number keys from the page. Turn them on only where nothing else needs those keys, and they ignore key presses with Alt, Ctrl or Command.
+- The name shown with `showName` is for sighted players. Screen readers hear the selected slot.
+
+## Customization
+
+Items are plain objects from your app. CraftUI never looks them up:
+
+```ts
+interface Item {
+  id: string; // a stable id, for React keys
+  name: string; // read out as the slot's label, and the tooltip's title
+  icon?: ReactNode; // usually an <img>, or an SVG
+  count?: number; // shown from 2
+  durability?: number; // 0 to 1, shown as a bar below 1
+  description?: ReactNode; // more lines for the tooltip
+}
+```
+
+`slots` sets the number of slots. It defaults to the number of items, or 9.
+
+## Dependencies
+
+- `craft-item-slot`
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/hotbar.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/hotbar.tsx</include>
+  </Accordion>
+</Accordions>

@@ -1,0 +1,102 @@
+---
+title: Item Slot
+description: "A recessed slot holding an item, with its count, durability and a tooltip."
+---
+
+import { ItemSlotDemo } from "@/components/demos/item-slot-demo";
+import { ItemSlotSizes } from "@/components/demos/item-slot-sizes";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><ItemSlotDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/item-slot-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-item-slot
+```
+
+## Usage
+
+```tsx
+import { ItemSlot, ItemTooltip } from "@/components/craft/item-slot";
+
+const torch = { count: 24, icon: <img alt="" src="/torch.png" />, id: "torch", name: "Torch" };
+
+<ItemSlot item={torch} />;
+
+// One that can be pressed, with a tooltip.
+<ItemTooltip item={torch}>
+  <ItemSlot item={torch} render={<button type="button" />} />
+</ItemTooltip>;
+```
+
+## Examples
+
+### Sizes
+
+`sm` is 36px, `md` 48px and `lg` 64px.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><ItemSlotSizes /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/item-slot-sizes.tsx</include>
+  </Tab>
+</Tabs>
+
+## Props
+
+### ItemSlot
+
+<AutoTypeTable
+  path="../../packages/registry/components/item-slot.tsx"
+  type="Pick<ItemSlotProps, 'item' | 'selected' | 'disabled' | 'size' | 'label'>"
+/>
+
+## Accessibility
+
+- A slot holds its label as hidden text, such as "Iron Pickaxe, 40% durability", so it's read wherever it's used. The icon is hidden from screen readers.
+- Use `itemLabel(item)` to build the same text yourself, and the `label` prop to replace it, for example to translate it.
+- A slot on its own is a `div`. For one that can be pressed, render it as a button: it's then named by its label.
+- Selected and disabled slots differ in more than color: a selected slot gets a thick frame, and a disabled one is hatched.
+- Base UI tooltips aren't read by screen readers, so put anything a player needs in the label, not only in `description`.
+
+## Customization
+
+Items are plain objects from your app. CraftUI never looks them up:
+
+```ts
+interface Item {
+  id: string; // a stable id, for React keys
+  name: string; // read out as the slot's label, and the tooltip's title
+  icon?: ReactNode; // usually an <img>, or an SVG
+  count?: number; // shown from 2
+  durability?: number; // 0 to 1, shown as a bar below 1
+  description?: ReactNode; // more lines for the tooltip
+}
+```
+
+The slot's colors are `--craft-slot`, `--craft-slot-hi` and `--craft-slot-lo`. `itemSlotClassName` holds its look, for anything that should match it.
+
+Icons are drawn with `image-rendering: pixelated`, so small pixel art stays sharp when it's scaled up.
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/tooltip)
+- `craft-tooltip`
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/item-slot.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/item-slot.tsx</include>
+  </Accordion>
+</Accordions>

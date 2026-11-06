@@ -13,8 +13,7 @@ The first set of components, not yet announced.
 
 - **Components:** Button, Input, Checkbox, Switch, Slider, Progress, Tabs, Panel,
   Dialog, Tooltip, Separator and Scroll Area
-- **Theme:** the `craft-theme` tokens for light and dark, measured from published
-  Ore UI references
+- **Theme:** the `craft-theme` tokens, measured from published Ore UI references
 - **Registry:** valid shadcn registry items at `/r/{name}.json` and
   `/r/{style}/{name}.json`
 - **Docs:** this site, with live previews and interactive examples
@@ -30,6 +29,20 @@ The first set of components, not yet announced.
 - **Progress:** thin by default. `size="md"` is the taller bar
 - **Scroll Area:** has no frame of its own
 - **Controls:** the medium height is now 48px, and the large height 56px
+- **Primary and hero buttons:** the label stays white on hover, as in Ore UI's
+  reference, and the hero label's shadow follows each state's green
+- **Disabled controls:** the label is `#48494A`, as in the reference
+- **One design:** Ore UI has no light or dark mode, so neither does CraftUI. The
+  theme's values are all on `:root`, the components look the same whatever the
+  page's color scheme, and the site has no theme switch. If you installed earlier,
+  delete the `--craft-` variables under `.dark` in your CSS
+- **Hover labels:** the destructive button's label stays white on hover too, as in
+  the reference
+- **Checked against every Ore UI design system image:** Checkbox is 13 units
+  with the reference's tick, Radio is 14 units corner to corner, the switch's
+  marks and the select's chevron take the reference colors, a dialog's back and
+  close icons are drawn with one-unit strokes, and a disabled tab looks like the
+  others
 
 ### Added
 
@@ -37,6 +50,17 @@ The first set of components, not yet announced.
   Group, Accordion, Toast, Popover, Navigation Menu, Pagination, Table, Badge and
   Spinner, measured from Ore UI's dropdown, radio, tag, list and message references
   where it has them
+- **Game components:** Item Slot, Inventory Grid, Hotbar, Server List, World List,
+  Profile Panel and Settings Menu, following Ore UI's world, server, profile and
+  settings screens. They take your app's data and handlers, and never call a game
+- **Theme:** colors for item slots, ping signal and favorites
 - **Button:** the `hero` variant
 - **Slider:** `showSteps`, which marks each step with a notch
 - **Dialog:** `DialogBack`
+
+### Fixed
+
+- **Tabs:** pressing an unselected tab sinks it under the pointer, instead of
+  showing its hover color, and the focus ring is no longer clipped by the tab bar
+- **Toggle buttons:** long labels wrap instead of being cut off
+- **Slider:** the fill no longer covers the track's bottom outline

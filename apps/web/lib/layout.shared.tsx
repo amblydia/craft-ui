@@ -18,5 +18,7 @@ export function baseOptions(): BaseLayoutProps {
         </span>
       ),
     },
+    // Ore UI is one design, with no light or dark variant to switch between.
+    themeSwitch: { enabled: false },
   };
 }

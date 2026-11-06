@@ -1,0 +1,79 @@
+---
+title: World List
+description: "Cards for worlds or other saved content, with a picture, name and tags, Edit, and Delete after confirmation."
+---
+
+import { WorldListDemo } from "@/components/demos/world-list-demo";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><WorldListDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/world-list-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-world-list
+```
+
+## Usage
+
+```tsx
+import { WorldCard, WorldList } from "@/components/craft/world-list";
+
+<WorldList aria-label="Worlds">
+  {worlds.map((world) => (
+    <WorldCard
+      key={world.id}
+      meta="Last played yesterday"
+      name={world.name}
+      onDelete={() => remove(world.id)}
+      onEdit={() => edit(world.id)}
+      onPlay={() => play(world.id)}
+      tags={<Badge>Survival</Badge>}
+      thumbnail={<img alt="" src={world.picture} />}
+    />
+  ))}
+</WorldList>;
+```
+
+## Props
+
+### WorldCard
+
+<AutoTypeTable
+  path="../../packages/registry/components/world-list.tsx"
+  type="Pick<WorldCardProps, 'name' | 'thumbnail' | 'tags' | 'meta' | 'onPlay' | 'onEdit' | 'onDelete' | 'playLabel' | 'editLabel' | 'deleteLabel' | 'deleteMessage' | 'cancelLabel'>"
+/>
+
+## Accessibility
+
+- The whole card opens the world, through one button named "Play" and the world's name. Its focus ring outlines the card.
+- Edit and Delete are named with the world too, such as "Edit Riverside".
+- Delete opens an alert dialog that names the world. Focus starts inside it, and Cancel or Escape close it without deleting.
+- Pictures are decorative, because the name is beside them: give an `<img>` an empty `alt`.
+
+## Customization
+
+Search, sorting and creating are left to your app, as in the example above: filter and sort the worlds, then render the cards. The list lays the cards out in as many columns as fit.
+
+Without a `thumbnail`, a card shows a plain landscape. Pass `onPlay`, `onEdit` and `onDelete` only for what a player can do: a card leaves out the buttons it has no handler for.
+
+The labels are props, so they can be translated.
+
+## Dependencies
+
+- `craft-button` and `craft-dialog`
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/world-list.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/world-list.tsx</include>
+  </Accordion>
+</Accordions>

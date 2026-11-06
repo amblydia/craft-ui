@@ -16,7 +16,7 @@ const panelVariants = cva("text-craft-text flex flex-col", {
       true: "craft-bevel [--bevel-depth:0px] [--bevel-edge:transparent]",
     },
     variant: {
-      /** The light panels of Ore UI, in both color modes. */
+      /** The light panels of Ore UI, such as its top bars. */
       light:
         "text-craft-secondary-fg [--bevel-face:var(--craft-secondary)] [--bevel-hi:var(--craft-secondary-hi)] [--bevel-lo:var(--craft-secondary-lo)] [--craft-text-muted:var(--craft-disabled-fg)]",
       /** Lifted from the page, like a tab or dialog header. */

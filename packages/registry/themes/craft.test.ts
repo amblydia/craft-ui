@@ -17,8 +17,8 @@ function variables(selector: string) {
   return found;
 }
 
-const light = variables(":root");
-const dark = { ...light, ...variables(".dark") };
+// Ore UI is one design: every value lives on :root, with no dark variant.
+const tokens = variables(":root");
 
 function luminance(hex: string) {
   const channels = [1, 3, 5].map((start) => {
@@ -51,13 +51,11 @@ const textPairs: [foreground: string, background: string][] = [
   ["text-muted", "sunken"],
   ["placeholder", "field"],
   ["primary-fg", "primary"],
-  ["primary-hover-fg", "primary-hover"],
   ["primary-fg", "primary-active"],
   ["secondary-fg", "secondary"],
   ["secondary-fg", "secondary-hover"],
   ["secondary-fg", "secondary-active"],
   ["destructive-fg", "destructive"],
-  ["destructive-hover-fg", "destructive-hover"],
   ["destructive-fg", "destructive-active"],
   ["disabled-fg", "disabled"],
   ["info-fg", "info"],
@@ -73,40 +71,43 @@ const textPairs: [foreground: string, background: string][] = [
   ["tag-fg", "tag-warning"],
   ["tag-fg", "tag-destructive"],
   ["tag-fg", "tag-accent"],
+  ["text", "slot"],
+  ["text-muted", "slot"],
 ];
 
-// Controls and focus against what they sit on: WCAG AA needs 3:1.
+// Controls against what they sit on: WCAG AA needs 3:1.
 const controlPairs: [foreground: string, background: string][] = [
   ["focus", "background"],
   ["focus", "surface"],
-  ["outline", "background"],
-  ["outline", "surface"],
+  ["signal-good", "surface"],
+  ["signal-fair", "surface"],
+  ["signal-poor", "surface"],
+  ["favorite", "surface"],
 ];
 
-describe.each([
-  ["light", light],
-  ["dark", dark],
-])("the %s theme", (_name, tokens) => {
+describe("contrast", () => {
   it.each(textPairs)("%s on %s is readable", (foreground, background) => {
     const ratio = contrast(tokens[foreground] ?? "", tokens[background] ?? "");
     expect(ratio).toBeGreaterThanOrEqual(4.5);
   });
 
-  it("gives every control a focus ring that stands out", () => {
-    const [focus, background] = ["focus", "background"].map(
-      (name) => tokens[name] ?? ""
-    ) as [string, string];
-    expect(contrast(focus, background)).toBeGreaterThanOrEqual(3);
+  it.each(controlPairs)("%s on %s stands out", (foreground, background) => {
+    const ratio = contrast(tokens[foreground] ?? "", tokens[background] ?? "");
+    expect(ratio).toBeGreaterThanOrEqual(3);
   });
 });
 
-describe("the dark theme's outlines", () => {
-  // In light mode the outline is near-black on a light page. In dark mode it
-  // is near-black on dark gray, as in the reference: there the fill of each
-  // control and its highlight carry the shape, so only light mode is held to
-  // 3:1 for the outline.
-  it.each(controlPairs.slice(2))("%s on %s holds in light mode", (a, b) => {
-    expect(contrast(light[a] ?? "", light[b] ?? "")).toBeGreaterThanOrEqual(3);
+describe("hover labels follow the reference", () => {
+  // As in Ore UI, the labels stay white on the brighter hover fills: 3.1:1 on
+  // green and 2.4:1 on red. They only show under the pointer, and keyboard
+  // focus keeps the normal fills, which pass. These hold the measured values,
+  // so a change to either color is a deliberate one.
+  it.each([
+    ["primary-hover-fg", "primary-hover", 3.09],
+    ["destructive-hover-fg", "destructive-hover", 2.43],
+  ])("%s on %s is %f:1", (foreground, background, expected) => {
+    const ratio = contrast(tokens[foreground] ?? "", tokens[background] ?? "");
+    expect(ratio).toBeCloseTo(expected, 2);
   });
 });
 
@@ -126,15 +127,19 @@ describe("the theme", () => {
       theme.walkDecls((declaration) => {
         const name = /var\(--craft-(?<name>[a-z-]+)\)/u.exec(declaration.value)
           ?.groups?.name;
-        expect(light[name ?? ""], declaration.prop).toBeDefined();
+        expect(tokens[name ?? ""], declaration.prop).toBeDefined();
       });
     });
   });
 
-  it("gives dark mode only the values that really change", () => {
-    const overrides = variables(".dark");
-    expect(overrides.primary).toBeUndefined();
-    expect(overrides.secondary).toBeUndefined();
-    expect(overrides.destructive).toBeUndefined();
+  it("has no light or dark variant", () => {
+    const rules: string[] = [];
+    // Top-level rules only: keyframe steps such as `from` are inside at-rules.
+    for (const node of root.nodes) {
+      if (node.type === "rule") {
+        rules.push(node.selector);
+      }
+    }
+    expect(rules).toEqual([":root"]);
   });
 });

@@ -17,7 +17,10 @@ export default function Layout({ children }: LayoutProps<"/">) {
   return (
     <html className={body.variable} lang="en" suppressHydrationWarning>
       <body className="bg-craft-background flex min-h-screen flex-col">
-        <RootProvider theme={{ defaultTheme: "dark" }}>{children}</RootProvider>
+        {/* Ore UI is one design, so the site always uses its dark surfaces. */}
+        <RootProvider theme={{ defaultTheme: "dark", forcedTheme: "dark" }}>
+          {children}
+        </RootProvider>
       </body>
     </html>
   );

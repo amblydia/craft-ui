@@ -122,8 +122,11 @@ call it from a Server Component.
   unless you ask it to with `type="submit"`.
 - Works with Enter and Space, and shows a solid focus ring for keyboard users.
 - `loading` sets `aria-busy` and keeps the button focusable.
-- The hover color is brighter than in the game, so hovered primary and
-  destructive buttons use a dark label to keep a contrast of at least 4.5:1.
+- As in the game, a hovered button keeps its white label. On the brighter fills
+  that's 3.1:1 on green and 2.4:1 on red, short of the 4.5:1 for small text. It
+  only shows under the pointer: keyboard focus keeps the normal fills, which pass.
+  For 4.5:1 everywhere, set `--craft-primary-hover-fg` and
+  `--craft-destructive-hover-fg` to `#1e1e1f`.
 
 ## Customization
 
@@ -139,9 +142,7 @@ the component.
   </Tab>
 </Tabs>
 
-To match the white hover label in the game, set
-`--craft-primary-hover-fg: #ffffff`. It falls below AA contrast, so it's not the
-default. For a change everywhere, edit the tokens in your CSS. See
+For a change everywhere, edit the tokens in your CSS. See
 [Themes](/docs/themes).
 
 ## Dependencies

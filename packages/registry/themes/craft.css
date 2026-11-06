@@ -6,6 +6,9 @@
  * Every name starts with `craft`, so it never touches shadcn/ui's --primary,
  * --background and so on. Colors were measured from published Ore UI design
  * system references; see docs/design-reference.md.
+ *
+ * Ore UI is one design, so there's no light or dark variant: these values are
+ * the same whatever color scheme the rest of the page uses.
  */
 
 :root {
@@ -26,37 +29,37 @@
   --craft-label-size: 1.375rem;
 
   /* Focus. */
-  --craft-focus: #2e6be5;
+  --craft-focus: #ffffff;
   --craft-focus-width: 2px;
 
-  /* Surfaces and text. These change between light and dark. */
-  --craft-background: #e6e8eb;
-  --craft-text: #1e1e1f;
-  --craft-text-muted: #48494a;
-  --craft-placeholder: #58585a;
+  /* Surfaces and text. */
+  --craft-background: #313233;
+  --craft-text: #ffffff;
+  --craft-text-muted: #d0d1d4;
+  --craft-placeholder: #b1b2b5;
   --craft-outline: #1e1e1f;
-  --craft-surface: #f4f6f9;
-  --craft-surface-hi: #ffffff;
-  --craft-surface-lo: #d0d1d4;
-  --craft-surface-edge: #b1b2b5;
-  --craft-raised: #d0d1d4;
-  --craft-raised-hi: #ecedee;
-  --craft-raised-lo: #e3e3e5;
-  --craft-raised-edge: #b1b2b5;
-  --craft-raised-hover: #f4f6f9;
-  --craft-raised-hover-hi: #fbfbfd;
-  --craft-raised-hover-lo: #f8fafb;
-  --craft-selected-hi: #b1b2b5;
-  --craft-selected-lo: #d0d1d4;
-  --craft-sunken: #e6e8eb;
-  --craft-sunken-hi: #b1b2b5;
-  --craft-sunken-lo: #f4f6f9;
-  --craft-field: #f4f6f9;
-  --craft-field-shade: #d0d1d4;
-  --craft-hover: rgb(30 30 31 / 0.1);
-  --craft-active: rgb(30 30 31 / 0.18);
+  --craft-surface: #48494a;
+  --craft-surface-hi: #5a5b5c;
+  --craft-surface-lo: #333334;
+  --craft-surface-edge: #313233;
+  --craft-raised: #48494a;
+  --craft-raised-hi: #6d6d6e;
+  --craft-raised-lo: #5a5b5c;
+  --craft-raised-edge: #313233;
+  --craft-raised-hover: #58585a;
+  --craft-raised-hover-hi: #79797b;
+  --craft-raised-hover-lo: #68686a;
+  --craft-selected-hi: #5a5b5c;
+  --craft-selected-lo: #454647;
+  --craft-sunken: #313233;
+  --craft-sunken-hi: #454647;
+  --craft-sunken-lo: #222324;
+  --craft-field: #313233;
+  --craft-field-shade: #242425;
+  --craft-hover: rgb(255 255 255 / 0.1);
+  --craft-active: rgb(255 255 255 / 0.18);
 
-  /* Primary action. The same in both modes, as in the reference. */
+  /* Primary action. */
   --craft-primary: #3c8527;
   --craft-primary-hi: #639d52;
   --craft-primary-lo: #4f913c;
@@ -65,11 +68,14 @@
   --craft-primary-hover: #52a535;
   --craft-primary-hover-hi: #75b75d;
   --craft-primary-hover-lo: #63ae49;
-  --craft-primary-hover-fg: #1e1e1f;
+  --craft-primary-hover-fg: #ffffff;
   --craft-primary-active: #2a641c;
   --craft-primary-active-hi: #558349;
   --craft-primary-active-lo: #3f7332;
+  /* The hero label's drop shadow: a darker green under each state's face. */
   --craft-hero-shadow: #2a5d1b;
+  --craft-hero-shadow-hover: #3a7425;
+  --craft-hero-shadow-active: #1d4614;
 
   /* Secondary action. */
   --craft-secondary: #d0d1d4;
@@ -93,7 +99,7 @@
   --craft-destructive-hover: #ff8080;
   --craft-destructive-hover-hi: #ff9999;
   --craft-destructive-hover-lo: #ff8c8c;
-  --craft-destructive-hover-fg: #1e1e1f;
+  --craft-destructive-hover-fg: #ffffff;
   --craft-destructive-active: #c02d2d;
   --craft-destructive-active-hi: #cd5757;
   --craft-destructive-active-lo: #c64242;
@@ -104,7 +110,11 @@
   --craft-disabled-lo: #d5d6d8;
   --craft-disabled-edge: #b1b2b5;
   --craft-disabled-outline: #8c8d90;
-  --craft-disabled-fg: #58585a;
+  --craft-disabled-fg: #48494a;
+
+  /* The "O" on an off switch, and a disabled switch's marks. */
+  --craft-switch-mark: #242425;
+  --craft-disabled-mark: #666666;
 
   /* Tracks: the unfilled part of sliders and switches. */
   --craft-track: #8c8d90;
@@ -133,19 +143,19 @@
   --craft-warning-lo: #d9bf2e;
   --craft-warning-fg: #1e1e1f;
 
-  /* The gem in a selected radio: lit from the top, the same in both modes. */
+  /* The gem in a selected radio: lit from the top. */
   --craft-gem: #e6e8eb;
   --craft-gem-hi: #ffffff;
   --craft-gem-lo: #d0d1d4;
 
   /* Menus and lists that open over the page: rows split by lines. */
-  --craft-menu: #f4f6f9;
-  --craft-menu-line: #b1b2b5;
-  --craft-menu-highlight: #d0d1d4;
+  --craft-menu: #58585a;
+  --craft-menu-line: #8c8d90;
+  --craft-menu-highlight: #6d6d6e;
   /* Text for a destructive action that isn't on a red fill, such as a menu item. */
-  --craft-destructive-text: #c02d2d;
+  --craft-destructive-text: #ffc2c2;
 
-  /* Tags, as in Ore UI: flat fills with dark text, the same in both modes. */
+  /* Tags, as in Ore UI: flat fills with dark text. */
   --craft-tag-fg: #1e1e1f;
   --craft-tag-neutral: #1e1e1f;
   --craft-tag-neutral-fg: #ffffff;
@@ -155,42 +165,24 @@
   --craft-tag-destructive: #ff8080;
   --craft-tag-accent: #ac90f3;
 
+  /* Item slots: recessed squares for inventories and hotbars, shaded along the
+     top and left. A selected slot gets a green frame, as in Ore UI's tiles. */
+  --craft-slot: #313233;
+  --craft-slot-hi: #48494a;
+  --craft-slot-lo: #242425;
+  /* Behind an item count, so it reads over the item's icon. */
+  --craft-slot-count-shadow: #1e1e1f;
+
+  /* A server's ping, from a fast connection to a slow one, and a favorite's star. */
+  --craft-signal-good: #6cc349;
+  --craft-signal-fair: #ffe866;
+  --craft-signal-poor: #ff8080;
+  --craft-favorite: #ffe866;
+
   /* Tooltips and overlays. */
   --craft-tooltip: #2e6be5;
   --craft-tooltip-fg: #ffffff;
   --craft-overlay: rgb(0 0 0 / 0.6);
-}
-
-.dark {
-  --craft-focus: #ffffff;
-  --craft-background: #313233;
-  --craft-text: #ffffff;
-  --craft-text-muted: #d0d1d4;
-  --craft-placeholder: #b1b2b5;
-  --craft-surface: #48494a;
-  --craft-surface-hi: #5a5b5c;
-  --craft-surface-lo: #333334;
-  --craft-surface-edge: #313233;
-  --craft-raised: #48494a;
-  --craft-raised-hi: #6d6d6e;
-  --craft-raised-lo: #5a5b5c;
-  --craft-raised-edge: #313233;
-  --craft-raised-hover: #58585a;
-  --craft-raised-hover-hi: #79797b;
-  --craft-raised-hover-lo: #68686a;
-  --craft-selected-hi: #5a5b5c;
-  --craft-selected-lo: #454647;
-  --craft-sunken: #313233;
-  --craft-sunken-hi: #454647;
-  --craft-sunken-lo: #222324;
-  --craft-field: #313233;
-  --craft-field-shade: #242425;
-  --craft-hover: rgb(255 255 255 / 0.1);
-  --craft-active: rgb(255 255 255 / 0.18);
-  --craft-menu: #58585a;
-  --craft-menu-line: #8c8d90;
-  --craft-menu-highlight: #6d6d6e;
-  --craft-destructive-text: #ffc2c2;
 }
 
 @theme inline {
@@ -217,6 +209,8 @@
   --color-craft-disabled-outline: var(--craft-disabled-outline);
   --color-craft-disabled-fg: var(--craft-disabled-fg);
   --color-craft-track: var(--craft-track);
+  --color-craft-switch-mark: var(--craft-switch-mark);
+  --color-craft-disabled-mark: var(--craft-disabled-mark);
   --color-craft-info: var(--craft-info);
   --color-craft-info-fg: var(--craft-info-fg);
   --color-craft-warning: var(--craft-warning);
@@ -238,6 +232,11 @@
   --color-craft-tag-accent: var(--craft-tag-accent);
   --color-craft-surface-lo: var(--craft-surface-lo);
   --color-craft-sunken-hi: var(--craft-sunken-hi);
+  --color-craft-slot: var(--craft-slot);
+  --color-craft-signal-good: var(--craft-signal-good);
+  --color-craft-signal-fair: var(--craft-signal-fair);
+  --color-craft-signal-poor: var(--craft-signal-poor);
+  --color-craft-favorite: var(--craft-favorite);
   --font-craft-display: var(--craft-font-display);
   --font-craft-body: var(--craft-font-body);
   --radius-craft: var(--craft-radius);

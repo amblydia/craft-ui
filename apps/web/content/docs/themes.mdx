@@ -9,14 +9,15 @@ Installing any component adds the CraftUI theme to your CSS. It's made of CSS
 variables that all start with `--craft-`, so it sits beside your existing theme,
 including shadcn/ui's, and changes nothing in it.
 
-## Light and dark
+## One design
 
-Light values go on `:root`, and dark values go on `.dark`, the same convention
-shadcn/ui uses. So if your app already toggles a `dark` class, CraftUI follows.
+Ore UI is one design, so CraftUI has no light or dark mode. Every value is on
+`:root`, and the components look the same whatever color scheme the rest of your
+app uses, including a `dark` class. Put them on `bg-craft-background`, or another
+CraftUI surface, so that their text stays readable.
 
-Only surfaces, text and focus change between the two. Action colors stay the same
-in both, because that's how Ore UI treats them: a green button is the same green
-on a dark menu or a light one. Use the theme toggle in the sidebar to compare.
+If you installed CraftUI before this change, your CSS may still have `--craft-`
+variables under `.dark`. Delete them, and the components follow the one design.
 
 ## Change a token
 
@@ -115,6 +116,7 @@ To use different fonts, set `--craft-font-display` and `--craft-font-body`.
 
 ## Contrast
 
-The default tokens meet WCAG AA in both modes: 4.5:1 for text and 3:1 for the
-focus ring. Keep that in mind when you choose your own colors. If you change a
-fill, change its `-fg` token to match.
+The default tokens meet WCAG AA, 4.5:1 for text and 3:1 for the focus ring, with
+one exception taken from the game: hovered buttons keep their white label, at
+3.1:1 on green and 2.4:1 on red. Keep contrast in mind when you choose your own
+colors. If you change a fill, change its `-fg` token to match.

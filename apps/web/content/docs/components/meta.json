@@ -27,6 +27,14 @@
     "pagination",
     "table",
     "badge",
-    "spinner"
+    "spinner",
+    "---Game---",
+    "item-slot",
+    "inventory-grid",
+    "hotbar",
+    "server-list",
+    "world-list",
+    "profile-panel",
+    "settings-menu"
   ]
 }

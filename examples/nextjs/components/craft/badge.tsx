@@ -3,8 +3,8 @@ import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * Ore UI's tags: flat blocks of color with pixel text. The colors are the same
- * in both modes. In Ore UI's names, `info` is Informative, `warning` is Notice,
+ * Ore UI's tags: flat blocks of color with pixel text. In Ore UI's names,
+ * `info` is Informative, `warning` is Notice,
  * `destructive` is Warning and `accent` is Realms Informative.
  */
 const badgeVariants = cva(

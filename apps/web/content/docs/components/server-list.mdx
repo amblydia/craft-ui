@@ -1,0 +1,83 @@
+---
+title: Server List
+description: "Servers with their icon, players, ping and connection state, a favorite star and a join button."
+---
+
+import { ServerListDemo } from "@/components/demos/server-list-demo";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><ServerListDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/server-list-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-server-list
+```
+
+## Usage
+
+```tsx
+import {
+  ServerList,
+  ServerListItem,
+  ServerListLabel,
+} from "@/components/craft/server-list";
+
+<ServerList aria-label="Servers">
+  <ServerListLabel>Featured</ServerListLabel>
+  <ServerListItem
+    name="Gemfall"
+    onJoin={() => join("gemfall")}
+    ping={38}
+    players={{ max: 20000, online: 12737 }}
+  />
+</ServerList>;
+```
+
+## Props
+
+### ServerListItem
+
+<AutoTypeTable
+  path="../../packages/registry/components/server-list.tsx"
+  type="Pick<ServerListItemProps, 'name' | 'description' | 'icon' | 'players' | 'ping' | 'status' | 'favorite' | 'onFavoriteChange' | 'onJoin' | 'joinLabel'>"
+/>
+
+### ServerPing
+
+<AutoTypeTable
+  path="../../packages/registry/components/server-list.tsx"
+  type="Pick<ServerPingProps, 'ping' | 'status' | 'showValue'>"
+/>
+
+## Accessibility
+
+- Each Join button is named after its server, such as "Join Gemfall", so they can be told apart. It's disabled while connecting and while offline.
+- The ping bars are also said in words, such as "Excellent ping, 38 ms". Player counts are read as "12,737 of 20,000 players".
+- The favorite star is a toggle button, with its state announced as pressed or not. Its outline fills in when on, so it doesn't rely on color.
+- A connecting server is announced with a status message.
+
+## Customization
+
+The list has no networking of its own: pass it what your backend reports, and handle `onJoin` and `onFavoriteChange`.
+
+`ServerPing` and `ServerPlayers` can be used on their own, such as on a server's detail page. Four bars are up to 80 ms, three up to 150 ms, two up to 300 ms, and one above that. Their colors are `--craft-signal-good`, `--craft-signal-fair` and `--craft-signal-poor`.
+
+## Dependencies
+
+- `craft-button` and `craft-spinner`
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/server-list.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/server-list.tsx</include>
+  </Accordion>
+</Accordions>

@@ -46,8 +46,10 @@ Dialog, Tooltip, Separator and Scroll Area.
 **Advanced components:** Select, Combobox, Dropdown Menu, Context Menu, Radio Group,
 Accordion, Toast, Popover, Navigation Menu, Pagination, Table, Badge and Spinner.
 
-Game components (inventory, hotbar, server list, world list) and full-page blocks are
-planned. See the
+**Game components:** Item Slot, Inventory Grid, Hotbar, Server List, World List,
+Profile Panel and Settings Menu.
+
+Full-page blocks, such as a main menu and a server browser, are planned. See the
 [introduction](https://craftui.runqora.dev/docs).
 
 ## Relationship with Runqora

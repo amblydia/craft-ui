@@ -21,7 +21,10 @@ CSS pixels** (`--craft-unit`).
 
 ## Measurements
 
-Listed from top to bottom, in units.
+Listed from top to bottom, in units. The design system images on the wiki are all
+exported at the same scale, about 4.54 pixels per unit: a button is 109 pixels for
+24 units. One-unit lines are rounded to 5 pixels in them, so measure the faces, not
+the lines, to count units.
 
 | Control | Structure |
 |---|---|
@@ -30,10 +33,13 @@ Listed from top to bottom, in units.
 | Slider track | outline 1, highlight 1, fill 2, low highlight 1, outline 1 |
 | Slider thumb | 16 × 16, with the same bevel as a button |
 | Switch | 30 × 16: a 16 × 16 thumb over a 14-unit-tall track, 2 units lower |
-| Checkbox | 12 × 12: outline 1, highlight 1, face 8, low highlight 1, outline 1 |
+| Checkbox | 13 × 13: outline 1, highlight 1, face 9, low highlight 1, outline 1, with a one-unit tick |
 | Input | outline 1, shade 2, face 20, outline 1 |
 | Progress, thin | 2 units tall, without an outline: half-unit highlight, 1 unit of face, half-unit shade |
-| Tab | 24 tall, as a button. Selected: loses the shade and sinks 2 units, with a 24-unit underline on its bottom edge |
+| Tab | 24 tall, as a button. Selected: loses the shade and sinks 2 units, with a 24-unit underline on its bottom edge. The focus ring sits outside the outline, and a disabled tab looks like the others |
+| Toggle button | as tabs, in the light and green colors; the choices share the width and long labels wrap |
+| Dialog title bar | a back arrow 4 × 8 units and a close cross 8 × 8, both drawn with one-unit strokes |
+| Switch marks | "I" in white, "O" in `#242425`; both `#666666` when disabled |
 | Scrollbar | 9 wide: outline 1, gap 1, thumb 5 (outlined in black), gap 1, outline 1 |
 | Row (flat panel) | light line 1 at the top, dark line 1 at the bottom, no outline and no sides |
 | Dialog footer | a row, with no dark divider above it |
@@ -41,17 +47,20 @@ Listed from top to bottom, in units.
 | Dropdown, light | as the secondary button, but pressing keeps the shade: it doesn't sink |
 | Dropdown, dark | outline 1, highlight 1, face, low highlight 1, outline 1, with no shade |
 | Open list | outline 1, then a line 1 unit wide around and between rows 23 units tall |
-| Radio | the checkbox's bevel turned 45°, 12 units corner to corner, with a gem in the middle |
+| Radio | a 10-unit square with the checkbox's bevel, turned 45°: 14 units corner to corner, with a 4-unit gem in the middle |
 | Tag | 15 units tall, 3 units of padding, no outline |
 | Message bar | a flat fill, 14 units tall, with no outline |
 | Expandable row | outline 1, highlight 1, face, low highlight 1, outline 1 |
 | Sidebar section | a dark line 1 and a light line 1 under its heading |
+| World card | outline 1, a 16:9 picture, a body with the name and tags, then a full-width Edit row |
+| Settings row | a row (light line 1 at the top, dark line 1 at the bottom), label and description on the left, control on the right |
+| Selected tile | outline 1, then a light green line 1 and a green frame 2 inside it |
 
 ## Colors
 
 | Role | Face | Highlight | Low highlight | Shade |
 |---|---|---|---|---|
-| Primary | `#3C8527` | `#639D52` | `#4F913C` | `#1D4D13` |
+| Primary | `#3C8527` | `#639D52` | `#4F913C` | `#1D4D13` (label `#FFFFFF` in every state) |
 | Primary, hover | `#52A535` | `#75B75D` | `#63AE49` | `#1D4D13` |
 | Primary, pressed | `#2A641C` | `#558349` | `#3F7332` | none |
 | Secondary | `#D0D1D4` | `#ECEDEE` | `#E3E3E5` | `#58585A` |
@@ -60,7 +69,7 @@ Listed from top to bottom, in units.
 | Destructive | `#CA3636` | `#D55E5E` | `#CF4A4A` | `#AD1D1D` |
 | Destructive, hover | `#FF8080` | `#FF9999` | `#FF8C8C` | `#AD1D1D` |
 | Destructive, pressed | `#C02D2D` | `#CD5757` | `#C64242` | none |
-| Disabled | `#D0D1D4` | none | none | `#B1B2B5`, outline `#8C8D90` |
+| Disabled | `#D0D1D4` | none | none | `#B1B2B5`, outline `#8C8D90`, label `#48494A` |
 | Track | `#8C8D90` | `#A3A4A6` | `#97989B` | none |
 | Track, hover | `#B1B2B5` | `#C1C1C4` | `#B9BABC` | none |
 | Track, pressed | `#58585A` | `#79797B` | `#68686A` | none |
@@ -70,6 +79,7 @@ Listed from top to bottom, in units.
 | Raised (tabs, title bars) | `#48494A` | `#6D6D6E` | `#5A5B5C` | `#313233` |
 | Surface (menu rows) | `#48494A` | `#5A5B5C` | `#333334` | none |
 | Sunken (dialog bodies) | `#313233` | `#454647` | `#222324` | none |
+| Hero label shadow | `#2A5D1B` normal, `#3A7425` hover, `#1D4614` pressed | none | none | none |
 | Tooltip, info | `#2E6BE5` | `#5889EA` | `#204BA1` | none |
 | Warning | `#FFE866` | none | none | none |
 | Dropdown, dark | `#313233` | `#5A5B5C` | `#222324` | none |
@@ -85,34 +95,36 @@ outline.
 
 ## Where CraftUI differs on purpose
 
-Accessibility comes before fidelity. `themes/craft.test.ts` holds every text and
-background pair to WCAG AA in both modes.
+The reference comes first, and accessibility close behind. `themes/craft.test.ts` holds every text and
+background pair to WCAG AA, apart from the hover labels below.
 
-- **Hover labels.** The reference puts a white label on the bright hover fills, at
-  about 3:1 on green and 2:1 on red. CraftUI keeps those fills but uses a dark label.
-  To match the game, set `--craft-primary-hover-fg: #ffffff`.
+- **Hover labels, which follow the reference.** The labels stay white on the bright
+  hover fills, as in the game: 3.1:1 on `#52A535` and 2.4:1 on `#FF8080`, short of
+  4.5:1. They only show under the pointer, since keyboard focus keeps the normal
+  fills. `themes/craft.test.ts` holds these two values, so changing them is deliberate.
 - **Muted text.** The reference's description gray (`#B1B2B5`) reaches only 4.2:1 on
-  `#48494A`, so dark mode uses `#D0D1D4`.
-- **Focus in light mode.** A white ring disappears on a light page, so light mode uses
-  blue (`#2E6BE5`).
+  `#48494A`, so CraftUI uses `#D0D1D4`.
 - **Indeterminate checkboxes and the taller progress bar.** These aren't in the
   reference. They're additions for the web.
-- **Menus in light mode, and highlighted rows.** The reference shows open lists in dark
-  mode only, without a highlighted row. Light mode uses `#F4F6F9` rows with `#B1B2B5`
-  lines, and a highlighted row is `#6D6D6E` in dark mode and `#D0D1D4` in light.
+- **Highlighted menu rows.** The reference shows open lists without a highlighted
+  row, so a highlighted row is `#6D6D6E`, a step lighter than the row.
 - **Destructive menu items.** Red text on a gray row falls below 4.5:1, so it's
-  `#FFC2C2` in dark mode and `#C02D2D` in light, and the row turns red when
-  highlighted.
+  `#FFC2C2`, and the row turns red when highlighted.
+- **Item slots.** Ore UI's published screens don't show an inventory, so slots
+  follow its recessed fields and its selected tiles: a sunken square, shaded along the
+  top and left, with a green frame when selected. Disabled slots are hatched, so
+  they differ in more than color.
+- **Ping and favorites.** The ping bars and the favorite star use `--craft-signal-*`
+  and `--craft-favorite`, which hold 3:1 against a row.
 - **Toasts.** Toasts take the message bars' colors, with an outline added so they stand
   apart from the page beneath. Success and error use the primary and destructive fills.
 
-## Light mode
+## One design
 
-The references show dark menus, with light surfaces only as individual elements such
-as the Play screen's top bar. CraftUI's light mode reuses the measured light neutrals
-(`#F4F6F9`, `#E6E8EB`, `#D0D1D4`) for surfaces and keeps the action colors the same. It
-wasn't made by inverting the dark values, and it's an interpretation rather than a
-measurement.
+Ore UI is one design: dark menus, with light surfaces only as individual elements,
+such as secondary buttons, dropdowns and the Play screen's top bar. CraftUI follows
+it, with no light or dark mode. Every value is on `:root`, and `themes/craft.test.ts`
+fails if a `.dark` block comes back.
 
 ## Type
 

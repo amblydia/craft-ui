@@ -1,0 +1,98 @@
+---
+title: Inventory Grid
+description: "A grid of item slots, with keyboard navigation, selection, tooltips, and moving items by drag and drop."
+---
+
+import { InventoryGridDemo } from "@/components/demos/inventory-grid-demo";
+import { InventoryGridLocked } from "@/components/demos/inventory-grid-locked";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><InventoryGridDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/inventory-grid-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-inventory-grid
+```
+
+## Usage
+
+```tsx
+import { InventoryGrid } from "@/components/craft/inventory-grid";
+
+const [slots, setSlots] = useState(items);
+
+<InventoryGrid
+  aria-label="Backpack"
+  columns={9}
+  items={slots}
+  onMove={(from, to) =>
+    setSlots((current) => {
+      const next = [...current];
+      [next[from], next[to]] = [next[to], next[from]];
+      return next;
+    })
+  }
+/>;
+```
+
+## Examples
+
+### Fixed size and locked slots
+
+`rows` fixes the size, whatever the number of items. Without `onMove`, items can't be moved. `disabledSlots` can't be selected or dropped on.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><InventoryGridLocked /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/inventory-grid-locked.tsx</include>
+  </Tab>
+</Tabs>
+
+## Props
+
+### InventoryGrid
+
+<AutoTypeTable
+  path="../../packages/registry/components/inventory-grid.tsx"
+  type="Pick<InventoryGridProps, 'items' | 'columns' | 'rows' | 'selectedIndex' | 'defaultSelectedIndex' | 'onSelectedIndexChange' | 'onMove' | 'disabledSlots' | 'size' | 'tooltips' | 'getItemLabel' | 'emptyLabel' | 'getMoveAnnouncement'>"
+/>
+
+## Accessibility
+
+- It's an ARIA grid: Tab enters it once, on the last slot used, and leaves it the next time.
+- The arrow keys move between slots and stop at the edges. Home and End go to the start and end of the row, and Ctrl with Home or End to the first and last slot.
+- Enter, Space or a click selects a slot, which is announced as selected.
+- Dragging works with a mouse. For the keyboard, Alt and an arrow key move the focused item to the next slot, and a screen reader hears where it went.
+- Give the grid a name with `aria-label`, such as "Backpack".
+- A tooltip shows each item's name and description on hover and on keyboard focus.
+
+## Customization
+
+The grid only shows `items`: it never changes them. Update them in `onMove`. Swap the two slots, or merge two stacks of the same item, as your game needs.
+
+Pass `getItemLabel`, `emptyLabel` and `getMoveAnnouncement` to translate what screen readers hear.
+
+Drag and drop uses the browser's own, which works with a mouse but not with touch. On touch screens, select a slot, then use a button of your own to move it.
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/tooltip)
+- `craft-item-slot` and `craft-tooltip`
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/inventory-grid.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/inventory-grid.tsx</include>
+  </Accordion>
+</Accordions>

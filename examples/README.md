@@ -1,7 +1,7 @@
 # CraftUI examples
 
-Small apps showing the core components together in a settings screen, with light and
-dark modes.
+Small apps showing the components together: a settings screen, a world's options,
+and an inventory with a hotbar.
 
 | Example | Stack |
 |---|---|

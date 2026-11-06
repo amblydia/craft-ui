@@ -1,6 +1,6 @@
 "use client";
 
-import { type ReactNode, useEffect, useState } from "react";
+import { type ReactNode, useState } from "react";
 import { Badge } from "@/components/craft/badge";
 import { Button } from "@/components/craft/button";
 import { Checkbox } from "@/components/craft/checkbox";
@@ -22,7 +22,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/craft/dropdown-menu";
+import { Hotbar } from "@/components/craft/hotbar";
 import { Input } from "@/components/craft/input";
+import { InventoryGrid } from "@/components/craft/inventory-grid";
+import type { Item } from "@/components/craft/item-slot";
 import {
   Panel,
   PanelActions,
@@ -218,27 +221,61 @@ export function WorldPanel() {
   );
 }
 
-/** A whole page for an example app, with its own light and dark switch. */
+// Plain colored blocks stand in for item pictures.
+function Block({ color }: { color: string }) {
+  return <span className="block size-full" style={{ background: color }} />;
+}
+
+const loot: (Item | null)[] = [
+  { count: 16, icon: <Block color="#b5823f" />, id: "planks", name: "Planks" },
+  null,
+  { count: 3, icon: <Block color="#4fd1c5" />, id: "gems", name: "Gems" },
+  null,
+  null,
+];
+
+/** The game components: an inventory and a hotbar. */
+export function GamePanel() {
+  const [slots, setSlots] = useState(loot);
+
+  return (
+    <Panel framed>
+      <PanelHeader>
+        <PanelTitle>Backpack</PanelTitle>
+        <PanelDescription>
+          Game components, with your own items.
+        </PanelDescription>
+      </PanelHeader>
+      <PanelContent className="flex flex-col items-start gap-6">
+        <InventoryGrid
+          aria-label="Backpack"
+          columns={5}
+          items={slots}
+          onMove={(from, to) =>
+            setSlots((current) => {
+              const next = [...current];
+              [next[from], next[to]] = [next[to] ?? null, next[from] ?? null];
+              return next;
+            })
+          }
+        />
+        <Hotbar aria-label="Hotbar" items={slots} showName />
+      </PanelContent>
+    </Panel>
+  );
+}
+
+/**
+ * A whole page for an example app. Ore UI is one design, so it looks the same
+ * whatever the page's color scheme.
+ */
 export function Playground() {
-  const [dark, setDark] = useState(true);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", dark);
-  }, [dark]);
-
   return (
     <ToastProvider>
       <main className="bg-craft-background text-craft-text flex min-h-screen flex-col gap-6 p-6">
-        <SettingsPanel
-          actions={
-            <Switch
-              checked={dark}
-              label="Dark mode"
-              onCheckedChange={setDark}
-            />
-          }
-        />
+        <SettingsPanel actions={<Switch defaultChecked label="Auto save" />} />
         <WorldPanel />
+        <GamePanel />
       </main>
     </ToastProvider>
   );

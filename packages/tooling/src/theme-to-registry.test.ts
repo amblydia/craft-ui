@@ -8,14 +8,12 @@ describe("themeToRegistry", () => {
   it("sorts a stylesheet into cssVars and css", () => {
     const theme = themeToRegistry(`
       :root { --craft-primary: #3c8527; }
-      .dark { --craft-text: #fff; }
       @theme inline { --color-craft-primary: var(--craft-primary); }
       @utility craft-focus { outline: 2px solid red; }
       @keyframes spin { from { opacity: 0; } to { opacity: 1; } }
     `);
 
     expect(theme.cssVars.light).toEqual({ "craft-primary": "#3c8527" });
-    expect(theme.cssVars.dark).toEqual({ "craft-text": "#fff" });
     expect(theme.cssVars.theme).toEqual({
       "color-craft-primary": "var(--craft-primary)",
     });
@@ -40,10 +38,16 @@ describe("themeToRegistry", () => {
     );
   });
 
+  it("has no dark variant, because Ore UI is one design", () => {
+    expect(() => themeToRegistry(".dark { --craft-text: #fff; }")).toThrow(
+      "Unexpected rule"
+    );
+  });
+
   it("reads the real theme", () => {
     const theme = themeToRegistry(readFileSync(themeSource, "utf8"));
     expect(theme.cssVars.light["craft-primary"]).toBe("#3c8527");
-    expect(theme.cssVars.dark["craft-background"]).toBe("#313233");
+    expect(theme.cssVars.light["craft-background"]).toBe("#313233");
     expect(theme.css["@utility craft-bevel"]).toBeDefined();
   });
 });

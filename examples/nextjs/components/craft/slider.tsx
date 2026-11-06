@@ -69,7 +69,7 @@ export function Slider({
             "group-data-disabled/slider:[--bevel-face:var(--craft-disabled)] group-data-disabled/slider:[--bevel-hi:var(--craft-disabled-hi)] group-data-disabled/slider:[--bevel-lo:var(--craft-disabled-lo)] group-data-disabled/slider:[--bevel-outline:var(--craft-disabled-outline)]"
           )}
         >
-          <BaseSlider.Indicator className="bg-craft-primary shadow-[inset_0_var(--craft-unit)_0_var(--craft-primary-hi),inset_0_calc(-1*var(--craft-unit))_0_var(--craft-primary-lo)] group-data-disabled/slider:bg-transparent group-data-disabled/slider:shadow-none" />
+          <BaseSlider.Indicator className="bg-craft-primary h-full! shadow-[inset_0_var(--craft-unit)_0_var(--craft-primary-hi),inset_0_calc(-1*var(--craft-unit))_0_var(--craft-primary-lo)] group-data-disabled/slider:bg-transparent group-data-disabled/slider:shadow-none" />
           {notches.map((position) => (
             <span
               aria-hidden="true"

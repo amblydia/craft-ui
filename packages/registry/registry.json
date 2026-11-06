@@ -439,6 +439,130 @@
         }
       ],
       "categories": ["advanced"]
+    },
+    {
+      "name": "craft-item-slot",
+      "type": "registry:ui",
+      "title": "Item Slot",
+      "description": "A recessed slot holding an item, with its count, durability and a tooltip. The building block of inventories and hotbars.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["utils", "craft-theme", "craft-tooltip"],
+      "files": [
+        {
+          "path": "components/item-slot.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/item-slot.tsx"
+        }
+      ],
+      "categories": ["game"]
+    },
+    {
+      "name": "craft-inventory-grid",
+      "type": "registry:ui",
+      "title": "Inventory Grid",
+      "description": "A grid of item slots with keyboard navigation, selection, tooltips, and moving items by drag and drop or the keyboard.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": [
+        "utils",
+        "craft-theme",
+        "craft-item-slot",
+        "craft-tooltip"
+      ],
+      "files": [
+        {
+          "path": "components/inventory-grid.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/inventory-grid.tsx"
+        }
+      ],
+      "categories": ["game"]
+    },
+    {
+      "name": "craft-hotbar",
+      "type": "registry:ui",
+      "title": "Hotbar",
+      "description": "A row of item slots with one always selected, chosen with the arrow keys, the number keys or a click.",
+      "registryDependencies": ["utils", "craft-theme", "craft-item-slot"],
+      "files": [
+        {
+          "path": "components/hotbar.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/hotbar.tsx"
+        }
+      ],
+      "categories": ["game"]
+    },
+    {
+      "name": "craft-server-list",
+      "type": "registry:ui",
+      "title": "Server List",
+      "description": "Servers with their icon, players, ping and connection state, a favorite star and a join button. Works with any backend.",
+      "registryDependencies": [
+        "utils",
+        "craft-theme",
+        "craft-button",
+        "craft-spinner"
+      ],
+      "files": [
+        {
+          "path": "components/server-list.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/server-list.tsx"
+        }
+      ],
+      "categories": ["game"]
+    },
+    {
+      "name": "craft-world-list",
+      "type": "registry:ui",
+      "title": "World List",
+      "description": "Cards for worlds or other saved content, as in Ore UI's world list: picture, name and tags, with Edit, and Delete after confirmation.",
+      "registryDependencies": [
+        "utils",
+        "craft-theme",
+        "craft-button",
+        "craft-dialog"
+      ],
+      "files": [
+        {
+          "path": "components/world-list.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/world-list.tsx"
+        }
+      ],
+      "categories": ["game"]
+    },
+    {
+      "name": "craft-profile-panel",
+      "type": "registry:ui",
+      "title": "Profile Panel",
+      "description": "A player's profile: a preview space, avatar, name and status, actions, statistics and other details.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/profile-panel.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/profile-panel.tsx"
+        }
+      ],
+      "categories": ["game"]
+    },
+    {
+      "name": "craft-settings-menu",
+      "type": "registry:ui",
+      "title": "Settings Menu",
+      "description": "Ore UI's settings screen: categories in a sidebar, sections, and rows that label and describe their controls.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/settings-menu.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/settings-menu.tsx"
+        }
+      ],
+      "categories": ["game"]
     }
   ]
 }
