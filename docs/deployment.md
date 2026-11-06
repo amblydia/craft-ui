@@ -55,15 +55,20 @@ browser: a bot challenge on those paths would break installs.
 
 ## Release a new version
 
-Pushing to `main` doesn't publish or deploy anything. Both steps are done by hand:
+Every push to `main` publishes the image to GHCR as `latest`, through the Publish image
+workflow (the shared `docker-build.yml` from `Amblydia/github-actions`). Nothing deploys
+automatically, so a release is two steps:
 
-1. Publish the image to GHCR, using the shared workflow from `Amblydia/github-actions`:
+1. Wait for the Publish image run for your commit to finish. To publish again without a
+   new commit, run it by hand:
 
    ```bash
    gh workflow run publish.yml --repo amblydia/craft-ui
    ```
 
-2. Once that finishes, redeploy the application in Coolify, which pulls the new `latest`.
+2. Redeploy the application in Coolify, which pulls the new `latest`.
+
+Any redeploy in Coolify, including a restart, picks up the newest image from `main`.
 
 The image is public, so anyone can pull it without logging in.
 

@@ -1,13 +1,11 @@
 name: Docker
 
 # Lint, formatting and types in the Dockerfile's `checks` stage, then the image
-# built the way a deployment builds it. Nothing is pushed.
+# built the way a deployment builds it. Nothing is pushed. Runs on pull requests
+# only: on main, the Publish image workflow builds and pushes the same image.
 
 on:
   pull_request:
-  push:
-    branches:
-      - main
 
 permissions:
   contents: read
