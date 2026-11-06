@@ -1,6 +1,7 @@
 {
   "title": "Components",
   "pages": [
+    "---Core---",
     "button",
     "input",
     "checkbox",
@@ -12,6 +13,20 @@
     "dialog",
     "tooltip",
     "separator",
-    "scroll-area"
+    "scroll-area",
+    "---Advanced---",
+    "select",
+    "combobox",
+    "dropdown-menu",
+    "context-menu",
+    "radio-group",
+    "accordion",
+    "toast",
+    "popover",
+    "navigation-menu",
+    "pagination",
+    "table",
+    "badge",
+    "spinner"
   ]
 }

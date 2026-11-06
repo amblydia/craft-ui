@@ -1,0 +1,123 @@
+---
+title: Select
+description: Ore UI's dropdown, as a light field for forms or a dark one for filters.
+---
+
+import { SelectDemo } from "@/components/demos/select-demo";
+import { SelectSunken } from "@/components/demos/select-sunken";
+import { SelectGroups } from "@/components/demos/select-groups";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><SelectDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/select-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-select
+```
+
+## Usage
+
+```tsx
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/craft/select";
+
+const modes = [
+  { label: "Survival", value: "survival" },
+  { label: "Creative", value: "creative" },
+];
+
+<Select items={modes}>
+  <SelectLabel>Game mode</SelectLabel>
+  <SelectTrigger>
+    <SelectValue placeholder="Choose a mode" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="survival">Survival</SelectItem>
+    <SelectItem value="creative">Creative</SelectItem>
+  </SelectContent>
+</Select>;
+```
+
+## Examples
+
+### Sunken
+
+The dark dropdown, for filters and sorting that sit in a row. Without a visible label, pass `aria-label` to the trigger.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><SelectSunken /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/select-sunken.tsx</include>
+  </Tab>
+</Tabs>
+
+### Groups and disabled options
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><SelectGroups /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/select-groups.tsx</include>
+  </Tab>
+</Tabs>
+
+## Props
+
+### SelectTrigger
+
+<AutoTypeTable
+  path="../../packages/registry/components/select.tsx"
+  type="Pick<SelectTriggerProps, 'variant' | 'disabled'>"
+/>
+
+### SelectContent
+
+<AutoTypeTable
+  path="../../packages/registry/components/select.tsx"
+  type="Pick<SelectContentProps, 'alignItemWithTrigger' | 'side' | 'align' | 'sideOffset'>"
+/>
+
+## Accessibility
+
+- The trigger is a combobox and the list is a listbox, so screen readers announce the value and the options.
+- Space, Enter and the arrow keys open the list. The arrow keys move through it, typing jumps to a match, Enter chooses and Escape closes.
+- Disabled options are skipped. `SelectLabel` names the trigger.
+- The chosen option has a check as well as its highlight.
+
+## Customization
+
+Pass `items` to `Select` so the trigger can show the chosen option's label. Without it, the trigger shows the raw value.
+
+For a long list that people search, use [Combobox](/docs/components/combobox).
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/select)
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/select.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/select.tsx</include>
+  </Accordion>
+  <Accordion title="components/craft/menu-styles.ts">
+    <include lang="tsx">../../../../../packages/registry/components/menu-styles.ts</include>
+  </Accordion>
+</Accordions>

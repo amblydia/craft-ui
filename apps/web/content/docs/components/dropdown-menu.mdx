@@ -1,0 +1,106 @@
+---
+title: Dropdown Menu
+description: A menu of actions from a button, with groups, submenus and destructive actions.
+---
+
+import { DropdownMenuDemo } from "@/components/demos/dropdown-menu-demo";
+import { DropdownMenuChoices } from "@/components/demos/dropdown-menu-choices";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><DropdownMenuDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/dropdown-menu-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-dropdown-menu
+```
+
+## Usage
+
+```tsx
+import { Button } from "@/components/craft/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/craft/dropdown-menu";
+
+<DropdownMenu>
+  <DropdownMenuTrigger render={<Button variant="secondary" />}>
+    Options
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem onClick={copy}>Copy world</DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem onClick={remove} variant="destructive">
+      Delete world
+    </DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>;
+```
+
+## Examples
+
+### Checkbox and radio items
+
+Items that hold a setting stay open when chosen, so you can see the change.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><DropdownMenuChoices /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/dropdown-menu-choices.tsx</include>
+  </Tab>
+</Tabs>
+
+## Props
+
+### DropdownMenuItem
+
+<AutoTypeTable
+  path="../../packages/registry/components/dropdown-menu.tsx"
+  type="Pick<DropdownMenuItemProps, 'variant' | 'disabled' | 'closeOnClick'>"
+/>
+
+### DropdownMenuContent
+
+<AutoTypeTable
+  path="../../packages/registry/components/dropdown-menu.tsx"
+  type="Pick<DropdownMenuContentProps, 'side' | 'align' | 'sideOffset'>"
+/>
+
+## Accessibility
+
+- Enter, Space and Down Arrow open the menu from its trigger, and focus moves to the first item.
+- The arrow keys move between items, skipping disabled ones. Right Arrow opens a submenu and Left Arrow closes it. Typing jumps to a matching item.
+- Escape closes the menu and returns focus to the trigger.
+- Destructive items are red as well as labelled, and turn red when highlighted.
+
+## Customization
+
+Pass any element as the trigger with `render`, such as a CraftUI `Button`. Set `closeOnClick={false}` on an item to keep the menu open after choosing it. To go to another page, use `DropdownMenuLinkItem` with an `href`.
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/menu)
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/dropdown-menu.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/dropdown-menu.tsx</include>
+  </Accordion>
+  <Accordion title="components/craft/menu-styles.ts">
+    <include lang="tsx">../../../../../packages/registry/components/menu-styles.ts</include>
+  </Accordion>
+</Accordions>

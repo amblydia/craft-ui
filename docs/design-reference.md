@@ -38,6 +38,14 @@ Listed from top to bottom, in units.
 | Row (flat panel) | light line 1 at the top, dark line 1 at the bottom, no outline and no sides |
 | Dialog footer | a row, with no dark divider above it |
 | Tooltip | corners stepped by 1 unit, with a tail that's straight on one side |
+| Dropdown, light | as the secondary button, but pressing keeps the shade: it doesn't sink |
+| Dropdown, dark | outline 1, highlight 1, face, low highlight 1, outline 1, with no shade |
+| Open list | outline 1, then a line 1 unit wide around and between rows 23 units tall |
+| Radio | the checkbox's bevel turned 45°, 12 units corner to corner, with a gem in the middle |
+| Tag | 15 units tall, 3 units of padding, no outline |
+| Message bar | a flat fill, 14 units tall, with no outline |
+| Expandable row | outline 1, highlight 1, face, low highlight 1, outline 1 |
+| Sidebar section | a dark line 1 and a light line 1 under its heading |
 
 ## Colors
 
@@ -64,6 +72,13 @@ Listed from top to bottom, in units.
 | Sunken (dialog bodies) | `#313233` | `#454647` | `#222324` | none |
 | Tooltip, info | `#2E6BE5` | `#5889EA` | `#204BA1` | none |
 | Warning | `#FFE866` | none | none | none |
+| Dropdown, dark | `#313233` | `#5A5B5C` | `#222324` | none |
+| List row | `#58585A` | none | none | none, lines `#8C8D90` |
+| Radio gem | `#E6E8EB` on the sides | `#FFFFFF` at the top | `#D0D1D4` at the bottom | none |
+| Expandable row | `#48494A` | `#6D6D6E` | `#333334` | none |
+| Sidebar, selected | `#48494A` on `#313233` | none | none | none |
+| Tags | `#1E1E1F`, `#6CC349`, `#8CB3FF`, `#FFE866`, `#FF8080`, `#AC90F3` | none | none | none |
+| Message bars | `#FFE866` (important), `#2E6BE5` (information) | none | none | none |
 
 The outline is `#1E1E1F` everywhere, and the focus ring is solid white, hugging the
 outline.
@@ -82,6 +97,14 @@ background pair to WCAG AA in both modes.
   blue (`#2E6BE5`).
 - **Indeterminate checkboxes and the taller progress bar.** These aren't in the
   reference. They're additions for the web.
+- **Menus in light mode, and highlighted rows.** The reference shows open lists in dark
+  mode only, without a highlighted row. Light mode uses `#F4F6F9` rows with `#B1B2B5`
+  lines, and a highlighted row is `#6D6D6E` in dark mode and `#D0D1D4` in light.
+- **Destructive menu items.** Red text on a gray row falls below 4.5:1, so it's
+  `#FFC2C2` in dark mode and `#C02D2D` in light, and the row turns red when
+  highlighted.
+- **Toasts.** Toasts take the message bars' colors, with an outline added so they stand
+  apart from the page beneath. Success and error use the primary and destructive fills.
 
 ## Light mode
 

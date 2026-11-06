@@ -1,0 +1,77 @@
+---
+title: Context Menu
+description: A menu that opens where you right-click or long press.
+---
+
+import { ContextMenuDemo } from "@/components/demos/context-menu-demo";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><ContextMenuDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/context-menu-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-context-menu
+```
+
+## Usage
+
+```tsx
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+} from "@/components/craft/context-menu";
+
+<ContextMenu>
+  <ContextMenuTrigger tabIndex={0}>Right-click here</ContextMenuTrigger>
+  <ContextMenuContent>
+    <ContextMenuItem>Open</ContextMenuItem>
+    <ContextMenuItem variant="destructive">Delete</ContextMenuItem>
+  </ContextMenuContent>
+</ContextMenu>;
+```
+
+## Props
+
+### ContextMenu
+
+<AutoTypeTable
+  path="../../packages/registry/components/context-menu.tsx"
+  type="Pick<ComponentProps<typeof ContextMenu>, 'open' | 'onOpenChange' | 'disabled'>"
+/>
+
+## Accessibility
+
+- Right-click, or a long press on a touch screen, opens the menu at the pointer.
+- From the keyboard, the context menu key or Shift+F10 opens it while focus is inside the trigger. Give the trigger `tabIndex={0}` if nothing in it can take focus.
+- Inside, it works like a [Dropdown Menu](/docs/components/dropdown-menu): the arrow keys move, Right Arrow opens a submenu and Escape closes.
+- Anything in a context menu should also be reachable another way, as many people never right-click.
+
+## Customization
+
+The items are Dropdown Menu's, renamed, so a context menu has the same groups, checkbox and radio items, submenus and destructive actions.
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/context-menu)
+- `craft-dropdown-menu`
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/context-menu.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/context-menu.tsx</include>
+  </Accordion>
+  <Accordion title="components/craft/menu-styles.ts">
+    <include lang="tsx">../../../../../packages/registry/components/menu-styles.ts</include>
+  </Accordion>
+</Accordions>

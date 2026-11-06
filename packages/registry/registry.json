@@ -209,6 +209,236 @@
         }
       ],
       "categories": ["core"]
+    },
+    {
+      "name": "craft-select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Ore UI's dropdown: a light field for forms or a dark one for filters, opening a list of rows split by lines, with groups and keyboard navigation.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/select.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/select.tsx"
+        },
+        {
+          "path": "components/menu-styles.ts",
+          "type": "registry:ui",
+          "target": "@components/craft/menu-styles.ts"
+        }
+      ],
+      "categories": ["advanced"]
+    },
+    {
+      "name": "craft-combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "A select you can type into to filter its options, for long lists. Styled like the Select list.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/combobox.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/combobox.tsx"
+        },
+        {
+          "path": "components/menu-styles.ts",
+          "type": "registry:ui",
+          "target": "@components/craft/menu-styles.ts"
+        }
+      ],
+      "categories": ["advanced"]
+    },
+    {
+      "name": "craft-dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "A menu of actions opened from a button, with separators, groups, checkbox and radio items, submenus, and disabled and destructive actions.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/dropdown-menu.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/dropdown-menu.tsx"
+        },
+        {
+          "path": "components/menu-styles.ts",
+          "type": "registry:ui",
+          "target": "@components/craft/menu-styles.ts"
+        }
+      ],
+      "categories": ["advanced"]
+    },
+    {
+      "name": "craft-context-menu",
+      "type": "registry:ui",
+      "title": "Context Menu",
+      "description": "A menu that opens at the pointer on right-click or long press, with nested menus and full keyboard support. Shares its items with Dropdown Menu.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["utils", "craft-theme", "craft-dropdown-menu"],
+      "files": [
+        {
+          "path": "components/context-menu.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/context-menu.tsx"
+        },
+        {
+          "path": "components/menu-styles.ts",
+          "type": "registry:ui",
+          "target": "@components/craft/menu-styles.ts"
+        }
+      ],
+      "categories": ["advanced"]
+    },
+    {
+      "name": "craft-radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "Ore UI's diamond radio buttons, stacked or in a row, with disabled options and labels.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/radio-group.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/radio-group.tsx"
+        }
+      ],
+      "categories": ["advanced"]
+    },
+    {
+      "name": "craft-accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Framed rows that expand to show more, one at a time or several at once.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/accordion.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/accordion.tsx"
+        }
+      ],
+      "categories": ["advanced"]
+    },
+    {
+      "name": "craft-toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Notifications in Ore UI's message colors: success, error, warning and information, with actions, dismissal and screen reader announcements.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["utils", "craft-theme", "craft-button"],
+      "files": [
+        {
+          "path": "components/toast.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/toast.tsx"
+        }
+      ],
+      "categories": ["advanced"]
+    },
+    {
+      "name": "craft-popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "A framed panel anchored to a trigger, for interactive content such as a short form.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/popover.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/popover.tsx"
+        }
+      ],
+      "categories": ["advanced"]
+    },
+    {
+      "name": "craft-navigation-menu",
+      "type": "registry:ui",
+      "title": "Navigation Menu",
+      "description": "Site navigation as a top bar or an Ore UI settings-style sidebar, with selected links and nested panels.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/navigation-menu.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/navigation-menu.tsx"
+        },
+        {
+          "path": "components/menu-styles.ts",
+          "type": "registry:ui",
+          "target": "@components/craft/menu-styles.ts"
+        }
+      ],
+      "categories": ["advanced"]
+    },
+    {
+      "name": "craft-pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Previous and next links and page numbers, with the current page in green. Works in React Server Components.",
+      "registryDependencies": ["utils", "craft-theme", "craft-button"],
+      "files": [
+        {
+          "path": "components/pagination.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/pagination.tsx"
+        }
+      ],
+      "categories": ["advanced"]
+    },
+    {
+      "name": "craft-table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "A data table drawn as Ore UI list rows, with selection, sortable columns, and empty and loading rows. Works in React Server Components.",
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/table.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/table.tsx"
+        }
+      ],
+      "categories": ["advanced"]
+    },
+    {
+      "name": "craft-badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Ore UI's tags: flat blocks of color for statuses and labels, in six variants. Works in React Server Components.",
+      "dependencies": ["class-variance-authority@^0.7.1"],
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/badge.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/badge.tsx"
+        }
+      ],
+      "categories": ["advanced"]
+    },
+    {
+      "name": "craft-spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "A pixel loading spinner, and an overlay that covers content while it loads. Works in React Server Components.",
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/spinner.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/spinner.tsx"
+        }
+      ],
+      "categories": ["advanced"]
     }
   ]
 }

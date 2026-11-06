@@ -43,8 +43,11 @@ CraftUI works beside your existing shadcn/ui components and theme.
 **Core components:** Button, Input, Checkbox, Switch, Slider, Progress, Tabs, Panel,
 Dialog, Tooltip, Separator and Scroll Area.
 
-Advanced components, game components (inventory, hotbar, server list, world list)
-and full-page blocks are planned. See the
+**Advanced components:** Select, Combobox, Dropdown Menu, Context Menu, Radio Group,
+Accordion, Toast, Popover, Navigation Menu, Pagination, Table, Badge and Spinner.
+
+Game components (inventory, hotbar, server list, world list) and full-page blocks are
+planned. See the
 [introduction](https://craftui.runqora.dev/docs).
 
 ## Relationship with Runqora

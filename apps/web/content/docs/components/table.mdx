@@ -1,0 +1,104 @@
+---
+title: Table
+description: A data table drawn as Ore UI list rows, with selection, sorting, and empty and loading rows.
+---
+
+import { TableDemo } from "@/components/demos/table-demo";
+import { TableStates } from "@/components/demos/table-states";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><TableDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/table-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-table
+```
+
+## Usage
+
+```tsx
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/craft/table";
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>World</TableHead>
+      <TableHead>Mode</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>Harbor</TableCell>
+      <TableCell>Survival</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>;
+```
+
+## Examples
+
+### Empty and loading
+
+`TableEmpty` and `TableLoading` are whole rows. Set `colSpan` to the number of columns.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><TableStates /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/table-states.tsx</include>
+  </Tab>
+</Tabs>
+
+## Props
+
+### TableHead
+
+<AutoTypeTable
+  path="../../packages/registry/components/table.tsx"
+  type="Pick<TableHeadProps, 'onSort' | 'sortDirection'>"
+/>
+
+### TableRow
+
+<AutoTypeTable
+  path="../../packages/registry/components/table.tsx"
+  type="Pick<TableRowProps, 'selected'>"
+/>
+
+## Accessibility
+
+- It's a real HTML table, so screen readers can move by row and column and read each cell's heading.
+- A sortable heading holds a button, and the heading's `aria-sort` says how the column is sorted.
+- Selection is a [Checkbox](/docs/components/checkbox) in each row, named after the row. Selected rows have a green bar as well as their color.
+- `TableLoading` is a status, so screen readers announce it.
+
+## Customization
+
+Wide tables scroll sideways inside their frame. The table renders on the server; sorting needs an `onSort` handler, so a sortable table lives in a client component.
+
+## Dependencies
+
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/table.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/table.tsx</include>
+  </Accordion>
+</Accordions>

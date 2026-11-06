@@ -1,0 +1,87 @@
+---
+title: Radio Group
+description: Ore UI's diamond radio buttons, stacked or in a row.
+---
+
+import { RadioGroupDemo } from "@/components/demos/radio-group-demo";
+import { RadioGroupHorizontal } from "@/components/demos/radio-group-horizontal";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><RadioGroupDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/radio-group-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-radio-group
+```
+
+## Usage
+
+```tsx
+import { Radio, RadioGroup } from "@/components/craft/radio-group";
+
+<RadioGroup aria-label="Difficulty" defaultValue="normal">
+  <Radio label="Easy" value="easy" />
+  <Radio label="Normal" value="normal" />
+  <Radio label="Hard" value="hard" />
+</RadioGroup>;
+```
+
+## Examples
+
+### Horizontal and controlled
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><RadioGroupHorizontal /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/radio-group-horizontal.tsx</include>
+  </Tab>
+</Tabs>
+
+## Props
+
+### RadioGroup
+
+<AutoTypeTable
+  path="../../packages/registry/components/radio-group.tsx"
+  type="Pick<RadioGroupProps, 'orientation' | 'value' | 'defaultValue' | 'onValueChange' | 'disabled'>"
+/>
+
+### Radio
+
+<AutoTypeTable
+  path="../../packages/registry/components/radio-group.tsx"
+  type="Pick<RadioProps, 'label' | 'value' | 'disabled'>"
+/>
+
+## Accessibility
+
+- Tab moves into the group, onto the selected option. The arrow keys move between options and select them, skipping disabled ones.
+- Name the group with `aria-label`, or with `aria-labelledby` pointing at a heading.
+- Clicking a label selects its option.
+- The selected option has a gem in its center as well as its green color.
+
+## Customization
+
+For radios with longer descriptions, leave out `label` and lay out your own `label` element around a `Radio`, as `Radio` is the whole control.
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/radio-group)
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/radio-group.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/radio-group.tsx</include>
+  </Accordion>
+</Accordions>

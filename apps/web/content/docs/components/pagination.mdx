@@ -1,0 +1,83 @@
+---
+title: Pagination
+description: Links to the previous, next and numbered pages.
+---
+
+import { PaginationDemo } from "@/components/demos/pagination-demo";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><PaginationDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/pagination-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-pagination
+```
+
+## Usage
+
+```tsx
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/craft/pagination";
+
+<Pagination>
+  <PaginationContent>
+    <PaginationItem>
+      <PaginationPrevious href="?page=1" />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="?page=2" isActive>
+        2
+      </PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationNext href="?page=3" />
+    </PaginationItem>
+  </PaginationContent>
+</Pagination>;
+```
+
+## Props
+
+### PaginationLink
+
+<AutoTypeTable
+  path="../../packages/registry/components/pagination.tsx"
+  type="Pick<PaginationLinkProps, 'isActive' | 'disabled' | 'href'>"
+/>
+
+## Accessibility
+
+- It's a `nav` landmark named Pagination, with the links in a list.
+- The current page has `aria-current="page"` as well as its green color.
+- A disabled link has no destination and leaves the tab order, so there's never a link that goes nowhere.
+- On narrow screens, Previous and Next show only their arrows, and keep their names for screen readers.
+
+## Customization
+
+These are plain links, and it renders on the server, so search engines can follow every page. To page through data without links, use buttons in a `PaginationContent` instead.
+
+## Dependencies
+
+- `craft-button`
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/pagination.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/pagination.tsx</include>
+  </Accordion>
+</Accordions>

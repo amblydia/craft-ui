@@ -1,0 +1,117 @@
+---
+title: Navigation Menu
+description: Site navigation as a top bar or an Ore UI settings-style sidebar.
+---
+
+import { NavigationMenuDemo } from "@/components/demos/navigation-menu-demo";
+import { NavigationMenuSidebar } from "@/components/demos/navigation-menu-sidebar";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><NavigationMenuDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/navigation-menu-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-navigation-menu
+```
+
+## Usage
+
+```tsx
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/craft/navigation-menu";
+
+<NavigationMenu aria-label="Main">
+  <NavigationMenuList>
+    <NavigationMenuItem>
+      <NavigationMenuLink active href="/play">
+        Play
+      </NavigationMenuLink>
+    </NavigationMenuItem>
+    <NavigationMenuItem>
+      <NavigationMenuTrigger>Marketplace</NavigationMenuTrigger>
+      <NavigationMenuContent>
+        <NavigationMenuLink href="/marketplace/worlds">Worlds</NavigationMenuLink>
+      </NavigationMenuContent>
+    </NavigationMenuItem>
+  </NavigationMenuList>
+</NavigationMenu>;
+```
+
+## Examples
+
+### Sidebar
+
+Set `orientation="vertical"` for a sidebar, as in Ore UI's settings. `NavigationMenuLabel` heads each section, and panels open to the side.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><NavigationMenuSidebar /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/navigation-menu-sidebar.tsx</include>
+  </Tab>
+</Tabs>
+
+## Props
+
+### NavigationMenu
+
+<AutoTypeTable
+  path="../../packages/registry/components/navigation-menu.tsx"
+  type="Pick<NavigationMenuProps, 'orientation' | 'value' | 'defaultValue' | 'onValueChange' | 'delay'>"
+/>
+
+### NavigationMenuLink
+
+<AutoTypeTable
+  path="../../packages/registry/components/navigation-menu.tsx"
+  type="Pick<NavigationMenuLinkProps, 'active' | 'href' | 'render'>"
+/>
+
+## Accessibility
+
+- It's a `nav` landmark. When a page has more than one, name each with `aria-label`.
+- The current page's link has `aria-current="page"`, as well as its underline or lifted row.
+- Tab moves between the items. Enter, Space or the arrow keys open a panel, and Escape closes it.
+- Panels open on hover too, after a short delay, and stay open while the pointer moves into them.
+
+## Customization
+
+For client-side routing, pass your framework's link through `render`:
+
+```tsx
+import NextLink from "next/link";
+
+<NavigationMenuLink active render={<NextLink href="/settings" />}>
+  Settings
+</NavigationMenuLink>;
+```
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/navigation-menu)
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/navigation-menu.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/navigation-menu.tsx</include>
+  </Accordion>
+  <Accordion title="components/craft/menu-styles.ts">
+    <include lang="tsx">../../../../../packages/registry/components/menu-styles.ts</include>
+  </Accordion>
+</Accordions>

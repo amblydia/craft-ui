@@ -1,0 +1,89 @@
+---
+title: Toast
+description: Notifications in Ore UI's message colors, for success, errors, warnings and information.
+---
+
+import { ToastDemo } from "@/components/demos/toast-demo";
+import { ToastAction } from "@/components/demos/toast-action";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><ToastDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/toast-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-toast
+```
+
+## Usage
+
+```tsx
+// Once, around your app, for instance in app/layout.tsx:
+import { ToastProvider } from "@/components/craft/toast";
+
+<ToastProvider>{children}</ToastProvider>;
+
+// Anywhere inside it:
+"use client";
+import { useToast } from "@/components/craft/toast";
+
+const toast = useToast();
+toast.add({ title: "World saved", type: "success" });
+```
+
+## Examples
+
+### With an action
+
+Pass `actionProps` for a button in the toast, such as Undo.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><ToastAction /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/toast-action.tsx</include>
+  </Tab>
+</Tabs>
+
+## Props
+
+### ToastProvider
+
+<AutoTypeTable
+  path="../../packages/registry/components/toast.tsx"
+  type="Pick<ToastProviderProps, 'position' | 'timeout' | 'limit' | 'toastManager'>"
+/>
+
+## Accessibility
+
+- Toasts are announced politely as they appear. Pass `priority: "high"` for something urgent, which interrupts.
+- F6 moves focus to the toasts, where Tab reaches their buttons. While focus or the pointer is on them, they don't close by themselves.
+- Each toast has a Dismiss button, and can be swiped away on a touch screen.
+- Don't put the only way to do something in a toast, as it closes after five seconds.
+
+## Customization
+
+`type` sets the color: `success`, `error`, `warning` or `info`. Without one, a toast uses the surface color.
+
+To add toasts from outside React, create a manager with `createToastManager()` and pass it to `ToastProvider` as `toastManager`.
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/toast)
+- `craft-button`
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/toast.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/toast.tsx</include>
+  </Accordion>
+</Accordions>

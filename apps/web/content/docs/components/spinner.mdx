@@ -1,0 +1,88 @@
+---
+title: Spinner
+description: A pixel loading spinner, and an overlay that covers content while it loads.
+---
+
+import { SpinnerDemo } from "@/components/demos/spinner-demo";
+import { SpinnerOverlay } from "@/components/demos/spinner-overlay";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><SpinnerDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/spinner-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-spinner
+```
+
+## Usage
+
+```tsx
+import { LoadingOverlay, Spinner } from "@/components/craft/spinner";
+
+<Spinner label="Loading worlds" />;
+
+<LoadingOverlay loading={isLoading}>
+  <WorldList />
+</LoadingOverlay>;
+```
+
+## Examples
+
+### Loading overlay
+
+The content stays in place while it loads, so the layout doesn't jump, but it can't be clicked or focused.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><SpinnerOverlay /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/spinner-overlay.tsx</include>
+  </Tab>
+</Tabs>
+
+## Props
+
+### Spinner
+
+<AutoTypeTable
+  path="../../packages/registry/components/spinner.tsx"
+  type="Pick<SpinnerProps, 'label' | 'showLabel' | 'size'>"
+/>
+
+### LoadingOverlay
+
+<AutoTypeTable
+  path="../../packages/registry/components/spinner.tsx"
+  type="Pick<LoadingOverlayProps, 'loading' | 'label'>"
+/>
+
+## Accessibility
+
+- Both are a status, so screen readers announce the label. The spinner's label is hidden on screen unless you set `showLabel`.
+- The overlay marks its content `aria-busy` and `inert` while loading.
+- With reduced motion, the spinner stays still.
+- For progress you can measure, use [Progress](/docs/components/progress) instead.
+
+## Customization
+
+The spinner takes the text color, so set `className="text-craft-primary"` or any other color on it. The overlay's cover uses `--craft-overlay`.
+
+## Dependencies
+
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/spinner.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/spinner.tsx</include>
+  </Accordion>
+</Accordions>

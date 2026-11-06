@@ -76,9 +76,26 @@
     --color-craft-tooltip: var(--craft-tooltip);
     --color-craft-tooltip-fg: var(--craft-tooltip-fg);
     --color-craft-overlay: var(--craft-overlay);
+    --color-craft-menu: var(--craft-menu);
+    --color-craft-menu-line: var(--craft-menu-line);
+    --color-craft-menu-highlight: var(--craft-menu-highlight);
+    --color-craft-destructive-text: var(--craft-destructive-text);
+    --color-craft-tag-fg: var(--craft-tag-fg);
+    --color-craft-tag-neutral: var(--craft-tag-neutral);
+    --color-craft-tag-neutral-fg: var(--craft-tag-neutral-fg);
+    --color-craft-tag-primary: var(--craft-tag-primary);
+    --color-craft-tag-info: var(--craft-tag-info);
+    --color-craft-tag-warning: var(--craft-tag-warning);
+    --color-craft-tag-destructive: var(--craft-tag-destructive);
+    --color-craft-tag-accent: var(--craft-tag-accent);
+    --color-craft-surface-lo: var(--craft-surface-lo);
+    --color-craft-sunken-hi: var(--craft-sunken-hi);
     --font-craft-display: var(--craft-font-display);
     --font-craft-body: var(--craft-font-body);
     --radius-craft: var(--craft-radius);
+    --color-craft-gem-lo: var(--craft-gem-lo);
+    --color-craft-gem-hi: var(--craft-gem-hi);
+    --color-craft-gem: var(--craft-gem);
     --color-craft-warning-lo: var(--craft-warning-lo);
     --color-craft-warning-hi: var(--craft-warning-hi);
     --color-craft-info-lo: var(--craft-info-lo);
@@ -128,7 +145,6 @@
     --color-craft-primary-hi: var(--craft-primary-hi);
     --color-craft-field-shade: var(--craft-field-shade);
     --color-craft-sunken-lo: var(--craft-sunken-lo);
-    --color-craft-sunken-hi: var(--craft-sunken-hi);
     --color-craft-selected-lo: var(--craft-selected-lo);
     --color-craft-selected-hi: var(--craft-selected-hi);
     --color-craft-raised-hover-lo: var(--craft-raised-hover-lo);
@@ -138,7 +154,6 @@
     --color-craft-raised-lo: var(--craft-raised-lo);
     --color-craft-raised-hi: var(--craft-raised-hi);
     --color-craft-surface-edge: var(--craft-surface-edge);
-    --color-craft-surface-lo: var(--craft-surface-lo);
     --color-craft-surface-hi: var(--craft-surface-hi);
     --craft-focus-width: var(--craft-focus-width);
     --color-craft-focus: var(--craft-focus);
@@ -295,6 +310,21 @@
     --craft-warning-hi: #fff2a8;
     --craft-warning-lo: #d9bf2e;
     --craft-warning-fg: #1e1e1f;
+    --craft-gem: #e6e8eb;
+    --craft-gem-hi: #ffffff;
+    --craft-gem-lo: #d0d1d4;
+    --craft-menu: #f4f6f9;
+    --craft-menu-line: #b1b2b5;
+    --craft-menu-highlight: #d0d1d4;
+    --craft-destructive-text: #c02d2d;
+    --craft-tag-fg: #1e1e1f;
+    --craft-tag-neutral: #1e1e1f;
+    --craft-tag-neutral-fg: #ffffff;
+    --craft-tag-primary: #6cc349;
+    --craft-tag-info: #8cb3ff;
+    --craft-tag-warning: #ffe866;
+    --craft-tag-destructive: #ff8080;
+    --craft-tag-accent: #ac90f3;
     --craft-tooltip: #2e6be5;
     --craft-tooltip-fg: #ffffff;
     --craft-overlay: rgb(0 0 0 / 0.6);
@@ -357,6 +387,10 @@
     --craft-field-shade: #242425;
     --craft-hover: rgb(255 255 255 / 0.1);
     --craft-active: rgb(255 255 255 / 0.18);
+    --craft-menu: #58585a;
+    --craft-menu-line: #8c8d90;
+    --craft-menu-highlight: #6d6d6e;
+    --craft-destructive-text: #ffc2c2;
 }
 
 @layer base {

@@ -1,0 +1,89 @@
+---
+title: Combobox
+description: A select you can type into, for lists too long to scroll.
+---
+
+import { ComboboxDemo } from "@/components/demos/combobox-demo";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><ComboboxDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/combobox-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-combobox
+```
+
+## Usage
+
+```tsx
+import {
+  Combobox,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxLabel,
+  ComboboxList,
+} from "@/components/craft/combobox";
+
+const biomes = ["Badlands", "Desert", "Jungle"];
+
+<Combobox items={biomes}>
+  <ComboboxLabel>Biome</ComboboxLabel>
+  <ComboboxInput placeholder="Search biomes" />
+  <ComboboxContent>
+    <ComboboxEmpty>No biomes match.</ComboboxEmpty>
+    <ComboboxList>
+      {(biome: string) => (
+        <ComboboxItem key={biome} value={biome}>
+          {biome}
+        </ComboboxItem>
+      )}
+    </ComboboxList>
+  </ComboboxContent>
+</Combobox>;
+```
+
+## Props
+
+### ComboboxInput
+
+<AutoTypeTable
+  path="../../packages/registry/components/combobox.tsx"
+  type="Pick<ComboboxInputProps, 'showClear' | 'placeholder' | 'disabled'>"
+/>
+
+## Accessibility
+
+- The input is a combobox that controls a listbox, so screen readers announce the highlighted option as you move.
+- Down Arrow opens the list. The arrow keys move through the matches, Enter chooses and Escape closes.
+- The button beside the input shows every option. It's left out of the tab order, as the input does the same from the keyboard.
+
+## Customization
+
+`ComboboxList` takes a function as its child, so a combobox goes in a client component.
+
+`Combobox` filters `items` as you type. Pass `filter` to match differently, or `filteredItems` to filter yourself, for instance on a server.
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/combobox)
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/combobox.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/combobox.tsx</include>
+  </Accordion>
+  <Accordion title="components/craft/menu-styles.ts">
+    <include lang="tsx">../../../../../packages/registry/components/menu-styles.ts</include>
+  </Accordion>
+</Accordions>

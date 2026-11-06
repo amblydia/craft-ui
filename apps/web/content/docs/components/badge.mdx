@@ -1,0 +1,68 @@
+---
+title: Badge
+description: "Ore UI's tags: flat blocks of color for statuses and labels."
+---
+
+import { BadgeDemo } from "@/components/demos/badge-demo";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><BadgeDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/badge-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-badge
+```
+
+## Usage
+
+```tsx
+import { Badge } from "@/components/craft/badge";
+
+<Badge variant="primary">Online</Badge>;
+```
+
+## Props
+
+### Badge
+
+<AutoTypeTable
+  path="../../packages/registry/components/badge.tsx"
+  type="Pick<BadgeProps, 'variant' | 'size'>"
+/>
+
+## Accessibility
+
+- Every variant holds its text at 4.5:1 or more.
+- A badge is plain text. Don't rely on its color alone: the words should say the status.
+
+## Customization
+
+The variants follow Ore UI's tags. In its names, `info` is Informative, `warning` is Notice, `destructive` is Warning and `accent` is Realms Informative.
+
+To style a link as a badge, use `badgeVariants`:
+
+```tsx
+<a className={badgeVariants({ variant: "info" })} href="/news">
+  New
+</a>
+```
+
+## Dependencies
+
+- [`class-variance-authority`](https://cva.style)
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/badge.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/badge.tsx</include>
+  </Accordion>
+</Accordions>

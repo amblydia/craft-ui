@@ -29,7 +29,8 @@ function checkFile(
     registryDependencies?: string[];
   },
   file: { content?: string; path: string; target?: string },
-  siblings: string[]
+  siblings: string[],
+  owners: Map<string, string[]>
 ) {
   const problems: string[] = [];
   const where = `${item.name} (${file.path})`;
@@ -59,18 +60,21 @@ function checkFile(
         );
       }
     } else if (specifier.startsWith("@/components/craft/")) {
-      const name = `craft-${specifier.split("/").at(-1)}`;
-      const sameItem = siblings.some((target) =>
-        target.startsWith(specifier.replace("@/components/", "@components/"))
-      );
+      // The item that ships the imported file, such as craft-button for
+      // button-variants, must be installed alongside.
+      const target = specifier.replace("@/components/", "@components/");
+      const sameItem = siblings.some((sibling) => sibling.startsWith(target));
+      const names = owners.get(target) ?? [];
       if (
         !(
           sameItem ||
-          registryDependencies.some((d) => d.endsWith(`/${name}.json`))
+          names.some((name) =>
+            registryDependencies.some((d) => d.endsWith(`/${name}.json`))
+          )
         )
       ) {
         problems.push(
-          `${where}: imports ${specifier} without depending on ${name}`
+          `${where}: imports ${specifier} without depending on ${names.join(" or ") || "the item that ships it"}`
         );
       }
     } else if (specifier.startsWith("@/") || specifier.startsWith(".")) {
@@ -119,10 +123,22 @@ export function validateRegistry(dir = publicRegistry) {
   const files = readdirSync(dir).filter(
     (file) => file.endsWith(".json") && file !== "registry.json"
   );
-  for (const file of files) {
-    const item = registryItemSchema.parse(
+  const items = files.map((file) => ({
+    file,
+    item: registryItemSchema.parse(
       JSON.parse(readFileSync(join(dir, file), "utf8"))
-    );
+    ),
+  }));
+  // Which items ship each file, keyed by its target without the extension.
+  const owners = new Map<string, string[]>();
+  for (const { item } of items) {
+    for (const entry of item.files ?? []) {
+      const target = (entry.target ?? "").replace(/.tsx?$/u, "");
+      owners.set(target, [...(owners.get(target) ?? []), item.name]);
+    }
+  }
+
+  for (const { file, item } of items) {
     if (`${item.name}.json` !== file) {
       problems.push(`${file}: holds an item named ${item.name}`);
     }
@@ -133,7 +149,7 @@ export function validateRegistry(dir = publicRegistry) {
 
     const targets = (item.files ?? []).map((entry) => entry.target ?? "");
     for (const registryFile of item.files ?? []) {
-      problems.push(...checkFile(item, registryFile, targets));
+      problems.push(...checkFile(item, registryFile, targets, owners));
     }
     if (item.type === "registry:theme" && !item.cssVars?.light) {
       problems.push(`${item.name}: has no theme variables`);

@@ -63,6 +63,16 @@ const textPairs: [foreground: string, background: string][] = [
   ["info-fg", "info"],
   ["warning-fg", "warning"],
   ["tooltip-fg", "tooltip"],
+  ["text", "menu"],
+  ["text", "menu-highlight"],
+  ["text-muted", "menu"],
+  ["destructive-text", "menu"],
+  ["tag-neutral-fg", "tag-neutral"],
+  ["tag-fg", "tag-primary"],
+  ["tag-fg", "tag-info"],
+  ["tag-fg", "tag-warning"],
+  ["tag-fg", "tag-destructive"],
+  ["tag-fg", "tag-accent"],
 ];
 
 // Controls and focus against what they sit on: WCAG AA needs 3:1.

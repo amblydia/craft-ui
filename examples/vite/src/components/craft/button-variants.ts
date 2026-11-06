@@ -2,6 +2,10 @@ import { cva } from "class-variance-authority";
 
 // Separate from button.tsx, with no "use client", so that Server Components can
 // call it to style links.
+
+/** The disabled look, for a button or for a link styled as one. */
+export const buttonDisabledClassName =
+  "text-craft-disabled-fg [--bevel-edge:var(--craft-disabled-edge)] [--bevel-face:var(--craft-disabled)] [--bevel-hi:var(--craft-disabled)] [--bevel-lo:var(--craft-disabled)] [--bevel-outline:var(--craft-disabled-outline)]";
 export const buttonVariants = cva(
   [
     // The button itself only holds the layout. `before` paints the block, so a

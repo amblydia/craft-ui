@@ -3,11 +3,11 @@
 import { Button as BaseButton } from "@base-ui/react/button";
 import type { VariantProps } from "class-variance-authority";
 import type { ComponentProps, ReactNode } from "react";
-import { buttonVariants } from "@/components/craft/button-variants";
+import {
+  buttonDisabledClassName,
+  buttonVariants,
+} from "@/components/craft/button-variants";
 import { cn } from "@/lib/utils";
-
-const disabledClasses =
-  "text-craft-disabled-fg [--bevel-edge:var(--craft-disabled-edge)] [--bevel-face:var(--craft-disabled)] [--bevel-hi:var(--craft-disabled)] [--bevel-lo:var(--craft-disabled)] [--bevel-outline:var(--craft-disabled-outline)]";
 
 function Spinner() {
   return (
@@ -59,7 +59,7 @@ export function Button({
       className={cn(
         buttonVariants({ size, variant }),
         fullWidth && "w-full",
-        disabled && disabledClasses,
+        disabled && buttonDisabledClassName,
         className
       )}
       data-slot="button"

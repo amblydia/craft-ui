@@ -1,0 +1,87 @@
+---
+title: Accordion
+description: Framed rows that expand to show more.
+---
+
+import { AccordionDemo } from "@/components/demos/accordion-demo";
+import { AccordionMultiple } from "@/components/demos/accordion-multiple";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><AccordionDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/accordion-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-accordion
+```
+
+## Usage
+
+```tsx
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/craft/accordion";
+
+<Accordion>
+  <AccordionItem value="rules">
+    <AccordionTrigger>World rules</AccordionTrigger>
+    <AccordionContent>Keep inventory is on.</AccordionContent>
+  </AccordionItem>
+</Accordion>;
+```
+
+## Examples
+
+### Several open at once
+
+By default, opening an item closes the others. Set `multiple` to let them stay open.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><AccordionMultiple /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/accordion-multiple.tsx</include>
+  </Tab>
+</Tabs>
+
+## Props
+
+### Accordion
+
+<AutoTypeTable
+  path="../../packages/registry/components/accordion.tsx"
+  type="Pick<ComponentProps<typeof Accordion>, 'multiple' | 'value' | 'defaultValue' | 'onValueChange' | 'hiddenUntilFound'>"
+/>
+
+## Accessibility
+
+- Each trigger is a button in a heading, with `aria-expanded` telling whether its item is open.
+- Tab moves between triggers, and Enter or Space opens and closes.
+- Set `hiddenUntilFound` so the browser's find-in-page can search closed items and open the one that matches.
+
+## Customization
+
+Items are framed rows with a gap between them. For one continuous list, remove the gap with `className="gap-0"` on `Accordion`, and the rows' lines will meet.
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/accordion)
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/accordion.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/accordion.tsx</include>
+  </Accordion>
+</Accordions>

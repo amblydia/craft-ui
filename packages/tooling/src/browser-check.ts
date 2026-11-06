@@ -20,7 +20,7 @@ function check(condition: unknown, message: string) {
 }
 
 async function runInteractions(tab: Page) {
-  const save = tab.getByRole("button", { name: "Save" });
+  const save = tab.getByRole("button", { exact: true, name: "Save" });
   const face = await save.evaluate(
     (element) => getComputedStyle(element, "::before").backgroundColor
   );
@@ -102,6 +102,35 @@ async function runInteractions(tab: Page) {
   const tooltip = tab.getByText("Opens the manual");
   await tooltip.waitFor({ state: "visible" });
   check(await tooltip.isVisible(), "tooltip opens on keyboard focus");
+
+  const difficulty = tab.getByRole("combobox", { name: "Difficulty" });
+  await difficulty.focus();
+  await tab.keyboard.press("ArrowDown");
+  await tab.getByRole("listbox").waitFor({ state: "visible" });
+  await tab.keyboard.press("ArrowDown");
+  await tab.keyboard.press("Enter");
+  await tab.getByRole("listbox").waitFor({ state: "hidden" });
+  check(
+    (await difficulty.textContent())?.includes("Hard"),
+    "select chooses by keyboard"
+  );
+
+  await tab.getByText("Creative", { exact: true }).click();
+  check(
+    await tab.getByRole("radio", { name: "Creative" }).isChecked(),
+    "radio selects by its label"
+  );
+
+  await tab.getByRole("button", { name: "World options" }).click();
+  const copy = tab.getByRole("menuitem", { name: "Copy world" });
+  await copy.waitFor({ state: "visible" });
+  check(await copy.isVisible(), "dropdown menu opens");
+  await tab.keyboard.press("Escape");
+
+  await tab.getByRole("button", { name: "Save world" }).click();
+  const saved = tab.getByText("World saved");
+  await saved.waitFor({ state: "visible" });
+  check(await saved.isVisible(), "toast appears");
 }
 
 const browser = await chromium.launch();

@@ -1,0 +1,73 @@
+---
+title: Popover
+description: A framed panel anchored to a trigger, for interactive content.
+---
+
+import { PopoverDemo } from "@/components/demos/popover-demo";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ComponentPreview><PopoverDemo /></ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/popover-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-popover
+```
+
+## Usage
+
+```tsx
+import {
+  Popover,
+  PopoverContent,
+  PopoverDescription,
+  PopoverTitle,
+  PopoverTrigger,
+} from "@/components/craft/popover";
+
+<Popover>
+  <PopoverTrigger>Seed</PopoverTrigger>
+  <PopoverContent>
+    <PopoverTitle>World seed</PopoverTitle>
+    <PopoverDescription>Share it to make the same world.</PopoverDescription>
+  </PopoverContent>
+</Popover>;
+```
+
+## Props
+
+### PopoverContent
+
+<AutoTypeTable
+  path="../../packages/registry/components/popover.tsx"
+  type="Pick<PopoverContentProps, 'side' | 'align' | 'sideOffset'>"
+/>
+
+## Accessibility
+
+- The popover is a dialog named by `PopoverTitle` and described by `PopoverDescription`.
+- Focus moves into it when it opens, Escape closes it, and focus returns to the trigger.
+- Use a [Tooltip](/docs/components/tooltip) for a short hint, and a popover when there's something to do.
+
+## Customization
+
+The panel is 18rem wide. Change it with `className` on `PopoverContent`, which never grows past the space on screen.
+
+## Dependencies
+
+- [`@base-ui/react`](https://base-ui.com/react/components/popover)
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/popover.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/popover.tsx</include>
+  </Accordion>
+</Accordions>
