@@ -1,0 +1,14 @@
+/*
+ * Departure Mono, by Helena Zhang, under the SIL Open Font License (see OFL.txt).
+ * https://departuremono.com/
+ *
+ * The craft-theme registry item installs this package and imports this file, so
+ * the bundler serves the font from the project itself.
+ */
+@font-face {
+  font-family: "Departure Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./DepartureMono-Regular.woff2") format("woff2");
+}

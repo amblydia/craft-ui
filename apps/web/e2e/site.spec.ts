@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { expect, test } from "@playwright/test";
 import { allPages, componentPages } from "./pages";
 
@@ -79,11 +81,19 @@ test.describe("against the Ore UI reference", () => {
       );
     });
     expect(loaded).toBe(true);
-    for (const file of ["departure-mono.css", "DepartureMono-Regular.woff2"]) {
-      const response = await page.request.get(`/fonts/${file}`);
-      expect(response.ok()).toBe(true);
-      expect(response.headers()["access-control-allow-origin"]).toBe("*");
-    }
+    // Installed projects get the font as a package from this tarball.
+    // Playwright runs from apps/web.
+    const { version } = JSON.parse(
+      readFileSync(
+        join("..", "..", "packages", "departure-mono", "package.json"),
+        "utf8"
+      )
+    ) as { version: string };
+    const response = await page.request.get(
+      `/fonts/runqora-departure-mono-${version}.tgz`
+    );
+    expect(response.ok()).toBe(true);
+    expect(response.headers()["cache-control"]).toContain("immutable");
   });
 
   test("a selected tab sinks below its neighbours", async ({ page }) => {

@@ -14,15 +14,15 @@ function Scrollbar({
       className={cn(
         "bg-craft-sunken flex",
         orientation === "vertical"
-          ? "border-craft-outline w-[calc(var(--craft-unit)*5)] border-l-(length:--craft-unit)"
-          : "border-craft-outline h-[calc(var(--craft-unit)*5)] border-t-(length:--craft-unit)"
+          ? "border-craft-outline w-[calc(var(--craft-unit)*9)] border-x-(length:--craft-unit) px-(--craft-unit)"
+          : "border-craft-outline h-[calc(var(--craft-unit)*9)] border-y-(length:--craft-unit) py-(--craft-unit)"
       )}
       data-slot="scroll-area-scrollbar"
       orientation={orientation}
     >
       <BaseScrollArea.Thumb
         className={cn(
-          "craft-bevel [--bevel-depth:0px] [--bevel-edge:transparent] [--bevel-face:var(--craft-secondary)] [--bevel-hi:var(--craft-secondary-hi)] [--bevel-lo:var(--craft-secondary-lo)] hover:[--bevel-face:var(--craft-secondary-hover)]",
+          "craft-bevel [--bevel-depth:0px] [--bevel-edge:transparent] [--bevel-face:var(--craft-scrollbar)] [--bevel-hi:var(--craft-scrollbar-hi)] [--bevel-lo:var(--craft-scrollbar-lo)] [--bevel-outline:var(--craft-scrollbar-outline)] hover:[--bevel-face:var(--craft-scrollbar-hi)]",
           orientation === "vertical" ? "w-full" : "h-full"
         )}
         data-slot="scroll-area-thumb"
@@ -51,16 +51,14 @@ export function ScrollArea({
 }: ScrollAreaProps) {
   return (
     <BaseScrollArea.Root
-      className={cn(
-        "border-craft-outline relative flex min-h-0 overflow-hidden border-(length:--craft-unit)",
-        className
-      )}
+      className={cn("relative flex min-h-0 overflow-hidden", className)}
       data-slot="scroll-area"
       {...props}
     >
       <BaseScrollArea.Viewport
         aria-label={label}
-        className="focus-visible:craft-focus size-full outline-none focus-visible:-outline-offset-2"
+        // The scrollbars sit on top of the viewport, so it leaves room for them.
+        className="focus-visible:craft-focus size-full outline-none focus-visible:-outline-offset-2 data-has-overflow-x:pb-[calc(var(--craft-unit)*9)] data-has-overflow-y:pe-[calc(var(--craft-unit)*9)]"
         role={label ? "group" : undefined}
         tabIndex={0}
       >

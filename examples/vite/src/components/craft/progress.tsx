@@ -33,7 +33,7 @@ export interface ProgressProps
   label?: ReactNode;
   /** Shows the value above the bar, on the right. */
   showValue?: boolean;
-  /** The height of the bar: `sm` is the thin Ore UI loading bar. */
+  /** The height of the bar: `sm` is Ore UI's thin bar, `md` adds an outline. */
   size?: "sm" | "md";
   /** The color of the fill. */
   tone?: keyof typeof tones;
@@ -46,7 +46,7 @@ export function Progress({
   color,
   label,
   showValue,
-  size = "md",
+  size = "sm",
   style,
   tone = "info",
   ...props
@@ -60,7 +60,7 @@ export function Progress({
   return (
     <BaseProgress.Root
       className={cn(
-        "font-craft-display text-craft-text flex w-full flex-col gap-2 text-xl",
+        "font-craft-display text-craft-text flex w-full flex-col gap-2 text-(length:--craft-label-size)",
         className
       )}
       data-slot="progress"
@@ -79,15 +79,17 @@ export function Progress({
         className={cn(
           "bg-craft-sunken relative block w-full overflow-hidden",
           size === "sm"
-            ? "h-[calc(var(--craft-unit)*2)]"
+            ? "h-[calc(var(--craft-unit)*2)] shadow-[inset_0_calc(var(--craft-unit)/2)_0_var(--craft-sunken-lo),inset_0_calc(-1*var(--craft-unit)/2)_0_var(--craft-sunken-hi)]"
             : "border-craft-outline h-[calc(var(--craft-unit)*6)] border-(length:--craft-unit)"
         )}
+        data-slot="progress-track"
       >
         <BaseProgress.Indicator
           className={cn(
             "block h-full bg-(--progress-face)",
-            size === "md" &&
-              "shadow-[inset_0_var(--craft-unit)_0_var(--progress-hi),inset_0_calc(-1*var(--craft-unit))_0_var(--progress-lo)]",
+            size === "sm"
+              ? "shadow-[inset_0_calc(var(--craft-unit)/2)_0_var(--progress-hi),inset_0_calc(-1*var(--craft-unit)/2)_0_var(--progress-lo)]"
+              : "shadow-[inset_0_var(--craft-unit)_0_var(--progress-hi),inset_0_calc(-1*var(--craft-unit))_0_var(--progress-lo)]",
             "motion-safe:transition-[width] motion-safe:duration-200",
             "data-indeterminate:w-1/4 motion-safe:data-indeterminate:animate-[craft-progress-slide_1.6s_steps(40)_infinite] motion-reduce:data-indeterminate:w-full motion-reduce:data-indeterminate:opacity-50"
           )}

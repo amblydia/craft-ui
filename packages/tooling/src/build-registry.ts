@@ -16,6 +16,7 @@
 import { execFileSync } from "node:child_process";
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { fontDependency, fontPackageName } from "./font-package";
 import {
   productionUrl,
   publicRegistry,
@@ -57,12 +58,12 @@ export function prepareRegistry(registryUrl: string) {
       ...(item.name === "craft-theme"
         ? {
             ...theme,
-            // The CLI can't write an @font-face rule into a project's CSS, but
-            // it can add an import of a stylesheet that holds one.
-            css: {
-              [`@import url("${registryUrl}/fonts/departure-mono.css")`]: {},
-              ...theme.css,
-            },
+            css: { [`@import "${fontPackageName}"`]: {}, ...theme.css },
+            // The CLI can't write an @font-face rule into a project's CSS, and
+            // an @import of a URL lands after Tailwind's rules, where browsers
+            // ignore it. A package import is inlined instead, so the project
+            // bundles the font. See font-package.ts.
+            dependencies: [fontDependency(registryUrl)],
           }
         : {}),
       ...(item.registryDependencies

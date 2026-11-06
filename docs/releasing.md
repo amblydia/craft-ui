@@ -30,3 +30,11 @@ a component, and they can review the difference with `shadcn add <item> --diff`.
 `craft-theme` is built from `packages/registry/themes/craft.css`. Adding a token adds it
 to projects on their next `shadcn add`, but removing one doesn't remove it from their CSS.
 Treat removals as breaking.
+
+## Change the font package
+
+The theme installs Departure Mono from a tarball the site serves at
+`/fonts/runqora-departure-mono-<version>.tgz`. Lockfiles pin that tarball's hash, so a
+published version must never change. To change anything in `packages/departure-mono`,
+bump its version, run `bun run font:pack` and commit the new tarball alongside the old
+ones. A test fails if the package and its tarball drift apart.

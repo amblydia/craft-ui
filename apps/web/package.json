@@ -15,6 +15,7 @@
     "@hookform/resolvers": "7.0.2",
     "@hugeicons/core-free-icons": "4.4.0",
     "@hugeicons/react": "1.1.10",
+    "@runqora/departure-mono": "workspace:*",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "fumadocs-core": "16.17.10",

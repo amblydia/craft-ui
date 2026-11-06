@@ -22,7 +22,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { parseArgs } from "node:util";
 import { buildRegistry } from "./build-registry";
-import { repoRoot } from "./paths";
+import { productionUrl, repoRoot } from "./paths";
 
 const { values } = parseArgs({
   options: {
@@ -207,8 +207,17 @@ try {
   }
   check(css.includes("--craft-primary: #3c8527"), "theme variables were added");
   check(
-    css.includes("/fonts/departure-mono.css"),
-    "the pixel font is imported"
+    css.includes('@import "@runqora/departure-mono"') &&
+      existsSync(
+        join(
+          projectDir,
+          "node_modules",
+          "@runqora",
+          "departure-mono",
+          "index.css"
+        )
+      ),
+    "the pixel font package is installed and imported"
   );
   check(css.includes("@utility craft-bevel"), "bevel utility was added");
   check(
@@ -358,14 +367,20 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         ),
       recursive: true,
     });
-    const configPath = join(values.export, "components.json");
-    writeFileSync(
-      configPath,
-      readFileSync(configPath, "utf8").replaceAll(
-        registryUrl,
-        "https://runqora.dev"
-      )
-    );
+    // Point the example at production: the registry through Runqora, and the
+    // font tarball at the CraftUI site, which serves the same bytes.
+    const live = {
+      "bun.lock": productionUrl,
+      "components.json": "https://runqora.dev",
+      "package.json": productionUrl,
+    };
+    for (const [file, url] of Object.entries(live)) {
+      const path = join(values.export, file);
+      writeFileSync(
+        path,
+        readFileSync(path, "utf8").replaceAll(registryUrl, url)
+      );
+    }
   }
 } finally {
   stopApp();

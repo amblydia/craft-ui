@@ -31,9 +31,9 @@ const config = {
         source: "/r/:path*",
       },
       {
-        // Installed projects load the pixel font from here. It never changes.
+        // Installed projects get the pixel font package from here. Each
+        // version's tarball never changes, as lockfiles pin its hash.
         headers: [
-          { key: "Access-Control-Allow-Origin", value: "*" },
           {
             key: "Cache-Control",
             value: "public, max-age=31536000, immutable",

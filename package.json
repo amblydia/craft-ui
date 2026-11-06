@@ -11,6 +11,7 @@
     "dev": "turbo run dev --filter=web",
     "examples:sync": "bun packages/tooling/src/sync-examples.ts",
     "fix": "ultracite fix",
+    "font:pack": "bun packages/tooling/src/pack-font.ts",
     "registry:build": "turbo run registry:build",
     "registry:validate": "bun packages/tooling/src/validate-registry.ts",
     "test": "turbo run test",

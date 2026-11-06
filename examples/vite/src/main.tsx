@@ -1,4 +1,3 @@
-import "@fontsource/jersey-20";
 import "@fontsource-variable/noto-sans";
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"

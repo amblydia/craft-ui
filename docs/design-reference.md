@@ -100,10 +100,13 @@ which is 7 units, matching the reference. It's drawn on an 11-pixel grid, so Cra
 only uses multiples of 11 pixels for it. **Noto Sans** (also SIL OFL) is used for long
 text, as the references do.
 
-The official font file and its license are in `apps/web/public/fonts`. There's no
-official package on npm, and it isn't on Google Fonts, so the theme imports
-`departure-mono.css` from the CraftUI site. The shadcn CLI can't write an `@font-face`
-rule into a project's CSS, which is why it's a hosted stylesheet.
+The official font file and its license are in `packages/departure-mono`. There's no
+official package on npm, and it isn't on Google Fonts, so the CraftUI site serves that
+package as a tarball, and the theme item installs it and adds
+`@import "@runqora/departure-mono"`. The shadcn CLI can't write an `@font-face` rule
+into a project's CSS, and an `@import` of a URL would land after Tailwind's rules,
+where browsers ignore it. A package import is inlined, so it works anywhere. See
+`packages/tooling/src/font-package.ts` for how to change the package.
 
 The reference's heavy Hero label has no free match, so the `hero` button uses Departure
 Mono in capitals with the measured drop shadow (`#2A5D1B`).

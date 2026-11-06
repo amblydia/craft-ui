@@ -1,0 +1,14 @@
+{
+  "name": "@runqora/departure-mono",
+  "version": "1.0.0",
+  "description": "Departure Mono by Helena Zhang, packaged as CSS for CraftUI.",
+  "homepage": "https://departuremono.com/",
+  "license": "OFL-1.1",
+  "main": "index.css",
+  "style": "index.css",
+  "files": [
+    "index.css",
+    "DepartureMono-Regular.woff2",
+    "OFL.txt"
+  ]
+}

@@ -67,27 +67,14 @@ The tokens also become Tailwind utilities, such as `bg-craft-surface`,
 ## Fonts
 
 Labels use [Departure Mono](https://departuremono.com/) by Helena Zhang, under the
-SIL Open Font License. **The theme loads it for you**, from this site, so there's
-nothing to set up.
+SIL Open Font License. **The theme installs it for you**, as the
+`@runqora/departure-mono` package, so there's nothing to set up. Your bundler serves
+the font from your own app, like any other asset.
 
 It's drawn on an 11-pixel grid, so it's sharpest at multiples of 11px. Controls use
 `--craft-label-size`, which is 22px. Departure Mono has one weight, and browsers
 smear its pixels when they fake a bold, so set `font-synthesis: none` on any heading
 you bold, or on your `body`.
-
-To host the font yourself, for instance because a Content Security Policy blocks
-other origins, download
-[the font file](https://craftui.runqora.dev/fonts/DepartureMono-Regular.woff2) into
-`public/fonts`, remove the `departure-mono.css` import that was added to your CSS, and
-add this rule instead:
-
-```css
-@font-face {
-  font-family: "Departure Mono";
-  font-display: swap;
-  src: url("/fonts/DepartureMono-Regular.woff2") format("woff2");
-}
-```
 
 Long text uses [Noto Sans](https://fonts.google.com/noto/specimen/Noto+Sans), also
 under the SIL Open Font License, and falls back to your system's sans-serif font. The

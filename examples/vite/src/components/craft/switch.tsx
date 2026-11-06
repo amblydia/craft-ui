@@ -17,7 +17,7 @@ export function Switch({ className, disabled, label, ...props }: SwitchProps) {
     <BaseSwitch.Root
       className={cn(
         "group/switch relative inline-block h-[calc(var(--craft-unit)*16)] w-[calc(var(--craft-unit)*30)] shrink-0 cursor-pointer",
-        "focus-visible:craft-focus",
+        "outline-none",
         "data-disabled:cursor-not-allowed",
         !label && className
       )}
@@ -39,16 +39,24 @@ export function Switch({ className, disabled, label, ...props }: SwitchProps) {
           aria-hidden="true"
           className="bg-craft-primary-fg group-data-disabled/switch:bg-craft-disabled-fg absolute top-1/2 left-[calc(var(--craft-unit)*6)] hidden h-[calc(var(--craft-unit)*6)] w-(--craft-unit) -translate-y-1/2 group-data-checked/switch:block"
         />
-        <span
+        <svg
           aria-hidden="true"
-          className="border-craft-outline group-data-disabled/switch:border-craft-disabled-fg absolute top-1/2 right-[calc(var(--craft-unit)*4)] block size-[calc(var(--craft-unit)*6)] -translate-y-1/2 border-(length:--craft-unit) group-data-checked/switch:hidden"
-        />
+          className="text-craft-outline group-data-disabled/switch:text-craft-disabled-fg absolute top-1/2 right-[calc(var(--craft-unit)*4)] block size-[calc(var(--craft-unit)*6)] -translate-y-1/2 group-data-checked/switch:hidden"
+          fill="currentColor"
+          shapeRendering="crispEdges"
+          viewBox="0 0 6 6"
+        >
+          <path d="M1 0h4v1H1zM1 5h4v1H1zM0 1h1v4H0zM5 1h1v4H5z" />
+        </svg>
       </span>
       <BaseSwitch.Thumb
         className={cn(
           "craft-bevel absolute top-0 left-0 block size-[calc(var(--craft-unit)*16)] motion-safe:transition-transform motion-safe:duration-100",
           "[--bevel-depth:var(--craft-edge)] [--bevel-edge:var(--craft-secondary-edge)] [--bevel-face:var(--craft-secondary)] [--bevel-hi:var(--craft-secondary-hi)] [--bevel-lo:var(--craft-secondary-lo)]",
           "group-hover/switch:[--bevel-face:var(--craft-secondary-hover)] group-hover/switch:[--bevel-hi:var(--craft-secondary-hover-hi)] group-hover/switch:[--bevel-lo:var(--craft-secondary-hover-lo)]",
+          "group-active/switch:[--bevel-face:var(--craft-secondary-active)] group-active/switch:[--bevel-hi:var(--craft-secondary-active-hi)] group-active/switch:[--bevel-lo:var(--craft-secondary-active-lo)]",
+          // The ring hugs the thumb, not the whole switch, as in the reference.
+          "group-focus-visible/switch:craft-focus",
           "data-checked:translate-x-[calc(var(--craft-unit)*14)]",
           "data-disabled:[--bevel-edge:var(--craft-disabled-edge)] data-disabled:[--bevel-face:var(--craft-disabled)] data-disabled:[--bevel-hi:var(--craft-disabled)] data-disabled:[--bevel-lo:var(--craft-disabled)] data-disabled:[--bevel-outline:var(--craft-disabled-outline)]"
         )}
@@ -64,7 +72,7 @@ export function Switch({ className, disabled, label, ...props }: SwitchProps) {
   return (
     <label
       className={cn(
-        "font-craft-display text-craft-text inline-flex cursor-pointer items-center gap-3 text-xl",
+        "font-craft-display text-craft-text inline-flex cursor-pointer items-center gap-3 text-(length:--craft-label-size)",
         disabled && "text-craft-text-muted cursor-not-allowed",
         className
       )}

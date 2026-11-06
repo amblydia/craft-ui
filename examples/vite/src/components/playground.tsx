@@ -57,7 +57,7 @@ export function SettingsPanel({ actions }: { actions?: ReactNode }) {
   const [volume, setVolume] = useState(60);
 
   return (
-    <Panel>
+    <Panel framed>
       <PanelHeader>
         <PanelTitle>Settings</PanelTitle>
         {actions ? <PanelActions>{actions}</PanelActions> : null}
@@ -96,7 +96,7 @@ export function SettingsPanel({ actions }: { actions?: ReactNode }) {
         <Progress aria-label="Connecting" value={null} />
 
         <ScrollArea className="h-40" label="Saved worlds">
-          <ul className="font-craft-display flex flex-col gap-2 p-3 text-xl">
+          <ul className="font-craft-display flex flex-col gap-2 p-3 text-(length:--craft-label-size)">
             {worlds.map((world) => (
               <li key={world}>{world}</li>
             ))}

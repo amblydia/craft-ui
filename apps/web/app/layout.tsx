@@ -16,9 +16,6 @@ export const metadata: Metadata = {
 export default function Layout({ children }: LayoutProps<"/">) {
   return (
     <html className={body.variable} lang="en" suppressHydrationWarning>
-      <head>
-        <link href="/fonts/departure-mono.css" rel="stylesheet" />
-      </head>
       <body className="bg-craft-background flex min-h-screen flex-col">
         <RootProvider theme={{ defaultTheme: "dark" }}>{children}</RootProvider>
       </body>

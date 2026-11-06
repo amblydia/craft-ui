@@ -102,7 +102,7 @@ use what.
 
 Labels use [Departure Mono](https://departuremono.com/) by Helena Zhang, under the SIL
 Open Font License. The font file and its license are in
-[`apps/web/public/fonts`](apps/web/public/fonts).
+[`packages/departure-mono`](packages/departure-mono).
 
 ## License
 

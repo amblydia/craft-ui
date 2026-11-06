@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "@runqora/departure-mono";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -82,9 +83,21 @@
     --color-craft-warning-hi: var(--craft-warning-hi);
     --color-craft-info-lo: var(--craft-info-lo);
     --color-craft-info-hi: var(--craft-info-hi);
+    --color-craft-scrollbar-outline: var(--craft-scrollbar-outline);
+    --color-craft-scrollbar-lo: var(--craft-scrollbar-lo);
+    --color-craft-scrollbar-hi: var(--craft-scrollbar-hi);
+    --color-craft-scrollbar: var(--craft-scrollbar);
+    --color-craft-track-active-lo: var(--craft-track-active-lo);
+    --color-craft-track-active-hi: var(--craft-track-active-hi);
+    --color-craft-track-active: var(--craft-track-active);
+    --color-craft-track-hover-lo: var(--craft-track-hover-lo);
+    --color-craft-track-hover-hi: var(--craft-track-hover-hi);
+    --color-craft-track-hover: var(--craft-track-hover);
     --color-craft-track-lo: var(--craft-track-lo);
     --color-craft-track-hi: var(--craft-track-hi);
     --color-craft-disabled-edge: var(--craft-disabled-edge);
+    --color-craft-disabled-lo: var(--craft-disabled-lo);
+    --color-craft-disabled-hi: var(--craft-disabled-hi);
     --color-craft-destructive-active-lo: var(--craft-destructive-active-lo);
     --color-craft-destructive-active-hi: var(--craft-destructive-active-hi);
     --color-craft-destructive-active: var(--craft-destructive-active);
@@ -103,6 +116,7 @@
     --color-craft-secondary-edge: var(--craft-secondary-edge);
     --color-craft-secondary-lo: var(--craft-secondary-lo);
     --color-craft-secondary-hi: var(--craft-secondary-hi);
+    --color-craft-hero-shadow: var(--craft-hero-shadow);
     --color-craft-primary-active-lo: var(--craft-primary-active-lo);
     --color-craft-primary-active-hi: var(--craft-primary-active-hi);
     --color-craft-primary-active: var(--craft-primary-active);
@@ -115,6 +129,11 @@
     --color-craft-field-shade: var(--craft-field-shade);
     --color-craft-sunken-lo: var(--craft-sunken-lo);
     --color-craft-sunken-hi: var(--craft-sunken-hi);
+    --color-craft-selected-lo: var(--craft-selected-lo);
+    --color-craft-selected-hi: var(--craft-selected-hi);
+    --color-craft-raised-hover-lo: var(--craft-raised-hover-lo);
+    --color-craft-raised-hover-hi: var(--craft-raised-hover-hi);
+    --color-craft-raised-hover: var(--craft-raised-hover);
     --color-craft-raised-edge: var(--craft-raised-edge);
     --color-craft-raised-lo: var(--craft-raised-lo);
     --color-craft-raised-hi: var(--craft-raised-hi);
@@ -123,6 +142,7 @@
     --color-craft-surface-hi: var(--craft-surface-hi);
     --craft-focus-width: var(--craft-focus-width);
     --color-craft-focus: var(--craft-focus);
+    --craft-label-size: var(--craft-label-size);
     --craft-font-body: var(--craft-font-body);
     --craft-font-display: var(--craft-font-display);
     --craft-control-lg: var(--craft-control-lg);
@@ -180,10 +200,11 @@
     --craft-radius: 0px;
     --craft-space: 1rem;
     --craft-control-sm: 2.25rem;
-    --craft-control-md: 2.75rem;
-    --craft-control-lg: 3.25rem;
-    --craft-font-display: var(--font-jersey-20, "Jersey 20"), ui-monospace, monospace;
+    --craft-control-md: 3rem;
+    --craft-control-lg: 3.5rem;
+    --craft-font-display: "Departure Mono", ui-monospace, monospace;
     --craft-font-body: var(--font-noto-sans, "Noto Sans"), ui-sans-serif, system-ui, sans-serif;
+    --craft-label-size: 1.375rem;
     --craft-focus: #2e6be5;
     --craft-focus-width: 2px;
     --craft-background: #e6e8eb;
@@ -199,6 +220,11 @@
     --craft-raised-hi: #ecedee;
     --craft-raised-lo: #e3e3e5;
     --craft-raised-edge: #b1b2b5;
+    --craft-raised-hover: #f4f6f9;
+    --craft-raised-hover-hi: #fbfbfd;
+    --craft-raised-hover-lo: #f8fafb;
+    --craft-selected-hi: #b1b2b5;
+    --craft-selected-lo: #d0d1d4;
     --craft-sunken: #e6e8eb;
     --craft-sunken-hi: #b1b2b5;
     --craft-sunken-lo: #f4f6f9;
@@ -218,6 +244,7 @@
     --craft-primary-active: #2a641c;
     --craft-primary-active-hi: #558349;
     --craft-primary-active-lo: #3f7332;
+    --craft-hero-shadow: #2a5d1b;
     --craft-secondary: #d0d1d4;
     --craft-secondary-hi: #ecedee;
     --craft-secondary-lo: #e3e3e5;
@@ -242,12 +269,24 @@
     --craft-destructive-active-hi: #cd5757;
     --craft-destructive-active-lo: #c64242;
     --craft-disabled: #d0d1d4;
+    --craft-disabled-hi: #d9dadd;
+    --craft-disabled-lo: #d5d6d8;
     --craft-disabled-edge: #b1b2b5;
     --craft-disabled-outline: #8c8d90;
     --craft-disabled-fg: #58585a;
     --craft-track: #8c8d90;
     --craft-track-hi: #a3a4a6;
     --craft-track-lo: #97989b;
+    --craft-track-hover: #b1b2b5;
+    --craft-track-hover-hi: #c1c1c4;
+    --craft-track-hover-lo: #b9babc;
+    --craft-track-active: #58585a;
+    --craft-track-active-hi: #79797b;
+    --craft-track-active-lo: #68686a;
+    --craft-scrollbar: #e6e8eb;
+    --craft-scrollbar-hi: #f5f6f7;
+    --craft-scrollbar-lo: #f0f1f3;
+    --craft-scrollbar-outline: #000000;
     --craft-info: #2e6be5;
     --craft-info-hi: #5889ea;
     --craft-info-lo: #204ba1;
@@ -306,6 +345,11 @@
     --craft-raised-hi: #6d6d6e;
     --craft-raised-lo: #5a5b5c;
     --craft-raised-edge: #313233;
+    --craft-raised-hover: #58585a;
+    --craft-raised-hover-hi: #79797b;
+    --craft-raised-hover-lo: #68686a;
+    --craft-selected-hi: #5a5b5c;
+    --craft-selected-lo: #454647;
     --craft-sunken: #313233;
     --craft-sunken-hi: #454647;
     --craft-sunken-lo: #222324;
@@ -332,6 +376,10 @@
     border: var(--craft-unit) solid var(--bevel-outline, var(--craft-outline));
     border-radius: var(--craft-radius);
     box-shadow: inset 0 calc(-1 * var(--bevel-depth, var(--craft-edge))) 0 var(--bevel-edge), inset 0 calc(-1 * (var(--bevel-depth, var(--craft-edge)) + var(--craft-unit))) 0 var(--bevel-lo), inset 0 var(--craft-unit) 0 var(--bevel-hi), inset var(--craft-unit) 0 0 var(--bevel-hi), inset calc(-1 * var(--craft-unit)) 0 0 var(--bevel-lo);
+}
+
+@utility craft-notch {
+    clip-path: polygon( var(--craft-unit) 0, calc(100% - var(--craft-unit)) 0, calc(100% - var(--craft-unit)) var(--craft-unit), 100% var(--craft-unit), 100% calc(100% - var(--craft-unit)), calc(100% - var(--craft-unit)) calc(100% - var(--craft-unit)), calc(100% - var(--craft-unit)) 100%, var(--craft-unit) 100%, var(--craft-unit) calc(100% - var(--craft-unit)), 0 calc(100% - var(--craft-unit)), 0 var(--craft-unit), var(--craft-unit) var(--craft-unit) );
 }
 
 @utility craft-inset {

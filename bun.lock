@@ -19,6 +19,7 @@
         "@hookform/resolvers": "7.0.2",
         "@hugeicons/core-free-icons": "4.4.0",
         "@hugeicons/react": "1.1.10",
+        "@runqora/departure-mono": "workspace:*",
         "class-variance-authority": "0.7.1",
         "clsx": "2.1.1",
         "fumadocs-core": "16.17.10",
@@ -51,6 +52,10 @@
     "packages/config": {
       "name": "@craft-ui/config",
       "version": "0.0.0",
+    },
+    "packages/departure-mono": {
+      "name": "@runqora/departure-mono",
+      "version": "1.0.0",
     },
     "packages/registry": {
       "name": "@craft-ui/registry",
@@ -421,6 +426,8 @@
     "@rolldown/binding-win32-x64-msvc": ["@rolldown/binding-win32-x64-msvc@1.2.16", "", { "os": "win32", "cpu": "x64" }, "sha512-1lv1KvX0Z871zfk7vw+dnXMMnHNyDwMzWG8Kv3HxDXMOhzCX4SHc7HK319fInP0i+0p9D8brkfzL7pJOaGl+tw=="],
 
     "@rolldown/pluginutils": ["@rolldown/pluginutils@1.0.1", "", {}, "sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw=="],
+
+    "@runqora/departure-mono": ["@runqora/departure-mono@workspace:packages/departure-mono"],
 
     "@sec-ant/readable-stream": ["@sec-ant/readable-stream@0.4.1", "", {}, "sha512-831qok9r2t8AlxLko40y2ebgSDhenenCatLVeW/uBtnHPyhHOvG0C7TvfgecV+wHzIm5KUICgzmVpWS+IMEAeg=="],
 
