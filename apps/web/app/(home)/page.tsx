@@ -31,7 +31,7 @@ const features = [
     title: "Recognizable",
   },
   {
-    text: "Built on Base UI, with full keyboard support, screen reader support and WCAG AA contrast in both modes.",
+    text: "Built on Base UI, with full keyboard support, screen reader support and WCAG AA contrast, apart from the white hover labels the game uses.",
     title: "Accessible",
   },
   {

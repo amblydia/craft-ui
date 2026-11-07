@@ -1,17 +1,14 @@
 {
   "pages": [
-    "---Get started---",
     "index",
     "installation",
     "themes",
     "playground",
+    "changelog",
+    "contributing",
     "---Components---",
     "...components",
     "---Blocks---",
-    "[All blocks](/blocks)",
-    "---Project---",
-    "changelog",
-    "contributing",
-    "sponsors"
+    "[All blocks](/blocks)"
   ]
 }

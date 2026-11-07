@@ -46,6 +46,12 @@ const config = {
   output: "standalone",
   outputFileTracingRoot: workspaceRoot,
   reactStrictMode: true,
+  redirects() {
+    return [
+      // Sponsors became a page of its own, outside the docs.
+      { destination: "/sponsors", permanent: true, source: "/docs/sponsors" },
+    ];
+  },
 
   // The shadcn CLI asks for /r/{style}/{name}.json. CraftUI items depend on
   // Base UI directly, so one build serves every style, Radix or Base.

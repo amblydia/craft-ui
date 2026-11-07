@@ -26,5 +26,5 @@ export const homeLinks: BaseLayoutProps["links"] = [
   { active: "nested-url", text: "Docs", url: "/docs" },
   { text: "Components", url: "/docs/components/button" },
   { text: "Blocks", url: "/blocks" },
-  { text: "Sponsors", url: "/docs/sponsors" },
+  { text: "Sponsors", url: "/sponsors" },
 ];

@@ -35,7 +35,7 @@ export const allPages = [
   "/docs/playground",
   "/docs/changelog",
   "/docs/contributing",
-  "/docs/sponsors",
+  "/sponsors",
   ...componentPages,
   ...viewPages,
 ];

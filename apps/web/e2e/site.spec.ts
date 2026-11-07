@@ -421,23 +421,41 @@ test.describe("docs sidebar", () => {
     const named = pages.map((text) => text.trim()).filter(Boolean);
     expect(new Set(named).size).toBe(named.length);
 
-    // The groups in the order a reader needs them.
+    // The first pages sit at the top with no heading, then the groups.
     const groups = await sidebar.locator("p").allTextContents();
     expect(groups.map((text) => text.trim()).filter(Boolean)).toEqual([
-      "Get started",
       "Components",
       "Core",
       "Advanced",
       "Game",
       "Blocks",
-      "Project",
     ]);
+    // The logo link comes first, then the pages.
+    const start = named.indexOf("Introduction");
+    expect(named.slice(start, start + 6)).toEqual([
+      "Introduction",
+      "Installation",
+      "Themes",
+      "Playground",
+      "Changelog",
+      "Contributing",
+    ]);
+    // Sponsors is a page of its own, not part of the docs.
+    expect(named).not.toContain("Sponsors");
 
     const core = named.slice(
       named.indexOf("Button"),
       named.indexOf("Tooltip") + 1
     );
     expect(core).toEqual([...core].sort((a, b) => a.localeCompare(b)));
+  });
+
+  test("sends the old sponsors address to its own page", async ({ page }) => {
+    await page.goto("/docs/sponsors");
+    await expect(page).toHaveURL(/\/sponsors$/u);
+    await expect(
+      page.getByRole("link", { name: "Sponsor on GitHub" })
+    ).toBeVisible();
   });
 
   test("uses the smaller pixel type", async ({ page }) => {
@@ -447,4 +465,20 @@ test.describe("docs sidebar", () => {
       "14px"
     );
   });
+});
+
+test("the search bar is a CraftUI field", async ({ page }) => {
+  await page.goto("/");
+  const search = page.locator("[data-search-full]").first();
+  const style = await search.evaluate((el) => {
+    const computed = getComputedStyle(el);
+    return {
+      background: computed.backgroundColor,
+      font: computed.fontFamily,
+      radius: computed.borderTopLeftRadius,
+    };
+  });
+  expect(style.radius).toBe("0px");
+  expect(style.background).toBe("rgb(49, 50, 51)");
+  expect(style.font).toContain("Departure Mono");
 });
