@@ -52,7 +52,7 @@ export function MainMenuDemo() {
       background={<Scene name="meadow" />}
       character={<Explorer />}
       logo={
-        <p className="bg-craft-overlay font-craft-display px-4 py-2 text-[2.75rem] leading-none tracking-widest uppercase">
+        <p className="bg-craft-overlay font-craft-display px-4 py-2 text-[2rem] leading-none tracking-widest uppercase @md/screen:text-[2.75rem]">
           Blockfall
         </p>
       }

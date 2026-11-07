@@ -63,10 +63,10 @@ export function MainMenu({
         </div>
       ) : null}
       <div className="grid flex-1 items-center gap-8 p-(--craft-space) @3xl/screen:grid-cols-[minmax(0,26rem)_1fr] @3xl/screen:px-[8%]">
-        <nav aria-label="Main menu" className="flex flex-col gap-4">
+        <nav aria-label="Main menu" className="flex min-w-0 flex-col gap-4">
           {logo ? (
             <div
-              className="mb-4 flex justify-center"
+              className="mb-4 flex justify-center *:max-w-full"
               data-slot="main-menu-logo"
             >
               {logo}

@@ -47,6 +47,18 @@ export function Play() {
 The theme installs the pixel font for labels, so there's nothing to set up. To load
 the font for long text, see [Fonts](/docs/themes#fonts).
 
+## Add many at once
+
+Name as many items as you like in one command:
+
+```npm
+npx shadcn@latest add @runqora/craft-button @runqora/craft-select @runqora/craft-server-browser
+```
+
+The CLI fetches every item, and everything each one needs, at the same time. On
+some networks, such as through a VPN, that many connections at once can time out
+with "Unable to connect". If it does, add the items in smaller groups.
+
 ## Without the namespace
 
 Every item is also available at its own URL, with no configuration.
@@ -60,9 +72,10 @@ npx shadcn@latest add https://craftui.runqora.dev/r/craft-button.json
 | File | Change |
 |---|---|
 | `components/craft/*.tsx` | The components you added |
+| `components/craft/blocks/*.tsx` | The blocks you added |
 | `lib/utils.ts` | The `cn` helper, if you don't have it |
-| Your CSS file | Variables starting with `--craft-`, plus the `craft-bevel`, `craft-inset` and `craft-focus` utilities |
-| `package.json` | `@base-ui/react` and, for some components, `class-variance-authority` |
+| Your CSS file | Variables starting with `--craft-`, plus the `craft-bevel`, `craft-inset` and `craft-focus` utilities, and an import of the pixel font |
+| `package.json` | `@base-ui/react`, the pixel font as `@runqora/departure-mono`, and, for some components, `class-variance-authority` |
 
 Your own components and theme aren't changed. `components/ui/button.tsx` and
 `components/craft/button.tsx` can live side by side.

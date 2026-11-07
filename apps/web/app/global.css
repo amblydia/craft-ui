@@ -70,11 +70,12 @@
     font-size: 1.375rem;
   }
 
+  /* Navigation in the pixel face, small enough to scan a long list. */
   #nd-sidebar a,
   #nd-sidebar button,
   #nd-nav a {
     font-family: var(--craft-font-display);
-    font-size: 1.375rem;
+    font-size: 0.875rem;
   }
 }
 

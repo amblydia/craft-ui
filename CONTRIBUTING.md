@@ -36,6 +36,30 @@ bun run dev
    have: Installation, Usage, Props, Accessibility, Customization, Dependencies and
    Source.
 
+## Add a block
+
+1. Write `packages/registry/components/blocks/<name>.tsx` on `Screen`, taking its
+   data and handlers as props, with tests in `blocks.test.tsx`.
+2. Add `craft-<name>` to `registry.json` as a `registry:block`, with the components
+   it uses as its dependencies.
+3. Add a demo in `apps/web/components/demos/blocks`, list it in that folder's
+   `index.ts` for its page at `/view/<name>`, and write
+   `apps/web/content/docs/blocks/<name>.mdx`.
+
+## Match the reference
+
+CraftUI follows Ore UI closely. Measure a control against the
+[Ore UI design system images](https://minecraft.wiki/w/Ore_UI) before you style it,
+and record what you measured in `docs/design-reference.md`. The images are all at
+about 4.5 pixels per unit, so count units from the faces, not the one-unit lines.
+
+## Screenshots
+
+The browser tests compare screenshots of every block and component preview with
+ones taken on Linux, as CI is, so they only run there. When a change is meant to
+alter the look, run the **Visual baselines** workflow on GitHub, download the
+`visual-baselines` artifact into `apps/web/e2e/__screenshots__`, and commit it.
+
 ## Component rules
 
 - Build on [Base UI](https://base-ui.com) wherever it has a primitive.

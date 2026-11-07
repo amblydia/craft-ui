@@ -40,6 +40,23 @@ The site runs at `http://localhost:3000`.
 Build it on Base UI where a primitive exists, take every color from a token, and
 keep it free of Next.js and of application logic.
 
+## Add a block
+
+1. Write `packages/registry/components/blocks/<name>.tsx` on `Screen`, taking its
+   data and handlers as props.
+2. Add `craft-<name>` to `registry.json` as a `registry:block`, with the
+   components it uses as its dependencies.
+3. Add a demo in `apps/web/components/demos/blocks`, list it in that folder's
+   `index.ts` for its page at `/view/<name>`, and write
+   `apps/web/content/docs/blocks/<name>.mdx`.
+
+## Match the reference
+
+Measure a control against the
+[Ore UI design system images](https://minecraft.wiki/w/Ore_UI) before styling it,
+and record what you measured in `docs/design-reference.md`. View the images for
+study only: never add them to the repository.
+
 ## Checks
 
 ```bash
@@ -53,6 +70,11 @@ bun run test:install --template vite --browser
 
 The last two create a brand new project, install every component with the real
 shadcn CLI, and try them out in a browser.
+
+The browser tests include screenshot comparisons, against screenshots taken on
+Linux, as CI is. They only run there. When a change is meant to alter the look,
+run the **Visual baselines** workflow on GitHub, and commit the screenshots it
+produces.
 
 ## Assets
 

@@ -1,0 +1,39 @@
+name: Visual baselines
+
+# Takes the screenshots the browser tests compare against, on Linux, as CI is.
+# Run it by hand when a change is meant to alter the look, then download the
+# visual-baselines artifact into apps/web/e2e/__screenshots__ and commit it.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  screenshots:
+    name: Take screenshots
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: package.json
+      - run: bun install --frozen-lockfile
+      - name: Build the site and registry
+        run: bun run --cwd apps/web build
+      - name: Install Chromium
+        run: bun x playwright install --with-deps chromium
+        working-directory: apps/web
+      - name: Take the screenshots
+        run: bun x playwright test e2e/visual.spec.ts --update-snapshots=all
+        working-directory: apps/web
+      - uses: actions/upload-artifact@v4
+        with:
+          name: visual-baselines
+          path: apps/web/e2e/__screenshots__
+          retention-days: 14

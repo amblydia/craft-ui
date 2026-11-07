@@ -86,7 +86,9 @@ export function ScreenHeader({
   return (
     <header
       className={cn(
-        "bg-craft-header text-craft-header-fg relative grid min-h-(--craft-control-lg) shrink-0 grid-cols-[1fr_auto_1fr] items-stretch pb-[calc(var(--craft-unit)*3)]",
+        // The title is centered on the bar when there's room. On a narrow
+        // screen, the sides take what they need and the title takes the rest.
+        "bg-craft-header text-craft-header-fg relative grid min-h-(--craft-control-lg) shrink-0 grid-cols-[auto_minmax(0,1fr)_auto] items-stretch pb-[calc(var(--craft-unit)*3)] @xl/screen:grid-cols-[1fr_auto_1fr]",
         "shadow-[inset_0_calc(-1*var(--craft-unit)*2)_0_var(--craft-header-lo),inset_0_calc(-1*var(--craft-unit)*3)_0_var(--craft-header-hi)]",
         className
       )}
@@ -107,7 +109,7 @@ export function ScreenHeader({
         ) : null}
       </div>
       <h1
-        className="font-craft-display flex items-center px-(--craft-space) text-center leading-tight tracking-widest text-(length:--craft-label-size) uppercase"
+        className="font-craft-display flex min-w-0 items-center justify-center px-(--craft-space) text-center leading-tight tracking-widest break-words text-(length:--craft-label-size) uppercase"
         data-slot="screen-title"
       >
         {title}

@@ -78,7 +78,7 @@ The site runs at <http://localhost:3000>.
 | `bun run check` | Lint, format and types |
 | `bun run test` | Unit tests |
 | `bun run build` | Build the registry and the site |
-| `bun run test:e2e` | The built site in a real browser, with accessibility checks |
+| `bun run test:e2e` | The built site in a real browser, with accessibility checks and, on Linux, screenshot comparisons |
 | `bun run test:install --template next --browser` | Install every component into a brand new project and try it out |
 
 ## Repository layout

@@ -3,15 +3,15 @@
   "pages": [
     "index",
     "screen",
-    "main-menu",
-    "settings-screen",
-    "server-browser",
-    "world-browser",
-    "inventory-screen",
-    "profile-screen",
     "confirmation-dialog",
     "game-dashboard",
+    "inventory-screen",
+    "main-menu",
+    "marketplace",
     "multiplayer-lobby",
-    "marketplace"
+    "profile-screen",
+    "server-browser",
+    "settings-screen",
+    "world-browser"
   ]
 }

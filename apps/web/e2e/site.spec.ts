@@ -412,3 +412,39 @@ test.describe("registry", () => {
     expect(await response.json()).toEqual({ status: "ok" });
   });
 });
+
+test.describe("docs sidebar", () => {
+  test("lists every page once, A to Z within each group", async ({ page }) => {
+    await page.goto("/docs/components/button");
+    const sidebar = page.locator("#nd-sidebar");
+    const pages = await sidebar.locator("a").allTextContents();
+    const named = pages.map((text) => text.trim()).filter(Boolean);
+    expect(new Set(named).size).toBe(named.length);
+
+    // The groups in the order a reader needs them.
+    const groups = await sidebar.locator("p").allTextContents();
+    expect(groups.map((text) => text.trim()).filter(Boolean)).toEqual([
+      "Get started",
+      "Components",
+      "Core",
+      "Advanced",
+      "Game",
+      "Blocks",
+      "Project",
+    ]);
+
+    const core = named.slice(
+      named.indexOf("Button"),
+      named.indexOf("Tooltip") + 1
+    );
+    expect(core).toEqual([...core].sort((a, b) => a.localeCompare(b)));
+  });
+
+  test("uses the smaller pixel type", async ({ page }) => {
+    await page.goto("/docs/components/button");
+    const link = page.locator("#nd-sidebar a", { hasText: "Checkbox" });
+    expect(await link.evaluate((el) => getComputedStyle(el).fontSize)).toBe(
+      "14px"
+    );
+  });
+});

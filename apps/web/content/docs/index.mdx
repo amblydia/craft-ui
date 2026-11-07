@@ -34,10 +34,11 @@ export function Play() {
 - **Measured, not guessed.** The colors and proportions were measured from
   published Ore UI design system references. All the art is original: CraftUI
   ships no Minecraft textures, fonts, icons or sounds.
-- **Accessible first.** Components are built on
-  [Base UI](https://base-ui.com) for keyboard and screen reader support. Where
-  the game's colors fall below WCAG AA, CraftUI keeps the color and changes the
-  label, and a test holds every token pair to that standard.
+- **Accessible.** Components are built on [Base UI](https://base-ui.com) for
+  keyboard and screen reader support, and every page of these docs is checked
+  with axe. Text meets WCAG AA, with one exception taken from the game: a hovered
+  button keeps its white label. A test holds every color pair to its measured
+  contrast.
 - **Coexists with shadcn/ui.** Components install to `components/craft`, and every
   token starts with `craft`, so nothing touches your existing `Button` or
   `--primary`. You can use CraftUI on one page of a normal app.
