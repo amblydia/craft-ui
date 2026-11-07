@@ -1,0 +1,69 @@
+---
+title: Inventory Screen
+description: "A backpack, a hotbar and the character, with the chosen item's details and Use, Drop and Move buttons."
+full: true
+---
+
+import { InventoryScreenDemo } from "@/components/demos/blocks/inventory-screen-demo";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <BlockPreview view="inventory-screen"><InventoryScreenDemo /></BlockPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/blocks/inventory-screen-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-inventory-screen
+```
+
+## Usage
+
+```tsx
+import { InventoryScreen } from "@/components/craft/blocks/inventory-screen";
+
+<InventoryScreen
+  defaultContents={{ hotbar, inventory }}
+  onContentsChange={save}
+  onDrop={(item) => drop(item.id)}
+  onUse={(item) => use(item.id)}
+/>;
+```
+
+## Props
+
+### InventoryScreen
+
+<AutoTypeTable
+  path="../../packages/registry/components/blocks/inventory-screen.tsx"
+  type="Pick<InventoryScreenProps, 'defaultContents' | 'onContentsChange' | 'onUse' | 'onDrop' | 'columns' | 'rows' | 'character' | 'onBack' | 'title' | 'background'>"
+/>
+
+## Accessibility
+
+- The backpack is a grid and the hotbar a list, both named, with the keyboard support of Inventory Grid and Hotbar.
+- The details say the chosen item's name, description and durability in words.
+- Move to hotbar and Move to backpack let keyboard players move items between the two, which dragging alone wouldn't.
+
+## Customization
+
+The screen keeps the slots once it starts, and reports every change through `onContentsChange`, so you can save them. Items are the same objects as in Item Slot. Every screen fills its frame, so give it a height, such as `h-dvh` for a whole page.
+
+## Dependencies
+
+- `craft-button`, `craft-hotbar`, `craft-inventory-grid`, `craft-item-slot`, `craft-progress` and `craft-screen`
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/blocks/inventory-screen.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/blocks/inventory-screen.tsx</include>
+  </Accordion>
+</Accordions>

@@ -275,3 +275,44 @@ export function Scene({ name }: { name: SceneName }) {
     </svg>
   );
 }
+
+// An original blocky explorer: copper hair, a rust jacket and gray trousers.
+const explorer = {
+  palette: {
+    b: "#3b2a1e",
+    c: "#c8663a",
+    e: "#2b3a4a",
+    g: "#5b6270",
+    h: "#b5532a",
+    j: "#8f3d22",
+    k: "#d9a07a",
+    s: "#2a2d33",
+  },
+  rows: [
+    "..hhhh..",
+    ".hhhhhh.",
+    ".hkkkkh.",
+    ".kekkek.",
+    ".kkkkkk.",
+    "..kbbk..",
+    ".jjccjj.",
+    "jjjccjjj",
+    "jjjccjjj",
+    "kjjccjjk",
+    "kjjjjjjk",
+    "..gggg..",
+    "..gggg..",
+    "..g..g..",
+    "..g..g..",
+    ".ss..ss.",
+  ],
+};
+
+/** A full-length character for profile and menu previews. */
+export function Explorer() {
+  return (
+    <span className="block aspect-[1/2] h-full max-h-80 [&>svg]:size-full">
+      <Pixels {...explorer} />
+    </span>
+  );
+}

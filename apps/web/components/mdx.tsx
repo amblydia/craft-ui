@@ -8,6 +8,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import type { MDXComponents } from "mdx/types";
 import type { ComponentProps } from "react";
+import { BlockPreview } from "@/components/block-preview";
 import { ComponentPreview } from "@/components/component-preview";
 
 const generator = createGenerator({
@@ -38,6 +39,7 @@ export function getMDXComponents(components?: MDXComponents) {
     Accordion,
     Accordions,
     AutoTypeTable: TypeTable,
+    BlockPreview,
     ComponentPreview,
     Tab,
     Tabs,

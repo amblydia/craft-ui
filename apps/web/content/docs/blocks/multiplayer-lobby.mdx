@@ -1,0 +1,73 @@
+---
+title: Multiplayer Lobby
+description: "A lobby before a game: players and whether they're ready, a chat, and Ready, Leave and Start for the host."
+full: true
+---
+
+import { MultiplayerLobbyDemo } from "@/components/demos/blocks/multiplayer-lobby-demo";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <BlockPreview view="multiplayer-lobby"><MultiplayerLobbyDemo /></BlockPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/blocks/multiplayer-lobby-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+In the style of Ore UI's party screen.
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-multiplayer-lobby
+```
+
+## Usage
+
+```tsx
+import { MultiplayerLobby } from "@/components/craft/blocks/multiplayer-lobby";
+
+<MultiplayerLobby
+  currentPlayerId={me.id}
+  messages={messages}
+  name="Night raid"
+  onLeave={leave}
+  onReadyChange={setReady}
+  onSendMessage={send}
+  onStart={start}
+  players={players}
+/>;
+```
+
+## Props
+
+### MultiplayerLobby
+
+<AutoTypeTable
+  path="../../packages/registry/components/blocks/multiplayer-lobby.tsx"
+  type="Pick<MultiplayerLobbyProps, 'name' | 'details' | 'players' | 'currentPlayerId' | 'maxPlayers' | 'messages' | 'onSendMessage' | 'onReadyChange' | 'onStart' | 'onLeave' | 'onInvite' | 'onBack' | 'title' | 'background'>"
+/>
+
+## Accessibility
+
+- New chat messages and the ready count are announced as they change.
+- Ready is a toggle button, announced as pressed or not.
+- Only the host has Start, and it's disabled until everyone is ready.
+
+## Customization
+
+The block keeps only what's on screen, such as the search text. Your data comes in through props, and every action calls one of your handlers, so it works with any backend. Every screen fills its frame, so give it a height, such as `h-dvh` for a whole page.
+
+## Dependencies
+
+- `craft-badge`, `craft-button`, `craft-input`, `craft-profile-panel`, `craft-screen` and `craft-scroll-area`
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/blocks/multiplayer-lobby.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/blocks/multiplayer-lobby.tsx</include>
+  </Accordion>
+</Accordions>

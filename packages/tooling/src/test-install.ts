@@ -124,7 +124,7 @@ const registryDir = server
   : "";
 const { items } = JSON.parse(
   readFileSync(join(repoRoot, "packages", "registry", "registry.json"), "utf8")
-) as { items: { name: string }[] };
+) as { items: { files?: { target?: string }[]; name: string }[] };
 const itemNames = items.map((item) => item.name);
 
 let appProcess: ReturnType<typeof spawn> | undefined;
@@ -198,11 +198,15 @@ try {
   const manifest = readFileSync(join(projectDir, "package.json"), "utf8");
   const primaryBefore = /--primary:[^;]+;/u.exec(cssBefore)?.[0];
 
-  for (const name of itemNames.filter((item) => item !== "craft-theme")) {
-    const file = name.replace("craft-", "");
+  // Every file each item ships, at the path its registry entry gives.
+  for (const item of items.filter(({ name }) => name !== "craft-theme")) {
+    const targets = (item.files ?? []).map((file) =>
+      (file.target ?? "").replace("@components/", "components/")
+    );
     check(
-      existsSync(join(sourceDir, "components", "craft", `${file}.tsx`)),
-      `${name} is installed under components/craft`
+      targets.length > 0 &&
+        targets.every((target) => existsSync(join(sourceDir, target))),
+      `${item.name} is installed under components/craft`
     );
   }
   check(css.includes("--craft-primary: #3c8527"), "theme variables were added");

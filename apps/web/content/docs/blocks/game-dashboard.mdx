@@ -1,0 +1,74 @@
+---
+title: Game Dashboard
+description: "A live dashboard for a world or server: status, numbers, resource bars, weather and time controls, and the latest events."
+full: true
+---
+
+import { GameDashboardDemo } from "@/components/demos/blocks/game-dashboard-demo";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <BlockPreview view="game-dashboard"><GameDashboardDemo /></BlockPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/blocks/game-dashboard-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+In the style of the forms Ore UI shows in game, such as a live world dashboard.
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-game-dashboard
+```
+
+## Usage
+
+```tsx
+import {
+  GameDashboard,
+  GameDashboardAction,
+} from "@/components/craft/blocks/game-dashboard";
+
+<GameDashboard
+  actions={<GameDashboardAction onClick={restart}>Restart</GameDashboardAction>}
+  hour={hour}
+  onHourChange={setHour}
+  onWeatherChange={setWeather}
+  status="online"
+  weather={weather}
+  worldName="Riverside"
+/>;
+```
+
+## Props
+
+### GameDashboard
+
+<AutoTypeTable
+  path="../../packages/registry/components/blocks/game-dashboard.tsx"
+  type="Pick<GameDashboardProps, 'worldName' | 'status' | 'stats' | 'meters' | 'events' | 'weather' | 'weatherOptions' | 'onWeatherChange' | 'hour' | 'onHourChange' | 'actions' | 'onBack' | 'title' | 'background'>"
+/>
+
+## Accessibility
+
+- The numbers are terms and values, the bars are progress bars named by their labels, and the events are a table.
+- The status is a tag with words, such as Online, not only a color.
+
+## Customization
+
+The block keeps only what's on screen, such as the search text. Your data comes in through props, and every action calls one of your handlers, so it works with any backend. Every screen fills its frame, so give it a height, such as `h-dvh` for a whole page.
+
+## Dependencies
+
+- `craft-badge`, `craft-button`, `craft-panel`, `craft-progress`, `craft-screen`, `craft-select`, `craft-slider` and `craft-table`
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/blocks/game-dashboard.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/blocks/game-dashboard.tsx</include>
+  </Accordion>
+</Accordions>

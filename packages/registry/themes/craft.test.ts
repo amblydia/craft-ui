@@ -72,6 +72,7 @@ const textPairs: [foreground: string, background: string][] = [
   ["tag-fg", "tag-destructive"],
   ["tag-fg", "tag-accent"],
   ["text", "slot"],
+  ["header-fg", "header"],
   ["text-muted", "slot"],
 ];
 

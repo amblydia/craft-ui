@@ -1,0 +1,69 @@
+---
+title: Server Browser
+description: "Servers you can search and filter by favorites, with the chosen server's details and a big Play button."
+full: true
+---
+
+import { ServerBrowserDemo } from "@/components/demos/blocks/server-browser-demo";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <BlockPreview view="server-browser"><ServerBrowserDemo /></BlockPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/blocks/server-browser-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+Follows Ore UI's Servers tab: the list on one side and the chosen server on the other.
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-server-browser
+```
+
+## Usage
+
+```tsx
+import { ServerBrowser } from "@/components/craft/blocks/server-browser";
+
+<ServerBrowser
+  onAddServer={openAddServer}
+  onFavoriteChange={(server, favorite) => setFavorite(server.id, favorite)}
+  onJoin={(server) => join(server.id)}
+  servers={servers}
+/>;
+```
+
+## Props
+
+### ServerBrowser
+
+<AutoTypeTable
+  path="../../packages/registry/components/blocks/server-browser.tsx"
+  type="Pick<ServerBrowserProps, 'servers' | 'onJoin' | 'onFavoriteChange' | 'onAddServer' | 'onBack' | 'title' | 'emptyMessage' | 'background'>"
+/>
+
+## Accessibility
+
+- Each server's name is a button that shows its details, marked as the current one.
+- The details are a region named after the server, and Play is named after it too, such as "Play Gemfall". It's disabled while connecting or offline.
+- The search box and Favorites only switch are labelled.
+
+## Customization
+
+The block keeps only what's on screen, such as the search text. Your data comes in through props, and every action calls one of your handlers, so it works with any backend. On a narrow screen, the details sit under the list. Every screen fills its frame, so give it a height, such as `h-dvh` for a whole page.
+
+## Dependencies
+
+- `craft-button`, `craft-input`, `craft-screen`, `craft-server-list` and `craft-switch`
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/blocks/server-browser.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/blocks/server-browser.tsx</include>
+  </Accordion>
+</Accordions>

@@ -94,6 +94,8 @@
     --color-craft-surface-lo: var(--craft-surface-lo);
     --color-craft-sunken-hi: var(--craft-sunken-hi);
     --color-craft-slot: var(--craft-slot);
+    --color-craft-header: var(--craft-header);
+    --color-craft-header-fg: var(--craft-header-fg);
     --color-craft-signal-good: var(--craft-signal-good);
     --color-craft-signal-fair: var(--craft-signal-fair);
     --color-craft-signal-poor: var(--craft-signal-poor);
@@ -101,6 +103,8 @@
     --font-craft-display: var(--craft-font-display);
     --font-craft-body: var(--craft-font-body);
     --radius-craft: var(--craft-radius);
+    --color-craft-header-lo: var(--craft-header-lo);
+    --color-craft-header-hi: var(--craft-header-hi);
     --color-craft-slot-count-shadow: var(--craft-slot-count-shadow);
     --color-craft-slot-lo: var(--craft-slot-lo);
     --color-craft-slot-hi: var(--craft-slot-hi);
@@ -350,6 +354,10 @@
     --craft-signal-fair: #ffe866;
     --craft-signal-poor: #ff8080;
     --craft-favorite: #ffe866;
+    --craft-header: #e6e8eb;
+    --craft-header-hi: #ecedef;
+    --craft-header-lo: #b1b2b5;
+    --craft-header-fg: #1e1e1f;
     --craft-tooltip: #2e6be5;
     --craft-tooltip-fg: #ffffff;
     --craft-overlay: rgb(0 0 0 / 0.6);

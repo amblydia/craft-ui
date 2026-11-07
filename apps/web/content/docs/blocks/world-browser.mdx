@@ -1,0 +1,70 @@
+---
+title: World Browser
+description: "The player's worlds as cards, with search, sorting, Create new world, Edit, and Delete after confirmation."
+full: true
+---
+
+import { WorldBrowserDemo } from "@/components/demos/blocks/world-browser-demo";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <BlockPreview view="world-browser"><WorldBrowserDemo /></BlockPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/blocks/world-browser-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-world-browser
+```
+
+## Usage
+
+```tsx
+import { WorldBrowser } from "@/components/craft/blocks/world-browser";
+
+<WorldBrowser
+  onCreate={createWorld}
+  onDelete={(world) => deleteWorld(world.id)}
+  onEdit={(world) => editWorld(world.id)}
+  onPlay={(world) => play(world.id)}
+  worlds={worlds}
+/>;
+```
+
+## Props
+
+### WorldBrowser
+
+<AutoTypeTable
+  path="../../packages/registry/components/blocks/world-browser.tsx"
+  type="Pick<WorldBrowserProps, 'worlds' | 'onPlay' | 'onEdit' | 'onDelete' | 'onCreate' | 'onBack' | 'title' | 'background'>"
+/>
+
+## Accessibility
+
+- Each card opens its world through a button named "Play" and the world's name.
+- Delete asks for confirmation in an alert dialog first.
+- The search box and sort menu are labelled.
+
+## Customization
+
+Worlds sort by when they were last played, newest first, or by name. `lastPlayedLabel` writes the line under each name, in the player's language. The block keeps only what's on screen, such as the search text. Your data comes in through props, and every action calls one of your handlers, so it works with any backend. Every screen fills its frame, so give it a height, such as `h-dvh` for a whole page.
+
+## Dependencies
+
+- `craft-badge`, `craft-button`, `craft-input`, `craft-screen`, `craft-select` and `craft-world-list`
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/blocks/world-browser.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/blocks/world-browser.tsx</include>
+  </Accordion>
+</Accordions>

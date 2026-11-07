@@ -1,6 +1,6 @@
 "use client";
 
-import type { ComponentProps, ReactNode } from "react";
+import { type ComponentProps, type ReactNode, useId } from "react";
 import { Button } from "@/components/craft/button";
 import { Spinner } from "@/components/craft/spinner";
 import { cn } from "@/lib/utils";
@@ -277,10 +277,17 @@ export interface ServerListItemProps
   onFavoriteChange?: (favorite: boolean) => void;
   /** Called when Join is pressed. Without it, there is no join button. */
   onJoin?: () => void;
+  /**
+   * Called when the server's name is pressed, such as to show its details
+   * beside the list. Without it, the name is plain text.
+   */
+  onSelect?: () => void;
   /** The round trip, in milliseconds. */
   ping?: number | null;
   /** How many players are on it, and how many it allows. */
   players?: { max?: number; online: number };
+  /** Marks the server whose details are shown. */
+  selected?: boolean;
   /** Join is disabled while connecting, and while offline. */
   status?: ServerStatus;
 }
@@ -295,23 +302,38 @@ export function ServerListItem({
   name,
   onFavoriteChange,
   onJoin,
+  onSelect,
   ping,
   players,
+  selected = false,
   status = "online",
   ...props
 }: ServerListItemProps) {
+  const descriptionId = useId();
+  const nameClassName =
+    "font-craft-display truncate leading-tight text-(length:--craft-label-size)";
+
   return (
     <li
       className={cn(
         "bg-craft-surface text-craft-text flex flex-wrap items-center gap-x-4 gap-y-2 px-(--craft-space) py-3",
+        // The server whose details are shown is lifted, as in Ore UI's list.
+        "data-selected:bg-(--craft-raised-hover)",
         "shadow-[inset_0_var(--craft-unit)_0_var(--craft-surface-hi),inset_0_calc(-1*var(--craft-unit))_0_var(--craft-surface-lo)]",
         className
       )}
+      data-selected={selected ? "" : undefined}
       data-slot="server-list-item"
       data-status={status}
       {...props}
     >
-      <span className="flex min-w-48 flex-1 items-center gap-3">
+      <span
+        className={cn(
+          "relative flex min-w-48 flex-1 items-center gap-3",
+          onSelect &&
+            "has-[[data-slot=server-list-item-select]:focus-visible]:craft-focus"
+        )}
+      >
         {icon ? (
           <span
             aria-hidden="true"
@@ -322,11 +344,30 @@ export function ServerListItem({
           </span>
         ) : null}
         <span className="flex min-w-0 flex-col gap-1">
-          <span className="font-craft-display truncate leading-tight text-(length:--craft-label-size)">
-            {name}
-          </span>
+          {onSelect ? (
+            // Only the name is inside the button, which stretches over the
+            // picture and description so they can be pressed too.
+            <button
+              aria-current={selected ? "true" : undefined}
+              aria-describedby={description ? descriptionId : undefined}
+              className={cn(
+                nameClassName,
+                "cursor-pointer text-left outline-none after:absolute after:inset-0 after:content-[''] hover:underline"
+              )}
+              data-slot="server-list-item-select"
+              onClick={onSelect}
+              type="button"
+            >
+              {name}
+            </button>
+          ) : (
+            <span className={nameClassName}>{name}</span>
+          )}
           {description ? (
-            <span className="font-craft-body text-craft-text-muted line-clamp-2 text-sm">
+            <span
+              className="font-craft-body text-craft-text-muted line-clamp-2 text-sm"
+              id={descriptionId}
+            >
               {description}
             </span>
           ) : null}

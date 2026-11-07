@@ -39,6 +39,8 @@ the lines, to count units.
 | Tab | 24 tall, as a button. Selected: loses the shade and sinks 2 units, with a 24-unit underline on its bottom edge. The focus ring sits outside the outline, and a disabled tab looks like the others |
 | Toggle button | as tabs, in the light and green colors; the choices share the width and long labels wrap |
 | Dialog title bar | a back arrow 4 × 8 units and a close cross 8 × 8, both drawn with one-unit strokes |
+| Screen top bar | `#E6E8EB`, with a light line (`#ECEDEF`) and a 2-unit shade (`#B1B2B5`) along its bottom; a dark title in capitals; actions split off by a groove |
+| Section heading | over a world picture: white text on a dark box, then a thin light rule. With a tone: a colored tag, then a 2-unit rule of the same color |
 | Switch marks | "I" in white, "O" in `#242425`; both `#666666` when disabled |
 | Scrollbar | 9 wide: outline 1, gap 1, thumb 5 (outlined in black), gap 1, outline 1 |
 | Row (flat panel) | light line 1 at the top, dark line 1 at the bottom, no outline and no sides |

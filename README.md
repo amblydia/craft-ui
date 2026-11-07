@@ -49,8 +49,10 @@ Accordion, Toast, Popover, Navigation Menu, Pagination, Table, Badge and Spinner
 **Game components:** Item Slot, Inventory Grid, Hotbar, Server List, World List,
 Profile Panel and Settings Menu.
 
-Full-page blocks, such as a main menu and a server browser, are planned. See the
-[introduction](https://craftui.runqora.dev/docs).
+**Blocks:** Main Menu, Settings Screen, Server Browser, World Browser, Inventory
+Screen, Profile Screen, Confirmation Dialog, Game Dashboard, Multiplayer Lobby and
+Marketplace: whole screens that take your data and handlers. See the
+[blocks](https://craftui.runqora.dev/docs/blocks).
 
 ## Relationship with Runqora
 

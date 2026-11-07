@@ -2,11 +2,22 @@ import { readdirSync } from "node:fs";
 import { join } from "node:path";
 
 // Playwright runs from apps/web.
-const components = readdirSync(join("content", "docs", "components"))
-  .filter((file) => file.endsWith(".mdx"))
-  .map((file) => `/docs/components/${file.replace(".mdx", "")}`);
+function pagesIn(folder: string) {
+  return readdirSync(join("content", "docs", folder))
+    .filter((file) => file.endsWith(".mdx") && file !== "index.mdx")
+    .map((file) => `/docs/${folder}/${file.replace(".mdx", "")}`);
+}
 
-export const componentPages = components;
+const components = pagesIn("components");
+const blocks = pagesIn("blocks");
+
+/** Pages for one component or block, which share the same sections. */
+export const componentPages = [...components, ...blocks];
+
+/** Each block on a page of its own. */
+export const viewPages = blocks.map((page) =>
+  page.replace("/docs/blocks/", "/view/")
+);
 
 export const allPages = [
   "/",
@@ -17,5 +28,7 @@ export const allPages = [
   "/docs/changelog",
   "/docs/contributing",
   "/docs/sponsors",
-  ...components,
+  "/docs/blocks",
+  ...componentPages,
+  ...viewPages,
 ];

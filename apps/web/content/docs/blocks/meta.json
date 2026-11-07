@@ -1,0 +1,17 @@
+{
+  "title": "Blocks",
+  "pages": [
+    "index",
+    "screen",
+    "main-menu",
+    "settings-screen",
+    "server-browser",
+    "world-browser",
+    "inventory-screen",
+    "profile-screen",
+    "confirmation-dialog",
+    "game-dashboard",
+    "multiplayer-lobby",
+    "marketplace"
+  ]
+}

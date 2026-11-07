@@ -179,6 +179,13 @@
   --craft-signal-poor: #ff8080;
   --craft-favorite: #ffe866;
 
+  /* The light bar along the top of a screen, as on Ore UI's Play and Settings
+     screens, with a light line and a shade along its bottom. */
+  --craft-header: #e6e8eb;
+  --craft-header-hi: #ecedef;
+  --craft-header-lo: #b1b2b5;
+  --craft-header-fg: #1e1e1f;
+
   /* Tooltips and overlays. */
   --craft-tooltip: #2e6be5;
   --craft-tooltip-fg: #ffffff;
@@ -233,6 +240,8 @@
   --color-craft-surface-lo: var(--craft-surface-lo);
   --color-craft-sunken-hi: var(--craft-sunken-hi);
   --color-craft-slot: var(--craft-slot);
+  --color-craft-header: var(--craft-header);
+  --color-craft-header-fg: var(--craft-header-fg);
   --color-craft-signal-good: var(--craft-signal-good);
   --color-craft-signal-fair: var(--craft-signal-fair);
   --color-craft-signal-poor: var(--craft-signal-poor);

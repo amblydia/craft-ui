@@ -44,6 +44,15 @@ The first set of components, not yet announced.
   Profile Panel and Settings Menu, following Ore UI's world, server, profile and
   settings screens. They take your app's data and handlers, and never call a game
 - **Theme:** colors for item slots, ping signal and favorites
+- **Blocks:** Main Menu, Settings Screen, Server Browser, World Browser, Inventory
+  Screen, Profile Screen, Confirmation Dialog, Game Dashboard, Multiplayer Lobby
+  and Marketplace, laid out as Ore UI's screens, with a page of their own each at
+  `/view/{name}`
+- **Screen:** the frame the blocks share, with Ore UI's light top bar and titled
+  sections
+- **Server List:** `onSelect` and `selected`, to show a server's details beside the
+  list
+- **Theme:** colors for the top bar of a screen
 - **Button:** the `hero` variant
 - **Slider:** `showSteps`, which marks each step with a notch
 - **Dialog:** `DialogBack`

@@ -1,0 +1,90 @@
+---
+title: Screen
+description: "The frame of an Ore UI screen: a picture behind everything, the light bar along the top, and titled sections."
+full: true
+---
+
+import { ScreenDemo } from "@/components/demos/blocks/screen-demo";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <BlockPreview view="screen"><ScreenDemo /></BlockPreview>
+  </Tab>
+  <Tab value="Code">
+    <include lang="tsx">../../../components/demos/blocks/screen-demo.tsx</include>
+  </Tab>
+</Tabs>
+
+
+
+## Installation
+
+```npm
+npx shadcn@latest add @runqora/craft-screen
+```
+
+## Usage
+
+```tsx
+import {
+  Screen,
+  ScreenBody,
+  ScreenHeader,
+  ScreenSection,
+} from "@/components/craft/screen";
+
+<Screen background={<img alt="" src="/world.png" />} className="h-dvh">
+  <ScreenHeader onBack={() => history.back()} title="Play" />
+  <ScreenBody>
+    <ScreenSection title="Top games">…</ScreenSection>
+    <ScreenSection title="Received invites (1)" tone="warning">…</ScreenSection>
+  </ScreenBody>
+</Screen>;
+```
+
+## Props
+
+### Screen
+
+<AutoTypeTable
+  path="../../packages/registry/components/screen.tsx"
+  type="Pick<ScreenProps, 'background'>"
+/>
+
+### ScreenHeader
+
+<AutoTypeTable
+  path="../../packages/registry/components/screen.tsx"
+  type="Pick<ScreenHeaderProps, 'title' | 'onBack' | 'backLabel' | 'actions'>"
+/>
+
+### ScreenSection
+
+<AutoTypeTable
+  path="../../packages/registry/components/screen.tsx"
+  type="Pick<ScreenSectionProps, 'title' | 'tone' | 'action'>"
+/>
+
+## Accessibility
+
+- The title is the page's heading, and each section is a region named by its own heading.
+- The back arrow is a button named Back. Pass `backLabel` to translate it.
+- The background is hidden from screen readers.
+
+## Customization
+
+Every block is built on Screen, so changing it changes them all. The bar uses `--craft-header`, `--craft-header-hi`, `--craft-header-lo` and `--craft-header-fg`.
+
+A screen is a container: the layouts inside follow its width, not the window's, so a screen in a side panel lays out as a narrow one. Every screen fills its frame, so give it a height, such as `h-dvh` for a whole page.
+
+## Dependencies
+
+- shadcn's `utils`, and `craft-theme`
+
+## Source
+
+<Accordions>
+  <Accordion title="components/craft/screen.tsx">
+    <include lang="tsx">../../../../../packages/registry/components/screen.tsx</include>
+  </Accordion>
+</Accordions>

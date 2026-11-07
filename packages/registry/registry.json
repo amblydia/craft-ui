@@ -563,6 +563,253 @@
         }
       ],
       "categories": ["game"]
+    },
+    {
+      "name": "craft-screen",
+      "type": "registry:ui",
+      "title": "Screen",
+      "description": "The frame of an Ore UI screen: a picture behind everything, the light bar along the top with a back arrow and title, and titled sections.",
+      "registryDependencies": ["utils", "craft-theme"],
+      "files": [
+        {
+          "path": "components/screen.tsx",
+          "type": "registry:ui",
+          "target": "@components/craft/screen.tsx"
+        }
+      ],
+      "categories": ["blocks"]
+    },
+    {
+      "name": "craft-main-menu",
+      "type": "registry:block",
+      "title": "Main Menu",
+      "description": "Ore UI's main menu: a big green Play button and light buttons under it, the player's character, and controls in the top corner.",
+      "registryDependencies": [
+        "utils",
+        "craft-theme",
+        "craft-button",
+        "craft-screen"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/main-menu.tsx",
+          "type": "registry:component",
+          "target": "@components/craft/blocks/main-menu.tsx"
+        }
+      ],
+      "categories": ["blocks"]
+    },
+    {
+      "name": "craft-settings-screen",
+      "type": "registry:block",
+      "title": "Settings Screen",
+      "description": "A settings screen built from a list of categories and settings: switches, sliders, dropdowns, rows of choices and buttons, with reset.",
+      "registryDependencies": [
+        "utils",
+        "craft-theme",
+        "craft-button",
+        "craft-screen",
+        "craft-select",
+        "craft-settings-menu",
+        "craft-slider",
+        "craft-switch",
+        "craft-tabs"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/settings-screen.tsx",
+          "type": "registry:component",
+          "target": "@components/craft/blocks/settings-screen.tsx"
+        }
+      ],
+      "categories": ["blocks"]
+    },
+    {
+      "name": "craft-server-browser",
+      "type": "registry:block",
+      "title": "Server Browser",
+      "description": "Servers you can search and filter by favorites, and the chosen server's details with a big Play button. Works with any backend.",
+      "registryDependencies": [
+        "utils",
+        "craft-theme",
+        "craft-button",
+        "craft-input",
+        "craft-screen",
+        "craft-server-list",
+        "craft-switch"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/server-browser.tsx",
+          "type": "registry:component",
+          "target": "@components/craft/blocks/server-browser.tsx"
+        }
+      ],
+      "categories": ["blocks"]
+    },
+    {
+      "name": "craft-world-browser",
+      "type": "registry:block",
+      "title": "World Browser",
+      "description": "The player's worlds as cards, with search, sorting, Create new world, Edit, and Delete after confirmation.",
+      "registryDependencies": [
+        "utils",
+        "craft-theme",
+        "craft-badge",
+        "craft-button",
+        "craft-input",
+        "craft-screen",
+        "craft-select",
+        "craft-world-list"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/world-browser.tsx",
+          "type": "registry:component",
+          "target": "@components/craft/blocks/world-browser.tsx"
+        }
+      ],
+      "categories": ["blocks"]
+    },
+    {
+      "name": "craft-inventory-screen",
+      "type": "registry:block",
+      "title": "Inventory Screen",
+      "description": "A backpack, a hotbar and the character, with the chosen item's details and Use, Drop and Move buttons.",
+      "registryDependencies": [
+        "utils",
+        "craft-theme",
+        "craft-button",
+        "craft-hotbar",
+        "craft-inventory-grid",
+        "craft-item-slot",
+        "craft-progress",
+        "craft-screen"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/inventory-screen.tsx",
+          "type": "registry:component",
+          "target": "@components/craft/blocks/inventory-screen.tsx"
+        }
+      ],
+      "categories": ["blocks"]
+    },
+    {
+      "name": "craft-profile-screen",
+      "type": "registry:block",
+      "title": "Profile Screen",
+      "description": "Ore UI's profile screen: preview, name, status and actions, with statistics and achievements in tabs.",
+      "registryDependencies": [
+        "utils",
+        "craft-theme",
+        "craft-profile-panel",
+        "craft-screen",
+        "craft-tabs"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/profile-screen.tsx",
+          "type": "registry:component",
+          "target": "@components/craft/blocks/profile-screen.tsx"
+        }
+      ],
+      "categories": ["blocks"]
+    },
+    {
+      "name": "craft-confirmation-dialog",
+      "type": "registry:block",
+      "title": "Confirmation Dialog",
+      "description": "A dialog that asks before doing something, with an optional box to tick before confirming.",
+      "registryDependencies": [
+        "utils",
+        "craft-theme",
+        "craft-button",
+        "craft-checkbox",
+        "craft-dialog",
+        "craft-panel"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/confirmation-dialog.tsx",
+          "type": "registry:component",
+          "target": "@components/craft/blocks/confirmation-dialog.tsx"
+        }
+      ],
+      "categories": ["blocks"]
+    },
+    {
+      "name": "craft-game-dashboard",
+      "type": "registry:block",
+      "title": "Game Dashboard",
+      "description": "A live dashboard for a world or server: status, numbers, resource bars, weather and time controls, and the latest events.",
+      "registryDependencies": [
+        "utils",
+        "craft-theme",
+        "craft-badge",
+        "craft-button",
+        "craft-panel",
+        "craft-progress",
+        "craft-screen",
+        "craft-select",
+        "craft-slider",
+        "craft-table"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/game-dashboard.tsx",
+          "type": "registry:component",
+          "target": "@components/craft/blocks/game-dashboard.tsx"
+        }
+      ],
+      "categories": ["blocks"]
+    },
+    {
+      "name": "craft-multiplayer-lobby",
+      "type": "registry:block",
+      "title": "Multiplayer Lobby",
+      "description": "A lobby before a game: players and whether they're ready, a chat, and Ready, Leave and Start for the host.",
+      "registryDependencies": [
+        "utils",
+        "craft-theme",
+        "craft-badge",
+        "craft-button",
+        "craft-input",
+        "craft-profile-panel",
+        "craft-screen",
+        "craft-scroll-area"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/multiplayer-lobby.tsx",
+          "type": "registry:component",
+          "target": "@components/craft/blocks/multiplayer-lobby.tsx"
+        }
+      ],
+      "categories": ["blocks"]
+    },
+    {
+      "name": "craft-marketplace",
+      "type": "registry:block",
+      "title": "Marketplace",
+      "description": "A store page: cards with a picture, creator, rating and price, with search, a category filter, sorting and pages.",
+      "registryDependencies": [
+        "utils",
+        "craft-theme",
+        "craft-badge",
+        "craft-input",
+        "craft-pagination",
+        "craft-screen",
+        "craft-select"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/marketplace.tsx",
+          "type": "registry:component",
+          "target": "@components/craft/blocks/marketplace.tsx"
+        }
+      ],
+      "categories": ["blocks"]
     }
   ]
 }
