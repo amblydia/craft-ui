@@ -135,11 +135,58 @@ test.describe("blocks", () => {
       "page"
     );
   });
+});
 
-  test("a block's docs page links to its own page", async ({ page }) => {
-    await open(page, "/docs/blocks/main-menu");
+// The gallery keeps loading live previews, so wait for the page, not the
+// network.
+async function openGallery(page: Page) {
+  await page.goto("/blocks");
+  await page.waitForLoadState("load");
+}
+
+test.describe("blocks gallery", () => {
+  test("shows every block with its install command", async ({ page }) => {
+    await openGallery(page);
+    const blocks = page.locator('[data-slot="block-showcase"]');
+    await expect(blocks).toHaveCount(10);
+    const first = blocks.first();
     await expect(
-      page.getByRole("link", { name: "Open on a page of its own" })
+      first.getByRole("heading", { name: "Main Menu" })
+    ).toBeVisible();
+    await expect(first.locator("code").first()).toHaveText(
+      "npx shadcn@latest add @runqora/craft-main-menu"
+    );
+    await expect(
+      first.getByRole("link", { name: "Open in a new tab" })
     ).toHaveAttribute("href", "/view/main-menu");
+  });
+
+  test("previews a block at a phone's width", async ({ page }) => {
+    await openGallery(page);
+    const first = page.locator('[data-slot="block-showcase"]').first();
+    const frame = first.locator("iframe");
+    await expect(frame).toHaveAttribute("src", "/view/main-menu");
+    await first.getByRole("button", { name: "Phone" }).click();
+    await expect.poll(async () => (await frame.boundingBox())?.width).toBe(390);
+  });
+
+  test("shows a block's code, and copies it", async ({ page, context }) => {
+    await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+    await openGallery(page);
+    const first = page.locator('[data-slot="block-showcase"]').first();
+    await first.getByRole("tab", { name: "Code" }).click();
+    await expect(
+      first.getByText("components/craft/blocks/main-menu.tsx")
+    ).toBeVisible();
+    await expect(
+      first.getByText("export function MainMenu").first()
+    ).toBeVisible();
+
+    await first
+      .getByRole("button", { name: "Copy the command for Main Menu" })
+      .click();
+    expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
+      "npx shadcn@latest add @runqora/craft-main-menu"
+    );
   });
 });

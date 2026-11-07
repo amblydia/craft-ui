@@ -33,6 +33,7 @@
     "inventory-grid",
     "item-slot",
     "profile-panel",
+    "screen",
     "server-list",
     "settings-menu",
     "world-list"

@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { allPages, componentPages } from "./pages";
+import { allPages, componentPages, loadedState } from "./pages";
 
 // Checks every page for what a careful reviewer would: errors in the console,
 // hydration mismatches, content that only fits a wide screen, and motion that
@@ -15,7 +15,7 @@ for (const path of allPages) {
       }
     });
     await page.goto(path);
-    await page.waitForLoadState("networkidle");
+    await page.waitForLoadState(loadedState(path));
     expect(errors).toEqual([]);
   });
 
@@ -24,7 +24,7 @@ for (const path of allPages) {
     // sideways. Wide parts, such as tables and code, scroll on their own.
     await page.setViewportSize({ height: 640, width: 320 });
     await page.goto(path);
-    await page.waitForLoadState("networkidle");
+    await page.waitForLoadState(loadedState(path));
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth - window.innerWidth
@@ -37,7 +37,7 @@ for (const path of componentPages) {
   test(`${path} holds still with reduced motion`, async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto(path);
-    await page.waitForLoadState("networkidle");
+    await page.waitForLoadState(loadedState(path));
     const running = await page.evaluate(() =>
       document
         .getAnimations()

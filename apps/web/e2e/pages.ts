@@ -1,4 +1,4 @@
-import { readdirSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
 // Playwright runs from apps/web.
@@ -8,19 +8,27 @@ function pagesIn(folder: string) {
     .map((file) => `/docs/${folder}/${file.replace(".mdx", "")}`);
 }
 
-const components = pagesIn("components");
-const blocks = pagesIn("blocks");
+/** Pages for one component, which share the same sections. */
+export const componentPages = pagesIn("components");
 
-/** Pages for one component or block, which share the same sections. */
-export const componentPages = [...components, ...blocks];
+const { items } = JSON.parse(
+  readFileSync(
+    join("..", "..", "packages", "registry", "registry.json"),
+    "utf8"
+  )
+) as { items: { name: string; type: string }[] };
 
-/** Each block on a page of its own. */
-export const viewPages = blocks.map((page) =>
-  page.replace("/docs/blocks/", "/view/")
-);
+/** Each block, and the Screen they share, on a page of its own. */
+export const viewPages = [
+  "/view/screen",
+  ...items
+    .filter((item) => item.type === "registry:block")
+    .map((item) => `/view/${item.name.replace("craft-", "")}`),
+];
 
 export const allPages = [
   "/",
+  "/blocks",
   "/docs",
   "/docs/installation",
   "/docs/themes",
@@ -28,7 +36,14 @@ export const allPages = [
   "/docs/changelog",
   "/docs/contributing",
   "/docs/sponsors",
-  "/docs/blocks",
   ...componentPages,
   ...viewPages,
 ];
+
+/**
+ * What to wait for after opening a page. The blocks gallery keeps loading live
+ * previews, so its network never goes quiet for long: wait for the page itself.
+ */
+export function loadedState(path: string) {
+  return path === "/blocks" ? "load" : "networkidle";
+}

@@ -52,7 +52,7 @@ Profile Panel and Settings Menu.
 **Blocks:** Main Menu, Settings Screen, Server Browser, World Browser, Inventory
 Screen, Profile Screen, Confirmation Dialog, Game Dashboard, Multiplayer Lobby and
 Marketplace: whole screens that take your data and handlers. See the
-[blocks](https://craftui.runqora.dev/docs/blocks).
+[blocks](https://craftui.runqora.dev/blocks).
 
 ## Relationship with Runqora
 

@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { expect, test } from "@playwright/test";
-import { allPages, componentPages } from "./pages";
+import { allPages, componentPages, loadedState } from "./pages";
 
 test.describe("every page", () => {
   for (const path of allPages) {
@@ -16,14 +16,14 @@ test.describe("every page", () => {
 
       const response = await page.goto(path);
       expect(response?.status()).toBe(200);
-      await page.waitForLoadState("networkidle");
+      await page.waitForLoadState(loadedState(path));
       expect(errors).toEqual([]);
     });
 
     test(`${path} fits a phone`, async ({ page }) => {
       await page.setViewportSize({ height: 800, width: 360 });
       await page.goto(path);
-      await page.waitForLoadState("networkidle");
+      await page.waitForLoadState(loadedState(path));
       const overflow = await page.evaluate(
         () =>
           document.documentElement.scrollWidth -

@@ -43,8 +43,8 @@ bun run dev
 2. Add `craft-<name>` to `registry.json` as a `registry:block`, with the components
    it uses as its dependencies.
 3. Add a demo in `apps/web/components/demos/blocks`, list it in that folder's
-   `index.ts` for its page at `/view/<name>`, and write
-   `apps/web/content/docs/blocks/<name>.mdx`.
+   `index.ts` for its page at `/view/<name>`, and add it to the gallery's order in
+   `apps/web/app/(home)/blocks/page.tsx`.
 
 ## Match the reference
 
